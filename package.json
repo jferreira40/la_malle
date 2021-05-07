@@ -1,0 +1,24 @@
+{
+  "name": "la_malle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jferreira40/la_malle.git",
+  "author": "<ferreira.jess40@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.14",
+    "resolve-url-loader": "^3.1.2",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
+    "tailwindcss": "^2.1.2"
+  },
+  "dependencies": {
+    "laravel-mix": "^6.0.18"
+  },
+  "scripts": {
+    "dev": "npx mix",
+    "watch": "npx mix watch",
+    "prod": "npx mix --production"
+  }
+}
