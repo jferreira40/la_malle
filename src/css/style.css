@@ -1,5 +1,74 @@
 @tailwind base;
 @tailwind components;
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Regular.eot');
+    src: url('./../fonts/RedHatText-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Regular.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Regular.woff') format('woff'),
+        url('./../fonts/RedHatText-Regular.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Regular.svg#RedHatText-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Bold.eot');
+    src: url('./../fonts/RedHatText-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Bold.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Bold.woff') format('woff'),
+        url('./../fonts/RedHatText-Bold.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Bold.svg#RedHatText-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Medium.eot');
+    src: url('./../fonts/RedHatText-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Medium.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Medium.woff') format('woff'),
+        url('./../fonts/RedHatText-Medium.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Medium.svg#RedHatText-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 @tailwind utilities;
 
-body {}
+
+/* ------------------- Page d'accueil ------------------- */
+body.home main section.intro .wrapper {
+    min-height: 79px;
+}
+
+body.home main section.intro .wrapper::before {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: '';
+    display: block;
+    height: 71px;
+    width: 131px;
+    background-image: url('/src/images/homeshape.svg');
+    background-size: 250%;
+    background-repeat: no-repeat;
+    background-position: 91% 11%;
+}
+
+body.home main section.favorites .wrapper .game .starred {
+    content: '';
+    display: block;
+    height: 14px;
+    width: 14px;
+    background-image: url('/src/images/starred.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

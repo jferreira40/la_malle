@@ -26,19 +26,44 @@
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 
-<body>
-    <header class="home">
+<body class="home p-8">
+    <header class="home-header">
         <div class="wrappper flex justify-between">
             <div class="logo-wrapper">
-                <img src="src/images/logo/la_malle.svg" alt="Logo La Malle">
+                <img src="src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-8 h-8">
             </div>
             <div class="cta-wrapper">
                 <a href="settings.html">
-                    <img src="src/images/settings.svg" alt="Paramètres">
+                    <img src="src/images/settings.svg" alt="Paramètres" class="w-8 h-8">
                 </a>
             </div>
         </div>
     </header>
+    <main>
+        <section class="intro bg-lightGray rounded-xl mt-8 overflow-hidden">
+            <div class="wrapper relative p-3 ">
+                <h1 class="text-xl font-bold">
+                    Salut, <span class="name">Léa</span> ! 👋
+                </h1>
+            </div>
+        </section>
+
+        <section class="favorites mt-7">
+            <div class="wrapper">
+                <h2 class="text-lg font-bold mb-3">Mes favoris</h2>
+                <a href="">
+                    <div
+                        class="game infiltre flex flex-col justify-between items-end rounded-xl bg-spy pr-4 pb-3 pt-4 h-36">
+                        <span class="starred"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            L'infiltré
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
 </body>
 
 </html>
