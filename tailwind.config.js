@@ -3,6 +3,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      boxShadow: {
+        'custom': "0px 0px 16px rgba(222, 222, 222, 1);"
+      },
+      borderRadius: {
+        DEFAULT: "11px"
+      },
       colors: {
         black: "#000000",
         darkBlue: "#0D25B9",
