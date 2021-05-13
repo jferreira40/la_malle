@@ -43,7 +43,10 @@
 @tailwind utilities;
 
 
-/* ------------------- Page d'accueil ------------------- */
+/* ------------------------------------------------------ */
+/*                     Page d'accueil                     */
+/* ------------------------------------------------------ */
+
 body.home main section.intro .wrapper {
     min-height: 79px;
 }
@@ -62,12 +65,63 @@ body.home main section.intro .wrapper::before {
     background-position: 91% 11%;
 }
 
-body.home main section.favorites .wrapper .game .starred {
+body.home main section.favorites .wrapper .game .starred,
+body.home main section.popular .wrapper .game .starred {
     content: '';
     display: block;
     height: 14px;
     width: 14px;
+    background-image: url('/src/images/unstarred.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game .starred.on,
+body.home main section.popular .wrapper .game .starred.on {
     background-image: url('/src/images/starred.svg');
+}
+
+body.home main section.favorites .wrapper .game.infiltre::before,
+body.home main section.popular .wrapper .game.infiltre::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    display: block;
+    height: 134px;
+    width: 153px;
+    background-image: url('/src/images/infiltre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game.le-loup::before,
+body.home main section.popular .wrapper .game.le-loup::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    bottom: -20px;
+    display: block;
+    height: 160px;
+    width: 190px;
+    background-image: url('/src/images/le-loup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game.survivant::before,
+body.home main section.popular .wrapper .game.survivant::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    bottom: 0;
+    display: block;
+    height: 128px;
+    width: 157px;
+    background-image: url('/src/images/survivant.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
