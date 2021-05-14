@@ -42,7 +42,6 @@
 
 @tailwind utilities;
 
-
 /* ------------------------------------------------------ */
 /*                    Header générique                    */
 /* ------------------------------------------------------ */
@@ -264,8 +263,8 @@ body.home main section.friends .wrapper .card-container .card.bg-yellow::before 
 }
 
 body.home footer{
-    min-height: 92px; 
-    
+    min-height: 92px;
+
 }
 
 body.home footer::before{

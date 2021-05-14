@@ -5,6 +5,13 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      boxShadow: {
+        'custom': "0px 0px 16px rgba(222, 222, 222, 1);"
+      },
+      borderRadius: {
+        sm: "5px",
+        DEFAULT: "11px"
+      },
       colors: {
         black: "#000000",
         darkBlue: "#0D25B9",
@@ -27,7 +34,10 @@ module.exports = {
       width: {
          '1/3:m': '29.52%',
        }
-    }
+      },
+      outline: {
+        blue: '1px solid #0D25B9',
+      }
   },
   variants: {
     extend: {
