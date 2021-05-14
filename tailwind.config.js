@@ -9,6 +9,7 @@ module.exports = {
         black: "#000000",
         darkBlue: "#0D25B9",
         blue: "#4A7AE8",
+        lightBlue: "#99A3E2",
         red: "#EA6767",
         pink: "#FD6885",
         darkGray: "#818181",
