@@ -44,6 +44,33 @@
 
 
 /* ------------------------------------------------------ */
+/*                    Header générique                    */
+/* ------------------------------------------------------ */
+
+body header.main-header .wrapper .back-wrapper a::before{
+    content: '';
+    display: block;
+    height: 14px;
+    width: 13px;
+    background-image: url('/src/images/back-triangle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 7px;
+}
+
+body header.main-header::after{
+    content: '';
+    display: block;
+    height: 30px;
+    width: 100%;
+    background-image: url('/src/images/arrondi_header.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+/* ------------------------------------------------------ */
 /*                     Page d'accueil                     */
 /* ------------------------------------------------------ */
 
@@ -190,7 +217,7 @@ body.home main section.friends .wrapper .cta-wrapper .add-friend::before {
     background-repeat: no-repeat;
     background-position: center;
     margin-right: 0;
-    margin-left: auto
+    margin-left: auto;
 }
 
 body.home main section.friends .wrapper .card-container .card {
