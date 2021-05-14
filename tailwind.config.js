@@ -25,7 +25,7 @@ module.exports = {
         survive: "#E2AE68",
       },
       outline: {
-        blue: '2px solid #0D25B9',
+        blue: '1px solid #0D25B9',
       }
     }
   },

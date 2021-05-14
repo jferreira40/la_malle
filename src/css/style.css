@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 body {}
+
+input:invalid {
+    border-color: red;
+}
