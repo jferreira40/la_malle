@@ -1,3 +1,6 @@
 .idea
 node_modules
 public/css/style.css
+database.php
+register.php
+protected.php
