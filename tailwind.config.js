@@ -23,6 +23,9 @@ module.exports = {
       fontFamily: {
         sans: ['Red Hat Text', ...defaultTheme.fontFamily.sans],
       },
+      width: {
+         '1/3:m': '29.52%',
+       }
     }
   },
   variants: {

@@ -179,3 +179,77 @@ body.home main section.last-game .wrapper .card-container .card:nth-child(3n+3):
     background-repeat: no-repeat;
     background-position: center;
 }
+
+body.home main section.friends .wrapper .cta-wrapper .add-friend::before {
+    content: '';
+    display: block;
+    height: 19px;
+    width: 19px;
+    background-image: url('/src/images/add-friend.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 0;
+    margin-left: auto
+}
+
+body.home main section.friends .wrapper .card-container .card {
+    min-height: 85px;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-red::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 13px;
+    width: 58px;
+    height: 59px;
+    background-image: url('/src/images/triangle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-blue::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 55px;
+    height: 55px;
+    background-image: url('/src/images/carre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-yellow::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    background-image: url('/src/images/cercle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home footer{
+    min-height: 92px; 
+    
+}
+
+body.home footer::before{
+    content: '';
+    position: absolute;
+    bottom: -114vw;
+    left: -19vw;
+    width: 370%;
+    height: 144vw;
+    background-image: url('/src/images/footer-shape.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0% -120%;
+}
