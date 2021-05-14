@@ -126,3 +126,56 @@ body.home main section.popular .wrapper .game.survivant::before {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+body.home main section.last-game .wrapper .card-container::after {
+    content: '';
+    display: block;
+    min-width: 16px;
+    width: 16px;
+    min-height: 158px;
+}
+
+body.home main section.last-game .wrapper .card-container .card {
+    min-width: 101px;
+    width: 101px;
+    min-height: 158px;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+1)::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    right: -23px;
+    width: 68px;
+    height: 78px;
+    background-image: url('/src/images/shape_ronde.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+2)::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    right: -29px;
+    width: 77px;
+    height: 69px;
+    background-image: url('/src/images/shape_triangle_1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+3)::before {
+    content: '';
+    position: absolute;
+    top: -32px;
+    right: -39px;
+    width: 102px;
+    height: 90px;
+    background-image: url('/src/images/shape_triangle_2.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
