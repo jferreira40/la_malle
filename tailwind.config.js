@@ -7,6 +7,7 @@ module.exports = {
         'custom': "0px 0px 16px rgba(222, 222, 222, 1);"
       },
       borderRadius: {
+        sm: "5px",
         DEFAULT: "11px"
       },
       colors: {
@@ -22,6 +23,9 @@ module.exports = {
         spy: "#6879E2",
         wolf: "#9162C1",
         survive: "#E2AE68",
+      },
+      outline: {
+        blue: '2px solid #0D25B9',
       }
     }
   },
