@@ -11,17 +11,20 @@
 <body>
 <div class="flex flex-col px-14 pt-8">
     <img src="./../../images/la-malle.svg" alt="La malle" class="h-6">
-    <div class="space-y-4 flex flex-col pt-32">
-        <h1 class="text-3xl font-bold text-center">Inscription</h1>
-        <input type="text" placeholder="Ton prénom" class="rounded shadow-custom py-2.5 pl-5">
-        <input type="text" placeholder="Ton nom de famille" class="rounded shadow-custom py-2.5 pl-5">
-        <input type="text" placeholder="Ta date de naissance" class="rounded shadow-custom py-2.5 pl-5">
-        <input type="email" placeholder="Ton email" class="rounded shadow-custom py-2.5 pl-5">
-        <input type="password" placeholder="Ton mot de passe" class="rounded shadow-custom py-2.5 pl-5">
-        <input type="password" placeholder="Répète ton mot de passe" class="rounded shadow-custom py-2.5 pl-5">
-        <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded">Et bienvenue !</button>
+    <div class="pt-32">
+        <h1 class="text-3xl font-bold text-center pb-4">Inscription</h1>
+        <form id="inscription" name="inscription" class="flex flex-col space-y-4">
+            <input type="text" placeholder="Ton prénom" name="firstname" class="rounded shadow-custom py-2.5 pl-5 outline-blue">
+            <input type="text" placeholder="Ton nom de famille" name="lastname" class="rounded shadow-custom py-2.5 pl-5">
+            <input type="text" placeholder="Ta date de naissance" name="age" class="rounded shadow-custom py-2.5 pl-5">
+            <input type="email" placeholder="Ton email" name="email" class="rounded shadow-custom py-2.5 pl-5">
+            <input type="password" placeholder="Ton mot de passe" name="mdp" id="mdp" class="rounded shadow-custom py-2.5 pl-5">
+            <input type="password" placeholder="Répète ton mot de passe" id="repeatemdp" class="rounded shadow-custom py-2.5 pl-5">
+            <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded">Et bienvenue !</button>
+        </form>
+
     </div>
 </div>
-<img src="./../../images/Groupe%20166.svg" alt="test">
+<img src="./../../images/connexion.svg" alt="">
 </body>
 </html>
