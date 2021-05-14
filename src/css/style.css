@@ -1,5 +1,255 @@
 @tailwind base;
 @tailwind components;
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Regular.eot');
+    src: url('./../fonts/RedHatText-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Regular.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Regular.woff') format('woff'),
+        url('./../fonts/RedHatText-Regular.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Regular.svg#RedHatText-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Bold.eot');
+    src: url('./../fonts/RedHatText-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Bold.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Bold.woff') format('woff'),
+        url('./../fonts/RedHatText-Bold.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Bold.svg#RedHatText-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Text';
+    src: url('./../fonts/RedHatText-Medium.eot');
+    src: url('./../fonts/RedHatText-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./../fonts/RedHatText-Medium.woff2') format('woff2'),
+        url('./../fonts/RedHatText-Medium.woff') format('woff'),
+        url('./../fonts/RedHatText-Medium.ttf') format('truetype'),
+        url('./../fonts/RedHatText-Medium.svg#RedHatText-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 @tailwind utilities;
 
-body {}
+
+/* ------------------------------------------------------ */
+/*                     Page d'accueil                     */
+/* ------------------------------------------------------ */
+
+body.home main section.intro .wrapper {
+    min-height: 79px;
+}
+
+body.home main section.intro .wrapper::before {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: '';
+    display: block;
+    height: 71px;
+    width: 131px;
+    background-image: url('/src/images/homeshape.svg');
+    background-size: 250%;
+    background-repeat: no-repeat;
+    background-position: 91% 11%;
+}
+
+body.home main section.favorites .wrapper .game .starred,
+body.home main section.popular .wrapper .game .starred {
+    content: '';
+    display: block;
+    height: 14px;
+    width: 14px;
+    background-image: url('/src/images/unstarred.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game .starred.on,
+body.home main section.popular .wrapper .game .starred.on {
+    background-image: url('/src/images/starred.svg');
+}
+
+body.home main section.favorites .wrapper .game.infiltre::before,
+body.home main section.popular .wrapper .game.infiltre::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    display: block;
+    height: 134px;
+    width: 153px;
+    background-image: url('/src/images/infiltre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game.le-loup::before,
+body.home main section.popular .wrapper .game.le-loup::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    bottom: -20px;
+    display: block;
+    height: 160px;
+    width: 190px;
+    background-image: url('/src/images/le-loup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.favorites .wrapper .game.survivant::before,
+body.home main section.popular .wrapper .game.survivant::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    bottom: 0;
+    display: block;
+    height: 128px;
+    width: 157px;
+    background-image: url('/src/images/survivant.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.last-game .wrapper .card-container::after {
+    content: '';
+    display: block;
+    min-width: 16px;
+    width: 16px;
+    min-height: 158px;
+}
+
+body.home main section.last-game .wrapper .card-container .card {
+    min-width: 101px;
+    width: 101px;
+    min-height: 158px;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+1)::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    right: -23px;
+    width: 68px;
+    height: 78px;
+    background-image: url('/src/images/shape_ronde.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+2)::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    right: -29px;
+    width: 77px;
+    height: 69px;
+    background-image: url('/src/images/shape_triangle_1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.last-game .wrapper .card-container .card:nth-child(3n+3)::before {
+    content: '';
+    position: absolute;
+    top: -32px;
+    right: -39px;
+    width: 102px;
+    height: 90px;
+    background-image: url('/src/images/shape_triangle_2.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.friends .wrapper .cta-wrapper .add-friend::before {
+    content: '';
+    display: block;
+    height: 19px;
+    width: 19px;
+    background-image: url('/src/images/add-friend.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 0;
+    margin-left: auto
+}
+
+body.home main section.friends .wrapper .card-container .card {
+    min-height: 85px;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-red::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 13px;
+    width: 58px;
+    height: 59px;
+    background-image: url('/src/images/triangle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-blue::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 55px;
+    height: 55px;
+    background-image: url('/src/images/carre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.friends .wrapper .card-container .card.bg-yellow::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    background-image: url('/src/images/cercle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home footer{
+    min-height: 92px; 
+    
+}
+
+body.home footer::before{
+    content: '';
+    position: absolute;
+    bottom: -114vw;
+    left: -19vw;
+    width: 370%;
+    height: 144vw;
+    background-image: url('/src/images/footer-shape.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0% -120%;
+}
