@@ -27567,6 +27567,25 @@ body.home footer::before {
   background-position: 0% -120%;
 }
 
+/* ------------------------------------------------------ */
+
+/*                      Jeu Infiltré                      */
+
+/* ------------------------------------------------------ */
+
+body.game.infiltre::before {
+  content: '';
+  position: absolute;
+  bottom: -2%;
+  left: -20%;
+  width: 100%;
+  height: 45%;
+  background-image: url('/src/images/infiltre_bg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
