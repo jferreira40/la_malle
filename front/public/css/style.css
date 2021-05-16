@@ -27332,7 +27332,7 @@ video {
 
 /* ------------------------------------------------------ */
 
-body header.main-header .wrapper .back-wrapper a::before{
+body header.main-header .wrapper .back-wrapper a::before {
   content: '';
   display: block;
   height: 14px;
@@ -27344,10 +27344,10 @@ body header.main-header .wrapper .back-wrapper a::before{
   margin-right: 7px;
 }
 
-body header.main-header::after{
+body header.main-header::after {
   content: '';
   display: block;
-  height: 30px;
+  height: 31px;
   width: 100%;
   background-image: url('/src/images/arrondi_header.svg');
   background-size: 100%;
@@ -27550,11 +27550,11 @@ body.home main section.friends .wrapper .card-container .card.bg-yellow::before 
   background-position: center;
 }
 
-body.home footer{
+body.home footer {
   min-height: 92px;
 }
 
-body.home footer::before{
+body.home footer::before {
   content: '';
   position: absolute;
   bottom: -114vw;
@@ -160326,4 +160326,3 @@ body.home footer::before{
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-
