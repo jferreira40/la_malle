@@ -24,11 +24,12 @@
     <meta name="theme-color" content="#ffffff">
     <title>L'infiltré - La Malle</title>
     <link rel="stylesheet" href="../../../public/css/style.css">
+    <script src="./infiltre.js"></script>
 </head>
 
-<body class="game infiltre bg-spy">
+<body class="game infiltre bg-spy flex flex-col">
     <header class="main-header">
-        <div class="wrapper flex justify-center items-center pt-8 px-8 bg-lightGray">
+        <div class="wrapper flex justify-center items-center px-8 bg-lightGray">
             <div class="logo-wrapper flex items-center">
                 <img src="./../../images/logo/la_malle.svg" alt="Logo La Malle" class="w-6 h-6 mr-2">
                 <span class="text-lg font-bold">
@@ -45,16 +46,55 @@
         </div>
         <div class="cta-wrapper mt-32">
             <a href=""
-                class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full text-white font-medium text-xs">
+                class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full font-medium text-xs">
                 Jouer avec un groupe d'amis
             </a>
             <span class="block text-white text-xs text-center font-medium my-1">ou</span>
-            <a href=""
+            <a href="" id="direct-play"
                 class="block w-52 mx-auto text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
                 Jouer directement
             </a>
         </div>
     </main>
+    <aside class="popup hidden">
+        <div class="wrapper">
+            <h3>
+                Les règles de l'infiltré
+            </h3>
+            <div class="content">
+                <p>
+                    En début de partie, des cartes rôles sont distribuées aléatoirement pour 4 à 8 joueurs, désignant un
+                    maitre du jeu, un infiltré (traitre), tous les autres joueurs sont d’honnêtes citoyens.
+                </p>
+                <p>
+                    Le maitre de jeu doit faire deviner un mot désigné sur une carte secrète. Pendant un sablier
+                    d’environ 5 minutes, les joueurs lui posent un maximum de questions auxquelles il répond uniquement
+                    par « oui / non / je ne sais pas ».
+                </p>
+                <p>
+                    Mais le traitre connait également le mot secret : à lui de subtilement orienter les questions du
+                    groupe, influencer la réflexion générale, voire donner la bonne réponse.
+                </p>
+                <p>
+                    Si le mot n’est pas trouvé, toute l’équipe perd. Si au contraire le mot est découvert, alors se pose
+                    la question : « Est-ce que le joueur ayant trouvé la bonne réponse est le traitre ? »
+                </p>
+                <p>
+                    Les joueurs débattent en discutant des réponses données et de leur timing, de la pertinence des
+                    remarques, etc… Puis ils votent contre le joueur en question.
+                </p>
+                <p>
+                    Si c’est le traitre et que la majorité l’accuse, les citoyens gagnent.
+                    Si c’est un citoyen et que la majorité l’accuse, le traitre gagne.
+                    Si c’est un citoyen et qu’il n’a pas la majorité, alors un second vote a lieu pour déterminer qui
+                    est le traitre.
+                    Si les citoyens l’identifient, ils gagnent la partie sans lui. S’il reste dans l’ombre, alors il
+                    gagne seul !
+                </p>
+                </p>
+            </div>
+        </div>
+    </aside>
 </body>
 
 </html>

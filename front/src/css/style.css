@@ -58,15 +58,23 @@ body header.main-header .wrapper .back-wrapper a::before {
     margin-right: 7px;
 }
 
-body header.main-header::after {
-    content: '';
-    display: block;
-    height: 31px;
-    width: 100%;
-    background-image: url('/src/images/arrondi_header.svg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: top;
+
+body header.main-header {
+    height: 93px;
+    position: relative;
+    overflow: hidden;
+}
+
+body header.main-header>.wrapper {
+    width: 105%;
+    height: 100%;
+    left: -3%;
+    position: absolute;
+    background-color: #F5F5F5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
 }
 
 /* ------------------------------------------------------ */
@@ -284,8 +292,14 @@ body.home footer::before {
 /*                      Jeu Infiltré                      */
 /* ------------------------------------------------------ */
 
+html,
+body.game.infiltre {
+    height: 100%;
+}
+
 body.game.infiltre::before {
     content: '';
+    z-index: -1;
     position: absolute;
     bottom: -2%;
     left: -20%;
@@ -295,4 +309,18 @@ body.game.infiltre::before {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left;
+}
+
+body.game.infiltre main #increment {
+    background-image: url('/src/images/increment.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.game.infiltre main #decrement {
+    background-image: url('/src/images/decrement.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
