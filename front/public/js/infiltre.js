@@ -7,6 +7,12 @@
   \*************************************/
 /***/ (() => {
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -16,15 +22,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 // const randomWordFR = require('random-word-fr');
 // import randomWordFR from 'random-word-fr';
 var GameInfiltre = /*#__PURE__*/function () {
-  function GameInfiltre(players) {
+  function GameInfiltre() {
     _classCallCheck(this, GameInfiltre);
 
-    this.players = players;
+    this.players = [];
     this.word = "Avion";
     this.roles = [];
   }
 
   _createClass(GameInfiltre, [{
+    key: "setPlayers",
+    value: function setPlayers(arrPlayers) {
+      this.players = arrPlayers;
+    }
+  }, {
     key: "attributesRoles",
     value: function attributesRoles() {
       var essentialRoles = ['Maitre du jeu', 'Infiltré'];
@@ -57,11 +68,11 @@ var GameInfiltre = /*#__PURE__*/function () {
   }]);
 
   return GameInfiltre;
-}();
+}(); // const joueurs = ["Thomas", "Jules", "Emma", "Antoine"];
 
-var joueurs = ["Thomas", "Jules", "Emma", "Antoine"];
-var newGame = new GameInfiltre(joueurs);
-console.log(newGame.attributesRoles()); // console.log(randomWordFR());
+
+var newGame = new GameInfiltre(); // console.log(newGame.attributesRoles());
+// console.log(randomWordFR());
 
 window.addEventListener("DOMContentLoaded", function (event) {
   if (document.body.classList.contains('infiltre')) {
@@ -76,7 +87,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
 function stepOne() {
   // Retrait de l'interface de selection
   document.getElementsByClassName('cta-wrapper')[0].remove();
-  var main = document.getElementsByTagName('main')[0];
+  var main = document.getElementsByClassName('main-wrapper')[0];
   main.classList.add('h-full', 'flex', 'flex-col', 'justify-between'); // Génération de la structure du nombre d'utilisateurs
 
   var wrapperCounter = document.createElement('div');
@@ -140,8 +151,89 @@ function stepOne() {
   buttonStart.appendChild(text2);
   wrapperButton.appendChild(buttonRules);
   wrapperButton.appendChild(buttonStart);
+  main.appendChild(wrapperButton); // TODO Faire la popup des règles
+
+  document.getElementById("go-stepTwo").addEventListener("click", function (event) {
+    event.preventDefault();
+    stepTwo(parseInt(document.getElementById('valuePlayers').innerHTML));
+  });
+}
+
+function stepTwo(nbPlayers) {
+  // Retrait de l'interface
+  document.getElementsByClassName('counter')[0].remove();
+  document.getElementsByClassName('cta-wrapper')[0].remove();
+  document.getElementsByTagName('body')[0].classList.add('selection');
+  document.getElementsByClassName('title-wrapper')[0].classList.remove('mt-16');
+  document.getElementsByClassName('title-wrapper')[0].classList.add('mt-4');
+  var main = document.getElementsByClassName('main-wrapper')[0]; // Génération des champs pour l'entrée des utilisateurs
+
+  var wrapperFields = document.createElement('div');
+  wrapperFields.classList.add('fields-wrapper', 'w-full', 'flex', 'flex-col', 'items-center');
+  var labelFields = document.createElement('span');
+  labelFields.classList.add('font-bold', 'text-white', 'text-sm', 'my-5');
+  var textLabel = document.createTextNode('Liste des joueurs :');
+  labelFields.appendChild(textLabel);
+  wrapperFields.appendChild(labelFields);
+
+  for (var i = 1; i <= nbPlayers; i++) {
+    var field = document.createElement('input');
+    field.setAttribute('type', 'text');
+    field.setAttribute('placeholder', 'Joueur ' + i);
+    field.required = true;
+    field.id = "player" + i;
+    field.classList.add('field', 'text-xs', 'rounded', 'shadow-custom', 'w-8/12', 'h-9', 'px-5', 'focus:outline-blue', 'mb-4');
+    wrapperFields.appendChild(field);
+  }
+
+  main.appendChild(wrapperFields);
+  var wrapperButton = document.createElement('div');
+  wrapperButton.classList.add('cta-wrapper');
+  var buttonStart = document.createElement('a');
+  buttonStart.id = 'go-startGame';
+  buttonStart.classList.add('block', 'w-52', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mb-14');
+  var text = document.createTextNode('Lancer la partie');
+  buttonStart.appendChild(text);
+  wrapperButton.appendChild(buttonStart);
   main.appendChild(wrapperButton);
-  console.log(document.getElementById('valuePlayers').innerHTML);
+  document.getElementById("go-startGame").addEventListener("click", function (event) {
+    event.preventDefault();
+    var fieldsArray = document.getElementsByTagName('input');
+    var playersArray = [];
+
+    var _iterator = _createForOfIteratorHelper(fieldsArray),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _field = _step.value;
+
+        if (_field.value != '') {
+          playersArray.push(_field.value);
+        } // TODO Faire la gestion des erreurs
+
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    if (playersArray.length == nbPlayers) {
+      newGame.setPlayers(playersArray);
+      startGame();
+    }
+  });
+}
+
+function startGame() {
+  newGame.attributesRoles(); // Retrait de l'interface
+
+  document.getElementsByClassName('fields-wrapper')[0].remove();
+  document.getElementsByClassName('cta-wrapper')[0].remove();
+  document.getElementsByTagName('body')[0].classList.remove('selection');
+  document.getElementsByTagName('body')[0].classList.add('started');
+  console.log(newGame);
 }
 
 /***/ }),

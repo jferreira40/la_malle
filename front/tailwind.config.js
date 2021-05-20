@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         extend: {
             boxShadow: {
-                'custom': "0px 0px 16px rgba(222, 222, 222, 1);"
+                'custom': "0px 0px 16px rgba(0, 0, 0, .13);"
             },
             borderRadius: {
                 sm: "5px",
@@ -39,7 +39,7 @@ module.exports = {
             blue: '1px solid #0D25B9',
         },
         zIndex: {
-            'n' : '-1'
+            'n': '-1'
         }
     },
     variants: {

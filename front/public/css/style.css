@@ -18784,7 +18784,7 @@ video {
 }
 
 .shadow-custom {
-  --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+  --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -18829,7 +18829,7 @@ video {
 }
 
 .group:hover .group-hover\:shadow-custom {
-  --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+  --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -18874,7 +18874,7 @@ video {
 }
 
 .focus-within\:shadow-custom:focus-within {
-  --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+  --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -18919,7 +18919,7 @@ video {
 }
 
 .hover\:shadow-custom:hover {
-  --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+  --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -18964,7 +18964,7 @@ video {
 }
 
 .focus\:shadow-custom:focus {
-  --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+  --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -22598,88 +22598,16 @@ video {
   width: 29.52%;
 }
 
-.z-0 {
-  z-index: 0;
+.z-n {
+  z-index: -1;
 }
 
-.z-10 {
-  z-index: 10;
+.focus-within\:z-n:focus-within {
+  z-index: -1;
 }
 
-.z-20 {
-  z-index: 20;
-}
-
-.z-30 {
-  z-index: 30;
-}
-
-.z-40 {
-  z-index: 40;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
-.z-auto {
-  z-index: auto;
-}
-
-.focus-within\:z-0:focus-within {
-  z-index: 0;
-}
-
-.focus-within\:z-10:focus-within {
-  z-index: 10;
-}
-
-.focus-within\:z-20:focus-within {
-  z-index: 20;
-}
-
-.focus-within\:z-30:focus-within {
-  z-index: 30;
-}
-
-.focus-within\:z-40:focus-within {
-  z-index: 40;
-}
-
-.focus-within\:z-50:focus-within {
-  z-index: 50;
-}
-
-.focus-within\:z-auto:focus-within {
-  z-index: auto;
-}
-
-.focus\:z-0:focus {
-  z-index: 0;
-}
-
-.focus\:z-10:focus {
-  z-index: 10;
-}
-
-.focus\:z-20:focus {
-  z-index: 20;
-}
-
-.focus\:z-30:focus {
-  z-index: 30;
-}
-
-.focus\:z-40:focus {
-  z-index: 40;
-}
-
-.focus\:z-50:focus {
-  z-index: 50;
-}
-
-.focus\:z-auto:focus {
-  z-index: auto;
+.focus\:z-n:focus {
+  z-index: -1;
 }
 
 .isolate {
@@ -27582,14 +27510,19 @@ body.home footer::before {
 
 html,
 body.game.infiltre {
-  height: 100%;
+  min-height: 100vh;
 }
 
-body.game.infiltre::before {
+html,
+body.game.infiltre main {
+  min-height: calc(100vh - 93px);
+}
+
+body.game.infiltre:not(.selection)::before {
   content: '';
   z-index: -1;
   position: absolute;
-  bottom: -2%;
+  bottom: 0;
   left: -20%;
   width: 100%;
   height: 45%;
@@ -27597,6 +27530,17 @@ body.game.infiltre::before {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left;
+}
+
+body.game.infiltre.started::before {
+  left: 50%;
+  width: 212px;
+  height: 179px;
+  background-image: url('/src/images/infiltre_bg.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  transform: translateX(-50%);
 }
 
 body.game.infiltre main #increment {
@@ -45789,7 +45733,7 @@ body.game.infiltre main #decrement {
   }
 
   .sm\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -45834,7 +45778,7 @@ body.game.infiltre main #decrement {
   }
 
   .group:hover .sm\:group-hover\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -45879,7 +45823,7 @@ body.game.infiltre main #decrement {
   }
 
   .sm\:focus-within\:shadow-custom:focus-within {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -45924,7 +45868,7 @@ body.game.infiltre main #decrement {
   }
 
   .sm\:hover\:shadow-custom:hover {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -45969,7 +45913,7 @@ body.game.infiltre main #decrement {
   }
 
   .sm\:focus\:shadow-custom:focus {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -49594,88 +49538,16 @@ body.game.infiltre main #decrement {
     width: 29.52%;
   }
 
-  .sm\:z-0 {
-    z-index: 0;
+  .sm\:z-n {
+    z-index: -1;
   }
 
-  .sm\:z-10 {
-    z-index: 10;
+  .sm\:focus-within\:z-n:focus-within {
+    z-index: -1;
   }
 
-  .sm\:z-20 {
-    z-index: 20;
-  }
-
-  .sm\:z-30 {
-    z-index: 30;
-  }
-
-  .sm\:z-40 {
-    z-index: 40;
-  }
-
-  .sm\:z-50 {
-    z-index: 50;
-  }
-
-  .sm\:z-auto {
-    z-index: auto;
-  }
-
-  .sm\:focus-within\:z-0:focus-within {
-    z-index: 0;
-  }
-
-  .sm\:focus-within\:z-10:focus-within {
-    z-index: 10;
-  }
-
-  .sm\:focus-within\:z-20:focus-within {
-    z-index: 20;
-  }
-
-  .sm\:focus-within\:z-30:focus-within {
-    z-index: 30;
-  }
-
-  .sm\:focus-within\:z-40:focus-within {
-    z-index: 40;
-  }
-
-  .sm\:focus-within\:z-50:focus-within {
-    z-index: 50;
-  }
-
-  .sm\:focus-within\:z-auto:focus-within {
-    z-index: auto;
-  }
-
-  .sm\:focus\:z-0:focus {
-    z-index: 0;
-  }
-
-  .sm\:focus\:z-10:focus {
-    z-index: 10;
-  }
-
-  .sm\:focus\:z-20:focus {
-    z-index: 20;
-  }
-
-  .sm\:focus\:z-30:focus {
-    z-index: 30;
-  }
-
-  .sm\:focus\:z-40:focus {
-    z-index: 40;
-  }
-
-  .sm\:focus\:z-50:focus {
-    z-index: 50;
-  }
-
-  .sm\:focus\:z-auto:focus {
-    z-index: auto;
+  .sm\:focus\:z-n:focus {
+    z-index: -1;
   }
 
   .sm\:isolate {
@@ -72341,7 +72213,7 @@ body.game.infiltre main #decrement {
   }
 
   .md\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -72386,7 +72258,7 @@ body.game.infiltre main #decrement {
   }
 
   .group:hover .md\:group-hover\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -72431,7 +72303,7 @@ body.game.infiltre main #decrement {
   }
 
   .md\:focus-within\:shadow-custom:focus-within {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -72476,7 +72348,7 @@ body.game.infiltre main #decrement {
   }
 
   .md\:hover\:shadow-custom:hover {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -72521,7 +72393,7 @@ body.game.infiltre main #decrement {
   }
 
   .md\:focus\:shadow-custom:focus {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -76146,88 +76018,16 @@ body.game.infiltre main #decrement {
     width: 29.52%;
   }
 
-  .md\:z-0 {
-    z-index: 0;
+  .md\:z-n {
+    z-index: -1;
   }
 
-  .md\:z-10 {
-    z-index: 10;
+  .md\:focus-within\:z-n:focus-within {
+    z-index: -1;
   }
 
-  .md\:z-20 {
-    z-index: 20;
-  }
-
-  .md\:z-30 {
-    z-index: 30;
-  }
-
-  .md\:z-40 {
-    z-index: 40;
-  }
-
-  .md\:z-50 {
-    z-index: 50;
-  }
-
-  .md\:z-auto {
-    z-index: auto;
-  }
-
-  .md\:focus-within\:z-0:focus-within {
-    z-index: 0;
-  }
-
-  .md\:focus-within\:z-10:focus-within {
-    z-index: 10;
-  }
-
-  .md\:focus-within\:z-20:focus-within {
-    z-index: 20;
-  }
-
-  .md\:focus-within\:z-30:focus-within {
-    z-index: 30;
-  }
-
-  .md\:focus-within\:z-40:focus-within {
-    z-index: 40;
-  }
-
-  .md\:focus-within\:z-50:focus-within {
-    z-index: 50;
-  }
-
-  .md\:focus-within\:z-auto:focus-within {
-    z-index: auto;
-  }
-
-  .md\:focus\:z-0:focus {
-    z-index: 0;
-  }
-
-  .md\:focus\:z-10:focus {
-    z-index: 10;
-  }
-
-  .md\:focus\:z-20:focus {
-    z-index: 20;
-  }
-
-  .md\:focus\:z-30:focus {
-    z-index: 30;
-  }
-
-  .md\:focus\:z-40:focus {
-    z-index: 40;
-  }
-
-  .md\:focus\:z-50:focus {
-    z-index: 50;
-  }
-
-  .md\:focus\:z-auto:focus {
-    z-index: auto;
+  .md\:focus\:z-n:focus {
+    z-index: -1;
   }
 
   .md\:isolate {
@@ -98893,7 +98693,7 @@ body.game.infiltre main #decrement {
   }
 
   .lg\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -98938,7 +98738,7 @@ body.game.infiltre main #decrement {
   }
 
   .group:hover .lg\:group-hover\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -98983,7 +98783,7 @@ body.game.infiltre main #decrement {
   }
 
   .lg\:focus-within\:shadow-custom:focus-within {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -99028,7 +98828,7 @@ body.game.infiltre main #decrement {
   }
 
   .lg\:hover\:shadow-custom:hover {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -99073,7 +98873,7 @@ body.game.infiltre main #decrement {
   }
 
   .lg\:focus\:shadow-custom:focus {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -102698,88 +102498,16 @@ body.game.infiltre main #decrement {
     width: 29.52%;
   }
 
-  .lg\:z-0 {
-    z-index: 0;
+  .lg\:z-n {
+    z-index: -1;
   }
 
-  .lg\:z-10 {
-    z-index: 10;
+  .lg\:focus-within\:z-n:focus-within {
+    z-index: -1;
   }
 
-  .lg\:z-20 {
-    z-index: 20;
-  }
-
-  .lg\:z-30 {
-    z-index: 30;
-  }
-
-  .lg\:z-40 {
-    z-index: 40;
-  }
-
-  .lg\:z-50 {
-    z-index: 50;
-  }
-
-  .lg\:z-auto {
-    z-index: auto;
-  }
-
-  .lg\:focus-within\:z-0:focus-within {
-    z-index: 0;
-  }
-
-  .lg\:focus-within\:z-10:focus-within {
-    z-index: 10;
-  }
-
-  .lg\:focus-within\:z-20:focus-within {
-    z-index: 20;
-  }
-
-  .lg\:focus-within\:z-30:focus-within {
-    z-index: 30;
-  }
-
-  .lg\:focus-within\:z-40:focus-within {
-    z-index: 40;
-  }
-
-  .lg\:focus-within\:z-50:focus-within {
-    z-index: 50;
-  }
-
-  .lg\:focus-within\:z-auto:focus-within {
-    z-index: auto;
-  }
-
-  .lg\:focus\:z-0:focus {
-    z-index: 0;
-  }
-
-  .lg\:focus\:z-10:focus {
-    z-index: 10;
-  }
-
-  .lg\:focus\:z-20:focus {
-    z-index: 20;
-  }
-
-  .lg\:focus\:z-30:focus {
-    z-index: 30;
-  }
-
-  .lg\:focus\:z-40:focus {
-    z-index: 40;
-  }
-
-  .lg\:focus\:z-50:focus {
-    z-index: 50;
-  }
-
-  .lg\:focus\:z-auto:focus {
-    z-index: auto;
+  .lg\:focus\:z-n:focus {
+    z-index: -1;
   }
 
   .lg\:isolate {
@@ -125445,7 +125173,7 @@ body.game.infiltre main #decrement {
   }
 
   .xl\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -125490,7 +125218,7 @@ body.game.infiltre main #decrement {
   }
 
   .group:hover .xl\:group-hover\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -125535,7 +125263,7 @@ body.game.infiltre main #decrement {
   }
 
   .xl\:focus-within\:shadow-custom:focus-within {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -125580,7 +125308,7 @@ body.game.infiltre main #decrement {
   }
 
   .xl\:hover\:shadow-custom:hover {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -125625,7 +125353,7 @@ body.game.infiltre main #decrement {
   }
 
   .xl\:focus\:shadow-custom:focus {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -129250,88 +128978,16 @@ body.game.infiltre main #decrement {
     width: 29.52%;
   }
 
-  .xl\:z-0 {
-    z-index: 0;
+  .xl\:z-n {
+    z-index: -1;
   }
 
-  .xl\:z-10 {
-    z-index: 10;
+  .xl\:focus-within\:z-n:focus-within {
+    z-index: -1;
   }
 
-  .xl\:z-20 {
-    z-index: 20;
-  }
-
-  .xl\:z-30 {
-    z-index: 30;
-  }
-
-  .xl\:z-40 {
-    z-index: 40;
-  }
-
-  .xl\:z-50 {
-    z-index: 50;
-  }
-
-  .xl\:z-auto {
-    z-index: auto;
-  }
-
-  .xl\:focus-within\:z-0:focus-within {
-    z-index: 0;
-  }
-
-  .xl\:focus-within\:z-10:focus-within {
-    z-index: 10;
-  }
-
-  .xl\:focus-within\:z-20:focus-within {
-    z-index: 20;
-  }
-
-  .xl\:focus-within\:z-30:focus-within {
-    z-index: 30;
-  }
-
-  .xl\:focus-within\:z-40:focus-within {
-    z-index: 40;
-  }
-
-  .xl\:focus-within\:z-50:focus-within {
-    z-index: 50;
-  }
-
-  .xl\:focus-within\:z-auto:focus-within {
-    z-index: auto;
-  }
-
-  .xl\:focus\:z-0:focus {
-    z-index: 0;
-  }
-
-  .xl\:focus\:z-10:focus {
-    z-index: 10;
-  }
-
-  .xl\:focus\:z-20:focus {
-    z-index: 20;
-  }
-
-  .xl\:focus\:z-30:focus {
-    z-index: 30;
-  }
-
-  .xl\:focus\:z-40:focus {
-    z-index: 40;
-  }
-
-  .xl\:focus\:z-50:focus {
-    z-index: 50;
-  }
-
-  .xl\:focus\:z-auto:focus {
-    z-index: auto;
+  .xl\:focus\:z-n:focus {
+    z-index: -1;
   }
 
   .xl\:isolate {
@@ -151997,7 +151653,7 @@ body.game.infiltre main #decrement {
   }
 
   .\32xl\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -152042,7 +151698,7 @@ body.game.infiltre main #decrement {
   }
 
   .group:hover .\32xl\:group-hover\:shadow-custom {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -152087,7 +151743,7 @@ body.game.infiltre main #decrement {
   }
 
   .\32xl\:focus-within\:shadow-custom:focus-within {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -152132,7 +151788,7 @@ body.game.infiltre main #decrement {
   }
 
   .\32xl\:hover\:shadow-custom:hover {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -152177,7 +151833,7 @@ body.game.infiltre main #decrement {
   }
 
   .\32xl\:focus\:shadow-custom:focus {
-    --tw-shadow: 0px 0px 16px rgba(222, 222, 222, 1);;
+    --tw-shadow: 0px 0px 16px rgba(0, 0, 0, .13);;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -155802,88 +155458,16 @@ body.game.infiltre main #decrement {
     width: 29.52%;
   }
 
-  .\32xl\:z-0 {
-    z-index: 0;
+  .\32xl\:z-n {
+    z-index: -1;
   }
 
-  .\32xl\:z-10 {
-    z-index: 10;
+  .\32xl\:focus-within\:z-n:focus-within {
+    z-index: -1;
   }
 
-  .\32xl\:z-20 {
-    z-index: 20;
-  }
-
-  .\32xl\:z-30 {
-    z-index: 30;
-  }
-
-  .\32xl\:z-40 {
-    z-index: 40;
-  }
-
-  .\32xl\:z-50 {
-    z-index: 50;
-  }
-
-  .\32xl\:z-auto {
-    z-index: auto;
-  }
-
-  .\32xl\:focus-within\:z-0:focus-within {
-    z-index: 0;
-  }
-
-  .\32xl\:focus-within\:z-10:focus-within {
-    z-index: 10;
-  }
-
-  .\32xl\:focus-within\:z-20:focus-within {
-    z-index: 20;
-  }
-
-  .\32xl\:focus-within\:z-30:focus-within {
-    z-index: 30;
-  }
-
-  .\32xl\:focus-within\:z-40:focus-within {
-    z-index: 40;
-  }
-
-  .\32xl\:focus-within\:z-50:focus-within {
-    z-index: 50;
-  }
-
-  .\32xl\:focus-within\:z-auto:focus-within {
-    z-index: auto;
-  }
-
-  .\32xl\:focus\:z-0:focus {
-    z-index: 0;
-  }
-
-  .\32xl\:focus\:z-10:focus {
-    z-index: 10;
-  }
-
-  .\32xl\:focus\:z-20:focus {
-    z-index: 20;
-  }
-
-  .\32xl\:focus\:z-30:focus {
-    z-index: 30;
-  }
-
-  .\32xl\:focus\:z-40:focus {
-    z-index: 40;
-  }
-
-  .\32xl\:focus\:z-50:focus {
-    z-index: 50;
-  }
-
-  .\32xl\:focus\:z-auto:focus {
-    z-index: auto;
+  .\32xl\:focus\:z-n:focus {
+    z-index: -1;
   }
 
   .\32xl\:isolate {

@@ -27,7 +27,7 @@
     <script src="./infiltre.js"></script>
 </head>
 
-<body class="game infiltre bg-spy flex flex-col">
+<body class="game infiltre bg-spy ">
     <header class="main-header">
         <div class="wrapper flex justify-center items-center px-8 bg-lightGray">
             <div class="logo-wrapper flex items-center">
@@ -38,22 +38,24 @@
             </div>
         </div>
     </header>
-    <main>
-        <div class="title-wrapper mt-16">
-            <h1 class="font-bold text-4xl text-white text-center">
-                L'infiltré
-            </h1>
-        </div>
-        <div class="cta-wrapper mt-32">
-            <a href=""
-                class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full font-medium text-xs">
-                Jouer avec un groupe d'amis
-            </a>
-            <span class="block text-white text-xs text-center font-medium my-1">ou</span>
-            <a href="" id="direct-play"
-                class="block w-52 mx-auto text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
-                Jouer directement
-            </a>
+    <main class="h-full flex flex-col">
+        <div class="main-wrapper flex-1 flex flex-col items-center">
+            <div class="title-wrapper mt-16">
+                <h1 class="font-bold text-4xl text-white text-center">
+                    L'infiltré
+                </h1>
+            </div>
+            <div class="cta-wrapper mt-32">
+                <a href=""
+                    class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full font-medium text-xs">
+                    Jouer avec un groupe d'amis
+                </a>
+                <span class="block text-white text-xs text-center font-medium my-1">ou</span>
+                <a href="" id="direct-play"
+                    class="block w-52 mx-auto text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
+                    Jouer directement
+                </a>
+            </div>
         </div>
     </main>
     <aside class="popup hidden">
