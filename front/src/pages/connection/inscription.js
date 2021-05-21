@@ -14,7 +14,7 @@ function onSubmitInscription(event) {
     return new Promise(() => {
       fetch("https://la-malle.app/api/register.php", {
         method: "POST",
-        body: formData
+        body: JSON.stringify(Object.fromEntries(formData))
       })
           .then(res => {
             if (res.ok)
