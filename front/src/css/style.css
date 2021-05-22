@@ -340,3 +340,9 @@ body.game.infiltre main #decrement {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+body.game.infiltre.started main .main-wrapper::after{
+    content: '';
+    display: block;
+    height: 179px;
+}

@@ -594,7 +594,7 @@ video {
         url(/fonts/RedHatText-Regular.woff2?5650c414d2281d192a9db10f855ab8ca) format('woff2'),
         url(/fonts/RedHatText-Regular.woff?e828eaa60aaf9bad109dc296285bdbb4) format('woff'),
         url(/fonts/RedHatText-Regular.ttf?65118cf5f4702e9dbfc2b55611e59f37) format('truetype'),
-        url(/fonts/RedHatText-Regular.svg?b9a79bb9ab4db4d3b0f7bfda739b405a#RedHatText-Regular) format('svg');
+        url(/fonts/RedHatText-Regular.svg?1e5a7d2dd36f0862c56c43573468ede6#RedHatText-Regular) format('svg');
 
   font-weight: normal;
 
@@ -612,7 +612,7 @@ video {
         url(/fonts/RedHatText-Bold.woff2?47737c0ea0fab52437022d1e50ca4b44) format('woff2'),
         url(/fonts/RedHatText-Bold.woff?c6437986398a302f8e5c413333e61b36) format('woff'),
         url(/fonts/RedHatText-Bold.ttf?4263f5b9589ecf3176b34f882c75f0dc) format('truetype'),
-        url(/fonts/RedHatText-Bold.svg?65a6a773f0f8535a9ae3ec6a051eaa48#RedHatText-Bold) format('svg');
+        url(/fonts/RedHatText-Bold.svg?9c46173de6178e6dcc98cd43a8025a95#RedHatText-Bold) format('svg');
 
   font-weight: bold;
 
@@ -630,7 +630,7 @@ video {
         url(/fonts/RedHatText-Medium.woff2?74e84948a59214d11c42629f2d24ca05) format('woff2'),
         url(/fonts/RedHatText-Medium.woff?69c0edc1cf1014937985bf8f768bb1c0) format('woff'),
         url(/fonts/RedHatText-Medium.ttf?725c0fa1f7fa1e0c0dc3628ab0559087) format('truetype'),
-        url(/fonts/RedHatText-Medium.svg?695b8a2eb6a9b4fd4cd44f905f2ad6b2#RedHatText-Medium) format('svg');
+        url(/fonts/RedHatText-Medium.svg?84f0bd661126b4bb1d7dd019a2c0be4f#RedHatText-Medium) format('svg');
 
   font-weight: 500;
 
@@ -27555,6 +27555,12 @@ body.game.infiltre main #decrement {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+body.game.infiltre.started main .main-wrapper::after{
+  content: '';
+  display: block;
+  height: 179px;
 }
 
 @media (min-width: 640px) {

@@ -220,11 +220,71 @@ function stepTwo(nbPlayers) {
 function startGame() {
     newGame.attributesRoles();
 
+    const scriptObj = {
+        "start" : "La partie va débuter",
+        "distrib" : "Distribuons les rôles, au tour de ",
+        "role" : "Vous êtes ",
+        "master" : " est le maitre du jeu",
+        "rules" : "Tout le monde ferme les yeux, sauf le maitre du jeu",
+        "masterName" : "Maitre du jeu, voici le mot à faire deviner :",
+        "masterRules" : "Maitre du jeu, posez le téléphone à la vue de tous. Et fermez les yeux.",
+        "infiltreRules" : "Infiltré c’est à vous ! Ouvrez les yeux vous allez avoir 5 secondes pour retenir le mot.",
+        "infitlreRules2" : "Fermez les yeux infiltré. Ouvrez tous les yeux.",
+        "rules" : "Vous avez 5 minutes pour devinez le mot. Maitre du jeu, vous pouvez répondre uniquement par oui, non, ou je ne sais pas.",
+        "done" : "C’est terminé, le mot a-t-il été trouvé ?",
+        "echec" : "Nous n’avez pas trouvé le mot, toute l’équipe perd.",
+        "debate" : "Il est temps de débattre ! A vous de trouver l’infiltré.",
+        "eliminate" : "Qui avez vous éliminé ?",
+        "winCivil" : "Bien joué ! Vous avez éliminé l’infiltré. Les citoyens l’emportent !",
+        "winInfiltre" : "Vous avez éliminé un citoyen, l’infiltré l’emporte !",
+    }
+
+    const main = document.getElementsByClassName('main-wrapper')[0];
+
     // Retrait de l'interface
     document.getElementsByClassName('fields-wrapper')[0].remove();
     document.getElementsByClassName('cta-wrapper')[0].remove();
     document.getElementsByTagName('body')[0].classList.remove('selection');
     document.getElementsByTagName('body')[0].classList.add('started');
 
+    // Génération des champs pour l'entrée des utilisateurs
+    const wrapperConsignes = document.createElement('div');
+    wrapperConsignes.classList.add('consignes-wrapper', 'w-full', 'flex', 'flex-col', 'items-center');
+
+    const textContainer = document.createElement('span');
+    textContainer.classList.add('font-bold', 'text-white', 'text-center', 'text-4xl', 'px-8');
+    const valueText = document.createTextNode(scriptObj.start);
+    textContainer.appendChild(valueText);
+
+    setTimeout(() => {
+
+        let i = 0;
+        
+        distributionRoles(i);
+
+        document.getElementById('nextPlayer').addEventListener("click", function (event) {
+            event.preventDefault();
+    
+            i++;
+
+            distributionRoles(i);
+        });
+
+    }, 3000);
+
+    wrapperConsignes.appendChild(textContainer);
+    main.appendChild(wrapperConsignes);
+
     console.log(newGame);
+}
+
+function distributionRoles(i) {
+
+    const buttonStart = document.createElement('a');
+    buttonStart.id = 'nextPlayer';
+    buttonStart.classList.add('block', 'w-52', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm');
+    const text2 = document.createTextNode('Voir mon rôle');
+    buttonStart.appendChild(text2);
+
+    valueText.nodeValue = "cc";
 }
