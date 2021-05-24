@@ -36,6 +36,25 @@ var GameInfiltre = /*#__PURE__*/function () {
       this.players = arrPlayers;
     }
   }, {
+    key: "getRoles",
+    value: function getRoles(i) {
+      if (i) {
+        return this.roles[i];
+      } else {
+        return this.roles;
+      }
+    }
+  }, {
+    key: "getPlayersLength",
+    value: function getPlayersLength() {
+      return this.players.length;
+    }
+  }, {
+    key: "getWord",
+    value: function getWord() {
+      return this.word;
+    }
+  }, {
     key: "attributesRoles",
     value: function attributesRoles() {
       var essentialRoles = ['Maitre du jeu', 'Infiltré'];
@@ -68,9 +87,26 @@ var GameInfiltre = /*#__PURE__*/function () {
   }]);
 
   return GameInfiltre;
-}(); // const joueurs = ["Thomas", "Jules", "Emma", "Antoine"];
+}();
 
-
+var scriptObj = {
+  "start": "La partie va débuter",
+  "distrib": "Distribuons les rôles, au tour de ",
+  "role": "Vous êtes ",
+  "master": " est le maitre du jeu",
+  "rulesAll": "Tout le monde ferme les yeux, sauf le maitre du jeu",
+  "masterName": "Maitre du jeu, voici le mot à faire deviner :",
+  "masterRules": "Maitre du jeu, posez le téléphone à la vue de tous. Et fermez les yeux.",
+  "infiltreRules": "Infiltré c’est à vous ! Ouvrez les yeux vous allez avoir 5 secondes pour retenir le mot.",
+  "infiltreRules2": "Fermez les yeux infiltré. Ouvrez tous les yeux.",
+  "rules": "Vous avez 5 minutes pour devinez le mot. Maitre du jeu, vous pouvez répondre uniquement par oui, non, ou je ne sais pas.",
+  "done": "C’est terminé, le mot a-t-il été trouvé ?",
+  "echec": "Nous n’avez pas trouvé le mot, toute l’équipe perd.",
+  "debate": "Il est temps de débattre ! A vous de trouver l’infiltré.",
+  "eliminate": "Qui avez vous éliminé ?",
+  "winCivil": "Bien joué ! Vous avez éliminé l’infiltré. Les citoyens l’emportent !",
+  "winInfiltre": "Vous avez éliminé un citoyen, l’infiltré l’emporte !"
+};
 var newGame = new GameInfiltre(); // console.log(newGame.attributesRoles());
 // console.log(randomWordFR());
 
@@ -221,19 +257,310 @@ function stepTwo(nbPlayers) {
 
     if (playersArray.length == nbPlayers) {
       newGame.setPlayers(playersArray);
-      startGame();
+      initGame();
     }
   });
 }
 
-function startGame() {
-  newGame.attributesRoles(); // Retrait de l'interface
+function initGame() {
+  newGame.attributesRoles();
+  var main = document.getElementsByClassName('main-wrapper')[0]; // Retrait de l'interface
 
   document.getElementsByClassName('fields-wrapper')[0].remove();
   document.getElementsByClassName('cta-wrapper')[0].remove();
   document.getElementsByTagName('body')[0].classList.remove('selection');
-  document.getElementsByTagName('body')[0].classList.add('started');
+  document.getElementsByTagName('body')[0].classList.add('started'); // Génération des champs pour l'entrée des utilisateurs
+
+  var wrapperConsignes = document.createElement('div');
+  wrapperConsignes.classList.add('consignes-wrapper', 'w-full', 'flex', 'flex-col', 'items-center');
+  var textContainer = document.createElement('span');
+  textContainer.id = "dynamicText";
+  textContainer.classList.add('font-bold', 'text-white', 'text-center', 'text-4xl', 'px-8');
+  var valueText = document.createTextNode(scriptObj.start);
+  textContainer.appendChild(valueText);
+  setTimeout(function () {
+    var i = 0;
+    var rolesArrLength = newGame.getPlayersLength();
+    distributionRoles(i);
+    var buttonStart = document.createElement('a');
+    buttonStart.id = 'toggleRole';
+    buttonStart.classList.add('relative', 'flex', 'justify-center', 'px-4', 'items-center', 'w-24', 'h-24', 'mx-auto', 'text-center', 'bg-white', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-sm');
+    var text2 = document.createTextNode('Voir mon rôle');
+    buttonStart.appendChild(text2);
+    main.appendChild(buttonStart);
+    document.getElementById('toggleRole').addEventListener("click", function (event) {
+      event.preventDefault();
+      displayRole(i);
+      document.getElementById('nextPlayer').addEventListener("click", function (event) {
+        event.preventDefault();
+        console.log(i + " < " + rolesArrLength);
+        console.log(i < rolesArrLength);
+
+        if (i < rolesArrLength - 1) {
+          i++;
+          distributionRoles(i);
+          document.getElementById('wrapperRole').remove();
+          var buttonToggle = document.getElementById('toggleRole');
+          buttonToggle.classList.remove('hidden');
+        } else {
+          startGame();
+        }
+      });
+    });
+  }, 3000);
+  wrapperConsignes.appendChild(textContainer);
+  main.appendChild(wrapperConsignes);
   console.log(newGame);
+}
+
+function distributionRoles(i) {
+  var main = document.getElementsByClassName('main-wrapper')[0];
+  var rolesArr = newGame.getRoles();
+  console.log(rolesArr);
+  var dynamicContainer = document.getElementById('dynamicText');
+  dynamicContainer.classList.remove('text-4xl');
+  dynamicContainer.classList.add('text-2xl');
+  dynamicContainer.textContent = scriptObj.distrib + Object.keys(rolesArr)[i];
+}
+
+function displayRole(i) {
+  var main = document.getElementsByClassName('main-wrapper')[0];
+  var rolesArr = newGame.getRoles();
+  var buttonToggle = document.getElementById('toggleRole');
+  buttonToggle.classList.add('hidden');
+  var wrapperRole = document.createElement('div');
+  wrapperRole.id = 'wrapperRole';
+  wrapperRole.classList.add('bg-lightWhite', 'w-9/12', 'rounded-xl', 'py-5');
+  var paragraph = document.createElement('p');
+  paragraph.classList.add('text-white', 'font-bold', 'text-2xl', 'text-center');
+  var textRole = document.createTextNode(scriptObj.role);
+  paragraph.appendChild(textRole);
+  var spanRole = document.createElement('span');
+  spanRole.classList.add('text-3xl', 'block');
+  var role = document.createTextNode(rolesArr[Object.keys(rolesArr)[i]]);
+  spanRole.appendChild(role);
+  paragraph.appendChild(spanRole);
+  wrapperRole.appendChild(paragraph);
+  var buttonNextPlayer = document.createElement('a');
+  buttonNextPlayer.id = 'nextPlayer';
+  buttonNextPlayer.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mt-4');
+  var text = document.createTextNode("J'ai bien retenu");
+  buttonNextPlayer.appendChild(text);
+  wrapperRole.appendChild(buttonNextPlayer);
+  main.appendChild(wrapperRole);
+}
+
+function startGame() {
+  document.getElementsByClassName('consignes-wrapper')[0].remove();
+  document.getElementById('toggleRole').remove();
+  document.getElementById('wrapperRole').remove();
+  var main = document.getElementsByClassName('main-wrapper')[0];
+  var rolesArr = newGame.getRoles();
+  var instructionsWrapper = document.createElement('div');
+  instructionsWrapper.id = 'instructionsWrapper';
+  instructionsWrapper.classList.add('w-9/12', 'text-white', 'font-bold', 'text-4xl', 'text-center');
+  var masterInstructions = document.createTextNode(Object.keys(rolesArr).find(function (key) {
+    return rolesArr[key] === 'Maitre du jeu';
+  }) + scriptObj.master);
+  instructionsWrapper.appendChild(masterInstructions);
+  main.appendChild(instructionsWrapper);
+  setTimeout(function () {
+    instructionsWrapper.textContent = scriptObj.rulesAll;
+  }, 3000);
+  setTimeout(function () {
+    instructionsWrapper.classList.remove('text-4xl');
+    instructionsWrapper.classList.add('text-3xl');
+    instructionsWrapper.textContent = scriptObj.masterName;
+    var wordWrapper = document.createElement('div');
+    wordWrapper.id = "wordWrapper";
+    wordWrapper.classList.add('text-white', 'font-bold', 'text-4xl', 'text-center');
+    var word = document.createTextNode(newGame.getWord());
+    wordWrapper.appendChild(word);
+    main.appendChild(wordWrapper);
+    var buttonNextInstruction = document.createElement('a');
+    buttonNextInstruction.id = 'nextInstruction';
+    buttonNextInstruction.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mt-4');
+    var text = document.createTextNode("J'ai bien retenu");
+    buttonNextInstruction.appendChild(text);
+    main.appendChild(buttonNextInstruction);
+    document.getElementById('nextInstruction').addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementById('nextInstruction').remove();
+      document.getElementById('wordWrapper').remove();
+      instructionsWrapper.textContent = scriptObj.masterRules;
+      var buttonOK = document.createElement('a');
+      buttonOK.id = 'okButton';
+      buttonOK.classList.add('relative', 'flex', 'justify-center', 'px-4', 'items-center', 'w-24', 'h-24', 'mx-auto', 'text-center', 'bg-white', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-sm');
+      var text2 = document.createTextNode('OK');
+      buttonOK.appendChild(text2);
+      main.appendChild(buttonOK);
+      document.getElementById('okButton').addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById('okButton').remove();
+        instructionsWrapper.textContent = scriptObj.infiltreRules;
+        setTimeout(function () {
+          instructionsWrapper.textContent = '';
+          var spanWord = document.createElement('span');
+          spanWord.classList.add('word', 'block', 'text-5xl');
+          spanWord.appendChild(word);
+          instructionsWrapper.appendChild(spanWord);
+          instructionsWrapper.appendChild(spanWord.cloneNode(true));
+          setTimeout(function () {
+            document.getElementsByClassName('word')[0].remove;
+            document.getElementsByClassName('word')[1].remove;
+            instructionsWrapper.textContent = scriptObj.infiltreRules2;
+            setTimeout(function () {
+              instructionsWrapper.textContent = scriptObj.rules;
+              setTimeout(function () {
+                instructionsWrapper.textContent = '';
+                var counterWrapper = document.createElement('span');
+                counterWrapper.id = "counterWrapper";
+                counterWrapper.classList.add('text-7xl');
+                counterWrapper.textContent = "05:00";
+                instructionsWrapper.appendChild(counterWrapper);
+                startTimer(60 * 5);
+                var buttonDone = document.createElement('a');
+                buttonDone.id = 'done';
+                buttonDone.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mt-4');
+                var text = document.createTextNode("Terminé");
+                buttonDone.appendChild(text);
+                instructionsWrapper.appendChild(buttonDone);
+                document.getElementById('done').addEventListener("click", function (event) {
+                  event.preventDefault();
+                  clearInterval(window.refreshCounter);
+                  endGame();
+                });
+              }, 3000);
+            }, 4000);
+          }, 5000);
+        }, 3000);
+      });
+    });
+  }, 3000);
+  console.log("C'est partit");
+}
+
+function startTimer(duration) {
+  var timer = duration,
+      minutes,
+      seconds;
+  window.refreshCounter = setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    counterWrapper.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      clearInterval(window.refreshCounter);
+      endGame();
+    }
+  }, 1000);
+}
+
+function endGame() {
+  document.getElementById('counterWrapper').remove();
+  document.getElementById('done').remove();
+  var instructionsWrapper = document.getElementById('instructionsWrapper');
+  var wrapperQuestion = document.createElement('div');
+  wrapperQuestion.id = 'wrapperQuestion';
+  wrapperQuestion.classList.add('text-3xl', 'mb-5');
+  wrapperQuestion.textContent = scriptObj.done;
+  instructionsWrapper.appendChild(wrapperQuestion);
+  var buttonOui = document.createElement('a');
+  buttonOui.id = 'oui';
+  buttonOui.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mb-4');
+  buttonOui.textContent = "Oui";
+  instructionsWrapper.appendChild(buttonOui);
+  var buttonNon = document.createElement('a');
+  buttonNon.id = 'non';
+  buttonNon.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-white', 'py-2', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-sm');
+  buttonNon.textContent = "Non";
+  instructionsWrapper.appendChild(buttonNon);
+  document.getElementById('oui').addEventListener("click", function (event) {
+    event.preventDefault();
+    wrapperQuestion.textContent = scriptObj.debate;
+    buttonOui.textContent = "C'est bon";
+    buttonOui.id = 'goToEliminate';
+    buttonNon.remove();
+    document.getElementById('goToEliminate').addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementsByTagName('body')[0].classList.add('eliminate');
+      wrapperQuestion.textContent = scriptObj.eliminate;
+      buttonOui.remove();
+      var wrapperActions = document.createElement('div');
+      wrapperActions.id = 'wrapperActions';
+      wrapperActions.classList.add('flex', 'flex-wrap', 'justify-between');
+      var rolesArr = newGame.getRoles();
+      delete rolesArr[Object.keys(rolesArr).find(function (key) {
+        return rolesArr[key] === 'Maitre du jeu';
+      })];
+
+      for (var player in rolesArr) {
+        var playerButton = document.createElement('a');
+        playerButton.id = player;
+        playerButton.classList.add('playerButton', 'bg-white', 'flex', 'justify-center', 'items-center', 'text-sm', 'text-darkBlue', 'w-1/2:m', 'h-20', 'rounded-xl', 'mb-4');
+        playerButton.textContent = player;
+        wrapperActions.appendChild(playerButton);
+      }
+
+      instructionsWrapper.appendChild(wrapperActions);
+      document.querySelectorAll('.playerButton').forEach(function (item) {
+        item.addEventListener('click', function (event) {
+          if (rolesArr[item.id] == "Infiltré") {
+            document.getElementsByTagName('body')[0].classList.remove('eliminate');
+            document.getElementsByTagName('body')[0].classList.add('wonCivil');
+            wrapperActions.remove();
+            wrapperQuestion.textContent = scriptObj.winCivil;
+            setTimeout(function () {
+              window.location.reload();
+            }, 3000);
+          } else {
+            document.getElementsByTagName('body')[0].classList.remove('eliminate');
+            document.getElementsByTagName('body')[0].classList.add('wonInfiltre');
+            wrapperActions.remove();
+            wrapperQuestion.textContent = scriptObj.winInfiltre;
+            var buttonRestart = document.createElement('a');
+            buttonRestart.id = 'restart';
+            buttonRestart.classList.add('block', 'w-52', 'mx-auto', 'text-center', 'bg-darkBlue', 'py-2', 'rounded-full', 'text-white', 'font-medium', 'text-sm', 'mb-4');
+            buttonRestart.textContent = "Relancer une partie";
+            instructionsWrapper.appendChild(buttonRestart);
+            var buttonHome = document.createElement('a');
+            buttonHome.id = 'home';
+            buttonHome.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-white', 'py-2', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-xs');
+            buttonHome.textContent = "Revenir à l'accueil";
+            instructionsWrapper.appendChild(buttonHome);
+            document.getElementById('restart').addEventListener("click", function (event) {
+              event.preventDefault();
+              window.location.reload();
+            });
+            document.getElementById('home').addEventListener("click", function (event) {
+              window.location.href = "/";
+            });
+          }
+        });
+      });
+    });
+  });
+  document.getElementById('non').addEventListener("click", function (event) {
+    event.preventDefault();
+    wrapperQuestion.textContent = scriptObj.echec;
+    buttonOui.textContent = 'Relancer une partie';
+    buttonOui.id = 'restart';
+    buttonOui.classList.remove('w-40');
+    buttonOui.classList.add('w-52');
+    buttonNon.textContent = "Revenir à l'accueil";
+    buttonNon.id = 'home';
+    buttonNon.classList.remove('text-sm');
+    buttonNon.classList.add('text-xs');
+    document.getElementById('restart').addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.reload();
+    });
+    document.getElementById('home').addEventListener("click", function (event) {
+      window.location.href = "/";
+    });
+  });
 }
 
 /***/ }),

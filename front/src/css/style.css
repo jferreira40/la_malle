@@ -302,7 +302,7 @@ body.game.infiltre main {
     min-height: calc(100vh - 93px);
 }
 
-body.game.infiltre:not(.selection)::before {
+body.game.infiltre:not(.selection):not(.eliminate):before {
     content: '';
     z-index: -1;
     position: absolute;
@@ -316,7 +316,7 @@ body.game.infiltre:not(.selection)::before {
     background-position: left;
 }
 
-body.game.infiltre.started::before {
+body.game.infiltre.started:not(.eliminate):before {
     left: 50%;
     width: 212px;
     height: 179px;
@@ -341,8 +341,33 @@ body.game.infiltre main #decrement {
     background-position: center;
 }
 
-body.game.infiltre.started main .main-wrapper::after{
+body.game.infiltre.started:not(.eliminate) main .main-wrapper::after {
     content: '';
     display: block;
     height: 179px;
+}
+
+body.game.infiltre.started.eliminate main .main-wrapper::after {
+    content: '';
+    display: block;
+    height: 10px;
+}
+
+body.game.infiltre.started #toggleRole::before,
+body.game.infiltre.started #okButton::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
+    border-radius: 100%;
+    opacity: .21;
+}
+
+body.game.infiltre.started #instructionsWrapper .word:first-of-type {
+    transform: rotate(-180deg);
 }
