@@ -280,7 +280,9 @@ body.home footer::before{
     background-position: 0% -120%;
 }
 
+/* TODO Repositionner l'image*/
 body.inscription footer::before {
+
     content: '';
     position: absolute;
     width: 100%;
@@ -291,3 +293,6 @@ body.inscription footer::before {
     background-repeat: no-repeat;
     left: 38%;
 }
+
+/* TODO ::before pour les steps*/
+/* TODO ::before pour la connexion*/
