@@ -1,13 +1,5 @@
 <?php
-include_once './protected.php';
+include_once './api.php';
 
-$protector = new jwtVerify();
-$state = false;
-
-$state = $protector->verify();
-
-if ($state === true) {
-    echo "ok";
-} else {
-    echo $state;
-}
+$instance = new api();
+echo json_encode($instance->getGame());
