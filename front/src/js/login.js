@@ -26,7 +26,7 @@ function onSubmitLogin() {
                         localStorage.setItem('jwt', data['jwt']);
                         localStorage.setItem('user', data['User']);
                         localStorage.setItem('id', data['Id']);
-                        window.location.href = 'http://localhost:3000'
+                        window.location.href = '/'
                     });
 
                 } else {
