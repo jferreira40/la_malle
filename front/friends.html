@@ -43,14 +43,80 @@
 </header>
 <main>
     <section class="friends px-8 mt-7">
-        <button class="bg-lightGray text-black font-medium text-xs mb-3 py-2 mx-auto w-40 rounded-full">Ajout d'ami</button>
+        <div class="text-right">
+            <button class="bg-lightGray text-black font-medium text-xs mb-3 py-2 mx-auto w-40 rounded-full focus:outline-none" onclick="openModal('modal-add')">Ajout d'ami</button>
+        </div>
+
         <div class="wrapper flex flex-wrap last:mb-0">
             <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
         </div>
     </section>
 
+    <div class="fixed z-10 inset-0 overflow-y-auto" id="modal-add" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-darkGray bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all">
+                <div class="absolute top-0 right-0 pt-4 pr-4">
+                    <button type="button" class="bg-white rounded-md text-darkBlue hover:text-opacity-70 focus:outline-none" onclick="closeModal('modal-add')">
+                        <span class="sr-only">Close</span>
+                        <!-- Heroicon name: outline/x -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-3">
+                    <h3 class="text-lg leading-6 font-bold text-black text-center" id="modal-title">
+                        Mon ami
+                    </h3>
+                    <div class="mt-10">
+                        <input type="text" placeholder="Prénom" name="name" id="name" class="rounded w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white">
+                    </div>
+                </div>
+                <div class="pt-10 flex justify-center">
+                    <button type="button" class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none" onclick="addFriend()">
+                        Ajouter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="fixed z-10 inset-0 overflow-y-auto" id="modal-edit" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-darkGray bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all">
+                <div class="absolute top-0 right-0 pt-4 pr-4">
+                    <button type="button" class="bg-white rounded-md text-darkBlue hover:text-opacity-70 focus:outline-none" onclick="closeModal('modal-edit')">
+                        <span class="sr-only">Close</span>
+                        <!-- Heroicon name: outline/x -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-3">
+                    <h3 class="text-lg leading-6 font-bold text-black text-center">
+                        Modifier mon ami
+                    </h3>
+                    <div class="mt-10">
+                        <input type="text" placeholder="Prénom" name="name" id="old-name" class="rounded w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white">
+                    </div>
+                </div>
+                <div class="pt-10 flex flex-col justify-center">
+                    <button type="button" class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none" onclick="editFriend()">
+                        Modifier
+                    </button>
+                    <button type="button" class="w-40 rounded-full bg-lightGray text-darkBlue text-sm font-medium py-1 mt-2.5 focus:outline-none" onclick="removeFriend()">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-<footer class="relative w-full overflow-hidden mt-3">
+<footer class="fixed bottom-0 w-full overflow-hidden mt-3">
 
 </footer>
 </body>

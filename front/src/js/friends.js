@@ -10,8 +10,7 @@ function initializeFriendsPage() {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
-        id: 12
-        //localStorage.getItem('id')
+        id: localStorage.getItem('id')
       })
     }).then(response => {
       if (response.status === 200)
@@ -38,8 +37,50 @@ function createFriendsSection(friends) {
     friendName.textContent = friend.Name;
 
     divFriend.append(friendName);
+    divFriend.addEventListener("click", () => {
+      event.preventDefault();
+      openModal('modal-edit', friend)
+    });
 
     document.getElementById('friends-container').append(divFriend);
   }
+}
 
+function openModal(id, friend) {
+  document.getElementById(id).style.display = 'block';
+  if (id === 'modal-edit') {
+    document.getElementById('old-name').value = friend.Name;
+  }
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function addFriend() {
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/addfriend.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        name: document.getElementById('name').value
+      })
+    }).then(response => {
+      if (response.status === 200)
+        location.reload();
+    })
+  })
+}
+
+function editFriend() {
+  //TODO edit api
+  console.log('edit')
+}
+
+function removeFriend() {
+  // TODO remove api
+  console.log('remove')
 }
