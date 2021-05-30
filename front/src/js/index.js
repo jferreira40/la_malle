@@ -8,7 +8,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 function initializeHome() {
-  // TODO Remove id 12
   return new Promise(() => {
     fetch('https://la-malle.app/api/home.php', {
       method: 'POST',
@@ -23,6 +22,7 @@ function initializeHome() {
         response.json().then(data => {
           console.log(data)
           createFavoritesSection(data.favorites);
+          createHistoricalSection(data.history);
           createFriendsSection(data.friends)
         })
     })
@@ -33,6 +33,7 @@ function createFavoritesSection(favorites) {
   if (favorites.length === 0) {
     const emptyFavorites = document.createElement('p');
     emptyFavorites.className = 'text-center text-sm text-black py-5';
+    emptyFavorites.textContent = "Vous n'avez encore aucun favoris.";
 
     document.getElementById('favorites').append(emptyFavorites);
   } else {
@@ -47,6 +48,9 @@ function createFavoritesSection(favorites) {
 
       const span = document.createElement('span');
       span.className = 'starred on';
+      span.addEventListener("click", function () {
+        removeFavorite(favoritesKey.id)
+      })
 
       const title = document.createElement('h3');
       title.className = 'text-white font-bold text-lg';
@@ -74,6 +78,52 @@ function createFavoritesSection(favorites) {
 
 }
 
+function addFavorite(id) {
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/addfavoritegame.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        gameid: id
+      })
+    }).then(response => {
+      if (response.status === 200) {
+        response.json().then(data => {
+          return true
+        })
+      } else {
+        return false
+      }
+    })
+  })
+}
+
+function removeFavorite(id) {
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/removegamefavorite.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        gameid: id
+      })
+    }).then(response => {
+      if (response.status === 200) {
+        response.json().then(data => {
+          return true
+        })
+      } else {
+        return false
+      }
+    })
+  })
+}
+
 function createFriendsSection(friends) {
 
   let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
@@ -94,4 +144,48 @@ function createFriendsSection(friends) {
     document.getElementById('friends-container').append(divFriend);
   }
 
+}
+
+function createHistoricalSection(historical) {
+  console.log(history);
+  if (history.length === 0) {
+    const emptyHistory = document.createElement('p');
+    emptyHistory.className = 'text-center text-sm text-black py-5';
+    emptyHistory.textContent = "Vous n'avez pas encore d'historique de vos parties."
+
+    document.getElementById('history-container').append(emptyHistory);
+  } else {
+    const divContainer = document.createElement('div');
+    divContainer.className = 'card-container overflow-x-scroll flex pr-8';
+
+    for (const history of historical) {
+      const divCard = document.createElement('div');
+      divCard.className = 'card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden';
+
+      const spanDate = document.createElement('span');
+      spanDate.className = 'date font-bold text-lg text-white leading-5';
+
+      const spanGameTitle = document.createElement('span');
+      spanGameTitle.className = 'title text-white font-bold text-sm mt-3';
+
+      const spanJoueurs = document.createElement('span');
+      spanJoueurs.className = 'players text-white font-regular text-xs';
+
+      divCard.append(spanDate, spanGameTitle, spanJoueurs);
+      divContainer.append(divCard);
+    }
+
+    /*<div className="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
+                        <span className="date font-bold text-lg text-white leading-5">
+                            17<br>
+                            janv
+                        </span>
+      <span className="title text-white font-bold text-sm mt-3">
+                            L'infiltré
+                        </span>
+      <span className="players text-white font-regular text-xs ">
+                            6 joueurs
+                        </span>
+    </div>*/
+  }
 }
