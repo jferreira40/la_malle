@@ -8,6 +8,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 function initializeHome() {
+  // TODO Remove id 12
   return new Promise(() => {
     fetch('https://la-malle.app/api/home.php', {
       method: 'POST',

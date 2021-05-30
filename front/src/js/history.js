@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 function initializeHistory() {
+  // TODO remove id 12
   return new Promise(() => {
     fetch('https://la-malle.app/api/gethistory.php', {
       method: 'POST',
