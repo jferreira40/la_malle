@@ -50,6 +50,7 @@ function openModal(id, friend) {
   document.getElementById(id).style.display = 'block';
   if (id === 'modal-edit') {
     document.getElementById('old-name').value = friend.Name;
+    document.getElementById('friend-id').value = friend.Id;
   }
 }
 
@@ -77,10 +78,38 @@ function addFriend() {
 
 function editFriend() {
   //TODO edit api
-  console.log('edit')
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/getData.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        friendid: document.getElementById('friend-id').value
+      })
+    }).then(response => {
+      if (response.status === 200)
+        location.reload();
+    })
+  })
 }
 
 function removeFriend() {
   // TODO remove api
-  console.log('remove')
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/getData.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        friendid: document.getElementById('friend-id').value
+      })
+    }).then(response => {
+      if (response.status === 200)
+        location.reload();
+    })
+  })
 }
