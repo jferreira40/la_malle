@@ -16,8 +16,7 @@ function initializeHome() {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
-        id: 12
-        //localStorage.getItem('id')
+        id: localStorage.getItem('id')
       })
     }).then(response => {
       if (response.status === 200)
@@ -31,40 +30,48 @@ function initializeHome() {
 }
 
 function createFavoritesSection(favorites) {
-  for (const favoritesKey of favorites) {
+  if (favorites.length === 0) {
+    const emptyFavorites = document.createElement('p');
+    emptyFavorites.className = 'text-center text-sm text-black py-5';
 
-    const divGame = document.createElement('div');
-    divGame.className = 'game overflow-hidden relative rounded-xl h-36 mb-3';
+    document.getElementById('favorites').append(emptyFavorites);
+  } else {
+    for (const favoritesKey of favorites) {
 
-    const linkGame = document.createElement('a');
-    const divWrapper = document.createElement('div');
-    divWrapper.className = 'wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4';
+      const divGame = document.createElement('div');
+      divGame.className = 'game overflow-hidden relative rounded-xl h-36 mb-3';
 
-    const span = document.createElement('span');
-    span.className = 'starred on';
+      const linkGame = document.createElement('a');
+      const divWrapper = document.createElement('div');
+      divWrapper.className = 'wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4';
 
-    const title = document.createElement('h3');
-    title.className = 'text-white font-bold text-lg';
-    title.textContent = favoritesKey.Name;
+      const span = document.createElement('span');
+      span.className = 'starred on';
 
-    if (favoritesKey.Name === "L'infiltré") {
-      divGame.classList.add('infiltre', 'bg-spy');
+      const title = document.createElement('h3');
+      title.className = 'text-white font-bold text-lg';
+      title.textContent = favoritesKey.Name;
+
+      if (favoritesKey.Name === "L'infiltré") {
+        divGame.classList.add('infiltre', 'bg-spy');
+      }
+
+      if (favoritesKey.Name === 'Le loup du village') {
+        divGame.classList.add('le-loup', 'bg-wolf');
+      }
+
+      if (favoritesKey.Name === 'Le survivant') {
+        divGame.classList.add('survivant', 'bg-survivant');
+      }
+
+      divWrapper.append(span, title);
+      linkGame.append(divWrapper);
+      divGame.append(linkGame);
+
+      document.getElementById('favorites').append(divGame);
     }
-
-    if (favoritesKey.Name === 'Le loup du village') {
-      divGame.classList.add('le-loup', 'bg-wolf');
-    }
-
-    if (favoritesKey.Name === 'Le survivant') {
-      divGame.classList.add('survivant', 'bg-survivant');
-    }
-
-    divWrapper.append(span, title);
-    linkGame.append(divWrapper);
-    divGame.append(linkGame);
-
-    document.getElementById('favorites').append(divGame);
   }
+
 }
 
 function createFriendsSection(friends) {
