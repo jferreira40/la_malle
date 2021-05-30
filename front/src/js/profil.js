@@ -1,15 +1,22 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-    initializeProfil().then(r => {
-        console.log('r', r)
-    });
+    initializeProfil();
 });
 
 function initializeProfil() {
     return new Promise(() => {
         fetch('https://la-malle.app/api/getuser.php', {
-            method: 'GET',
+            method: 'POST',
+            headers: {
+                "Authorization" : "Bearer " + localStorage.getItem('jwt')
+            },
+            body: JSON.stringify({
+                id: localStorage.getItem('id')
+            })
         }).then( response => {
-            response.json().then(data => console.log(data));
+            response.json().then(data => {
+                document.getElementById('firstname').value = data[0].Name;
+                document.getElementById('email').value = data[0].Mail;
+            });
         })
     })
 }
