@@ -55,7 +55,7 @@
     <div class="fixed z-10 inset-0 overflow-y-auto" id="modal-add" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
             <div class="fixed inset-0 bg-darkGray bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all">
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all w-full">
                 <div class="absolute top-0 right-0 pt-4 pr-4">
                     <button type="button" class="bg-white rounded-md text-darkBlue hover:text-opacity-70 focus:outline-none" onclick="closeModal('modal-add')">
                         <span class="sr-only">Close</span>
@@ -86,7 +86,7 @@
     <div class="fixed z-10 inset-0 overflow-y-auto" id="modal-edit" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
             <div class="fixed inset-0 bg-darkGray bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all">
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-5 text-left overflow-hidden shadow-xl transform transition-all w-full">
                 <div class="absolute top-0 right-0 pt-4 pr-4">
                     <button type="button" class="bg-white rounded-md text-darkBlue hover:text-opacity-70 focus:outline-none" onclick="closeModal('modal-edit')">
                         <span class="sr-only">Close</span>
@@ -104,7 +104,7 @@
                         <input type="text" placeholder="Prénom" name="name" id="old-name" class="rounded w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white">
                     </div>
                 </div>
-                <div class="pt-10 flex flex-col justify-center">
+                <div class="pt-10 flex flex-col items-center">
                     <button type="button" class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none" onclick="editFriend()">
                         Modifier
                     </button>
