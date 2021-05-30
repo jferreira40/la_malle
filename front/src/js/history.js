@@ -1,23 +1,29 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-    initializeHistory().then(r => {
-        console.log('r', r)
-    });
+  initializeHistory();
 });
 
 
-function initializeHistory(){
-    console.log('id', localStorage.getItem('id'))
-    return new Promise(() => {
-        fetch('https://la-malle.app/api/gethistory.php', {
-            method: 'POST',
-            headers: {
-                "Authorization" : "Bearer <JWT>"
-            },
-            body: {
-                id: localStorage.getItem('id')
-            }
-        }).then( response => {
-            response.json().then(data => console.log(data))
+function initializeHistory() {
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/gethistory.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: 12
+        //localStorage.getItem('id')
+      })
+    }).then(response => {
+      if (response.status === 200)
+        response.json().then(data => {
+            console.log(data)
+          createHistory();
         })
     })
+  })
+}
+
+function createHistory() {
+  //TODO faire le html en js
 }
