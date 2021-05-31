@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>Mes groupes - La Malle</title>
   <link rel="stylesheet" href="public/css/style.css">
-  <script src="src/js/friends.js" type="application/javascript"></script>
+  <script src="src/js/friends-group.js" type="application/javascript"></script>
 </head>
 <body class="home">
 <header class="main-header">
@@ -42,13 +42,13 @@
   </div>
 </header>
 <main>
-  <section class="friends px-8 mt-7">
+  <section class="groups px-8 mt-7">
     <div class="text-right">
       <button class="bg-lightGray text-black font-medium text-xs mb-3 py-2 mx-auto w-40 rounded-full focus:outline-none" onclick="openModal('modal-add')">Ajout d'un groupe</button>
     </div>
 
-    <div class="wrapper flex flex-wrap last:mb-0">
-      <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
+    <div class="wrapper">
+      <div class="card-container w-full flex flex-col" id="friends-container"></div>
     </div>
   </section>
 
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="pt-10 flex justify-center">
-          <button type="button" class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none" onclick="addFriend()">
+          <button type="button" class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none" onclick="addGroup()">
             Ajouter
           </button>
         </div>
@@ -117,7 +117,7 @@
     </div>
   </div>
 </main>
-<footer class="fixed bottom-0 w-full overflow-hidden mt-3">
+<footer class="relative w-full overflow-hidden mt-3">
 
 </footer>
 </body>
