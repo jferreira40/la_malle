@@ -11,8 +11,11 @@ class api
 
     function __construct()
     {
-        /*      header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+        /*
+              header("Access-Control-Allow-Origin: *");
               header("Content-Type: application/json; charset=UTF-8");
+
               header("Access-Control-Allow-Methods: POST");
               header("Access-Control-Max-Age: 3600");
               header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -344,10 +347,10 @@ where t1.Id_user = :id
         if ($this->state !== true) {
             return $this->state;
         } else {
-           $arr = array();
-           $arr['favorites'] = $this->getFavoriteGames();
-           $arr['history'] = $this->getHistory();
-           $arr['friends'] = $this->getFriends();
+            $arr = array();
+            $arr['favorites'] = $this->getFavoriteGames();
+            $arr['history'] = $this->getHistory();
+            $arr['friends'] = $this->getFriends();
             /*return [
                 "favorites" => [
                     "infiltré",
@@ -385,13 +388,125 @@ where t1.Id_user = :id
             $table_name2 = 'Games';
             $limit = $this->data->limit ?: 12;
 
-            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date  FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id WHERE Id_user = :id LIMIT $limit";
+            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date t3.count as count FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id left join (select count(Id) as count, Id_round from Results group by Id_round)as t3 on t3.Id_round = t1.Id WHERE Id_user = :id LIMIT $limit";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
+        }
+    }
+
+    public function getUser()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+
+            $table_name = 'Users';
+
+            $query = "SELECT Name, Id, Lastname, Mail, Age  FROM " . $table_name . "  WHERE Id = :id ";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->data->id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        }
+    }
+
+    public function setUser()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Users';
+            if ($this->data->newname) {
+                $query = "UPDATE  $table_name  SET Name = :name where Id = :id ";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':name', $this->data->newname);
+                $stmt->bindParam(':id', $this->data->id);
+                $stmt->execute();
+            }
+            if ($this->data->newlastname) {
+                $query = "UPDATE  $table_name  SET Lastname = :name where Id = :id ";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':name', $this->data->newlastname);
+                $stmt->bindParam(':id', $this->data->id);
+                $stmt->execute();
+            }
+            if ($this->data->newdate) {
+
+                $Age = DateTime::createFromFormat('Y-m-d', $this->data->newage);
+                $Age = $Age->format('Y-m-d');
+
+                $query = "UPDATE  $table_name  SET Age = :date where Id = :id ";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':date', $Age);
+                $stmt->bindParam(':id', $this->data->id);
+                $stmt->execute();
+            }
+            if ($this->data->newmail) {
+                $query = "UPDATE  $table_name  SET Mail = :mail where Id = :id ";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':mail', $this->data->newmail);
+                $stmt->bindParam(':id', $this->data->id);
+                $stmt->execute();
+            }
+            return "done";
+        }
+    }
+
+    public function removeFavorite()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Favorite_game';
+
+            $query = "DELETE FROM $table_name where Id_user = :id and Id_game = :idgame ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->data->id);
+            $stmt->bindParam(':idgame', $this->data->gameid);
+            $stmt->execute();
+
+            return "done";
+        }
+    }
+
+    public function setFriend()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Friends';
+
+                $query = "UPDATE  $table_name  SET Name = :name where Id = :frienid and Id_user = :id ";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':name', $this->data->newname);
+                $stmt->bindParam(':frienid', $this->data->frienid);
+                $stmt->bindParam(':id', $this->data->id);
+                $stmt->execute();
+
+            return "done";
+        }
+    }
+
+    public function removeFriend()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Friends';
+
+            $query = "DELETE FROM $table_name where Id_user = :id and Id = :frienid ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':frienid', $this->data->frienid);
+            $stmt->bindParam(':id', $this->data->id);
+            $stmt->execute();
+
+            return "done";
         }
     }
 }

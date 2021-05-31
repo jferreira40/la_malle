@@ -47,10 +47,10 @@
     <form class="flex flex-col">
         <div class="flex flex-col space-y-5 mb-14">
             <input type="text" placeholder="Ton prénom" name="firstname" id="firstname" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
+            <input type="text" placeholder="Ton nom de famille" name="lastname" id="lastname" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
             <input type="text" placeholder="Ton email" name="email" id="email" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
-            <input type="text" placeholder="Mot de passe" name="mdp" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
         </div>
-        <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded focus:outline-blue">C'est noté !</button>
+        <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded focus:outline-blue" onclick="saveProfil()">C'est noté !</button>
     </form>
 
 </main>
