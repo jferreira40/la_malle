@@ -482,10 +482,10 @@ where t1.Id_user = :id
         } else {
             $table_name = 'Friends';
 
-                $query = "UPDATE  $table_name  SET Name = :name where Id = :frienid and Id_user = :id ";
+                $query = "UPDATE  $table_name  SET Name = :name where Id = :friendid and Id_user = :id ";
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(':name', $this->data->newname);
-                $stmt->bindParam(':frienid', $this->data->frienid);
+                $stmt->bindParam(':friendid', $this->data->friendid);
                 $stmt->bindParam(':id', $this->data->id);
                 $stmt->execute();
 
@@ -500,9 +500,9 @@ where t1.Id_user = :id
         } else {
             $table_name = 'Friends';
 
-            $query = "DELETE FROM $table_name where Id_user = :id and Id = :frienid ";
+            $query = "DELETE FROM $table_name where Id_user = :id and Id = :friendid ";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':frienid', $this->data->frienid);
+            $stmt->bindParam(':friendid', $this->data->friendid);
             $stmt->bindParam(':id', $this->data->id);
             $stmt->execute();
 
