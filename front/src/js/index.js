@@ -147,8 +147,8 @@ function createFriendsSection(friends) {
 }
 
 function createHistoricalSection(historical) {
-  console.log(history);
-  if (history.length === 0) {
+  console.log(historical);
+  if (historical.length === 0) {
     const emptyHistory = document.createElement('p');
     emptyHistory.className = 'text-center text-sm text-black py-5';
     emptyHistory.textContent = "Vous n'avez pas encore d'historique de vos parties."
