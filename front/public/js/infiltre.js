@@ -514,7 +514,7 @@ function endGame() {
             wrapperQuestion.textContent = scriptObj.winCivil;
             setTimeout(function () {
               window.location.reload();
-            }, 3000);
+            }, 8000);
           } else {
             document.getElementsByTagName('body')[0].classList.remove('eliminate');
             document.getElementsByTagName('body')[0].classList.add('wonInfiltre');
