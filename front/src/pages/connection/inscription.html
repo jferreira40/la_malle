@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,50 @@
     <link rel="stylesheet" href="../../../public/css/style.css">
     <script src="../../js/inscription.js" type="application/javascript"></script>
 </head>
+
 <body class="overflow-hidden inscription">
-<div class="flex flex-col px-8 pt-8">
-    <div class="flex items-center justify-center">
-        <img src="./../../images/logo/la_malle.svg" alt="La malle" class="h-6">
-        <p class="font-bold text-lg pl-2">La Malle</p>
-    </div>
-    <div class="pt-32">
-        <div class="rounded-md bg-red p-4" id="error" style="display: none">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <!-- Heroicon name: solid/error-circle -->
-                    <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <p class="text-sm font-medium text-white" id="message"></p>
+    <div class="flex flex-col px-8 pt-8">
+        <div class="flex items-center justify-center">
+            <img src="./../../images/logo/la_malle.svg" alt="La malle" class="h-6">
+            <p class="font-bold text-lg pl-2">La Malle</p>
+        </div>
+        <div class="pt-32">
+            <div class="rounded-md bg-red p-4" id="error" style="display: none">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <!-- Heroicon name: solid/error-circle -->
+                        <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-white" id="message"></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h1 class="text-3xl font-bold text-center pb-4">Inscription</h1>
-        <form id="inscription" name="inscription" class="flex flex-col space-y-4">
-            <input type="text" placeholder="Ton prénom" name="firstname" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
-            <input type="text" placeholder="Ton nom de famille" name="lastname" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
-            <input type="date" placeholder="Ta date de naissance" name="age" class="rounded shadow-custom h-9 px-5 text-xs bg-white w-full focus:outline-blue" required>
-            <input type="email" placeholder="Ton email" name="email" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
-            <input type="password" placeholder="Ton mot de passe" name="mdp" id="mdp" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
-            <input type="password" placeholder="Répète ton mot de passe" id="repeatemdp" class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue">
-            <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded focus:outline-blue">Et bienvenue !</button>
-        </form>
+            <h1 class="text-3xl font-bold text-center pb-4">Inscription</h1>
+            <form id="inscription" name="inscription" class="flex flex-col space-y-4">
+                <input type="text" placeholder="Ton prénom" name="firstname"
+                    class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" required>
+                <input type="text" placeholder="Ton nom de famille" name="lastname"
+                    class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
+                <input type="date" placeholder="Ta date de naissance" name="age"
+                    class="rounded shadow-custom h-9 px-5 text-xs bg-white w-full focus:outline-blue" required>
+                <input type="email" placeholder="Ton email" name="email"
+                    class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
+                <input type="password" placeholder="Ton mot de passe" name="mdp" id="mdp"
+                    class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue" required>
+                <input type="password" placeholder="Répète ton mot de passe" id="repeatemdp"
+                    class="rounded shadow-custom h-9 px-5 text-xs focus:outline-blue">
+                <button type="submit" class="text-white bg-darkBlue py-2 text-sm rounded focus:outline-blue">Et
+                    bienvenue !</button>
+            </form>
 
+        </div>
     </div>
-</div>
-<footer></footer>
-<!--<img src="./../../images/connexion.svg" alt="">-->
 </body>
+
 </html>

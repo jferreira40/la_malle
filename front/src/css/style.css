@@ -46,7 +46,7 @@
 /*                    Header générique                    */
 /* ------------------------------------------------------ */
 
-body header.main-header .wrapper .back-wrapper a::before{
+body header.main-header .wrapper .back-wrapper a::before {
     content: '';
     display: block;
     height: 14px;
@@ -58,15 +58,23 @@ body header.main-header .wrapper .back-wrapper a::before{
     margin-right: 7px;
 }
 
-body header.main-header::after{
-    content: '';
-    display: block;
-    height: 30px;
-    width: 100%;
-    background-image: url('/src/images/arrondi_header.svg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: top;
+
+body header.main-header {
+    height: 93px;
+    position: relative;
+    overflow: hidden;
+}
+
+body header.main-header>.wrapper {
+    width: 105%;
+    height: 100%;
+    left: -3%;
+    position: absolute;
+    background-color: #F5F5F5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
 }
 
 /* ------------------------------------------------------ */
@@ -262,12 +270,12 @@ body.home main section.friends .wrapper .card-container .card.bg-yellow::before 
     background-position: center;
 }
 
-body.home footer{
+body.home footer {
     min-height: 92px;
 
 }
 
-body.home footer::before{
+body.home footer::before {
     content: '';
     position: absolute;
     bottom: -114vw;
@@ -321,7 +329,6 @@ body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
 
 /* TODO Repositionner l'image*/
 body.inscription footer::before {
-
     content: '';
     position: absolute;
     width: 100%;
@@ -333,5 +340,153 @@ body.inscription footer::before {
     left: 38%;
 }
 
-/* TODO ::before pour les steps*/
-/* TODO ::before pour la connexion*/
+/* ------------------------------------------------------ */
+/*                          Steps                         */
+/* ------------------------------------------------------ */
+
+body.steps>div:first-of-type::before {
+    content: '';
+    display: block;
+    width: 27px;
+}
+
+body.steps::before {
+    content: '';
+    flex: 1;
+    order: 2;
+}
+
+body.step1 {
+    background-image: url('/src/images/step-1.svg');
+    background-size: 238% 79%;
+    background-position: top -54% left 43%;
+    background-repeat: no-repeat;
+}
+
+body.step2 {
+    background-image: url('/src/images/step-2.svg');
+    background-size: 159% 93%;
+    background-position: top -495% left 44%;
+    background-repeat: no-repeat;
+}
+
+body.step3 {
+    background-image: url('/src/images/step-3.svg');
+    background-size: 100% 93%;
+    background-position: top -253% left -71%;
+    background-repeat: no-repeat;
+}
+
+/* ------------------------------------------------------ */
+/*                 Connexion & Inscription                */
+/* ------------------------------------------------------ */
+
+body.login {
+    background-image: url('/src/images/connexion.svg');
+    background-size: 107% 198%;
+    background-position: bottom 122% left -431%;
+    background-repeat: no-repeat;
+}
+
+body.inscription {
+    background-image: url('/src/images/connexion.svg');
+    background-size: 107% 198%;
+    background-position: bottom 122% left -431%;
+    background-repeat: no-repeat;
+}
+
+/* ------------------------------------------------------ */
+/*                      Jeu Infiltré                      */
+/* ------------------------------------------------------ */
+
+html,
+body.game.infiltre {
+    min-height: 100vh;
+}
+
+html,
+body.game.infiltre main {
+    min-height: calc(100vh - 93px);
+}
+
+body.game.infiltre:not(.selection):not(.eliminate):before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    left: -20%;
+    width: 100%;
+    height: 45%;
+    background-image: url('/src/images/infiltre_bg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+body.game.infiltre.started:not(.eliminate):before {
+    left: 50%;
+    width: 212px;
+    height: 179px;
+    background-image: url('/src/images/infiltre_bg.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    transform: translateX(-50%);
+}
+
+body.game.infiltre main #increment {
+    background-image: url('/src/images/increment.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.game.infiltre main #decrement {
+    background-image: url('/src/images/decrement.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.game.infiltre.started:not(.eliminate) main .main-wrapper::after {
+    content: '';
+    display: block;
+    height: 179px;
+}
+
+body.game.infiltre.started.eliminate main .main-wrapper::after {
+    content: '';
+    display: block;
+    height: 10px;
+}
+
+body.game.infiltre.started #toggleRole::before,
+body.game.infiltre.started #okButton::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
+    border-radius: 100%;
+    opacity: .21;
+}
+
+body.game.infiltre.started #instructionsWrapper .word:first-of-type {
+    transform: rotate(-180deg);
+}
+
+body.wonCivil #wrapperQuestion::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 64px;
+    margin: 0 auto 16px;
+    background-image: url('/src/images/cup.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
