@@ -329,7 +329,6 @@ body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
 
 /* TODO Repositionner l'image*/
 body.inscription footer::before {
-
     content: '';
     position: absolute;
     width: 100%;
@@ -339,6 +338,16 @@ body.inscription footer::before {
     background-size: contain;
     background-repeat: no-repeat;
     left: 38%;
+}
+
+/* ------------------------------------------------------ */
+/*                          Steps                         */
+/* ------------------------------------------------------ */
+
+body.steps>div:first-of-type::before {
+    content: '';
+    display: block;
+    width: 27px;
 }
 
 /* TODO ::before pour les steps*/
