@@ -27749,9 +27749,25 @@ body.step3 {
   background-repeat: no-repeat;
 }
 
-/* TODO ::before pour les steps*/
+/* ------------------------------------------------------ */
 
-/* TODO ::before pour la connexion*/
+/*                 Connexion & Inscription                */
+
+/* ------------------------------------------------------ */
+
+body.login {
+  background-image: url('/src/images/connexion.svg');
+  background-size: 107% 198%;
+  background-position: bottom 122% left -431%;
+  background-repeat: no-repeat;
+}
+
+body.inscription {
+  background-image: url('/src/images/connexion.svg');
+  background-size: 107% 198%;
+  background-position: bottom 122% left -431%;
+  background-repeat: no-repeat;
+}
 
 /* ------------------------------------------------------ */
 
