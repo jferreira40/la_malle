@@ -99,7 +99,7 @@ var scriptObj = {
   "masterRules": "Maitre du jeu, posez le téléphone à la vue de tous. Et fermez les yeux.",
   "infiltreRules": "Infiltré c’est à vous ! Ouvrez les yeux vous allez avoir 5 secondes pour retenir le mot.",
   "infiltreRules2": "Fermez les yeux infiltré. Ouvrez tous les yeux.",
-  "rules": "Vous avez 5 minutes pour devinez le mot. Maitre du jeu, vous pouvez répondre uniquement par oui, non, ou je ne sais pas.",
+  "rules": "Vous avez 5 minutes pour deviner le mot. Maitre du jeu, vous pouvez répondre uniquement par oui, non, ou je ne sais pas.",
   "done": "C’est terminé, le mot a-t-il été trouvé ?",
   "echec": "Nous n’avez pas trouvé le mot, toute l’équipe perd.",
   "debate": "Il est temps de débattre ! A vous de trouver l’infiltré.",
