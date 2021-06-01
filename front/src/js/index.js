@@ -1,4 +1,4 @@
-if (window.localStorage.getItem('user') === null)
+if (window.localStorage.getItem('jwt') === null)
   window.location = './src/pages/connection/login.html';
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -49,7 +49,8 @@ function createFavoritesSection(favorites) {
       const span = document.createElement('span');
       span.className = 'starred on';
       span.addEventListener("click", function () {
-        removeFavorite(favoritesKey.id)
+        removeFavorite(favoritesKey.Id)
+        location.reload()
       })
 
       const title = document.createElement('h3');
@@ -76,52 +77,6 @@ function createFavoritesSection(favorites) {
     }
   }
 
-}
-
-function addFavorite(id) {
-  return new Promise(() => {
-    fetch('https://la-malle.app/api/addfavoritegame.php', {
-      method: 'POST',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('jwt'),
-      },
-      body: JSON.stringify({
-        id: localStorage.getItem('id'),
-        gameid: id
-      })
-    }).then(response => {
-      if (response.status === 200) {
-        response.json().then(data => {
-          return true
-        })
-      } else {
-        return false
-      }
-    })
-  })
-}
-
-function removeFavorite(id) {
-  return new Promise(() => {
-    fetch('https://la-malle.app/api/removegamefavorite.php', {
-      method: 'POST',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('jwt'),
-      },
-      body: JSON.stringify({
-        id: localStorage.getItem('id'),
-        gameid: id
-      })
-    }).then(response => {
-      if (response.status === 200) {
-        response.json().then(data => {
-          return true
-        })
-      } else {
-        return false
-      }
-    })
-  })
 }
 
 function createFriendsSection(friends) {
