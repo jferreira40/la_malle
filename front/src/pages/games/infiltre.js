@@ -271,6 +271,8 @@ function initGame() {
     const valueText = document.createTextNode(scriptObj.start);
     textContainer.appendChild(valueText);
 
+    speak(scriptObj.start);
+
     setTimeout(() => {
 
         let i = 0;
@@ -383,10 +385,13 @@ function startGame() {
     const masterInstructions = document.createTextNode(Object.keys(rolesArr).find(key => rolesArr[key] === 'Maitre du jeu') + scriptObj.master);
     instructionsWrapper.appendChild(masterInstructions);
 
+    speak(Object.keys(rolesArr).find(key => rolesArr[key] === 'Maitre du jeu') + scriptObj.master);
+
     main.appendChild(instructionsWrapper);
 
     setTimeout(() => {
         instructionsWrapper.textContent = scriptObj.rulesAll;
+        speak(scriptObj.rulesAll);
     }, 3000);
 
     setTimeout(() => {
@@ -417,6 +422,8 @@ function startGame() {
             document.getElementById('wordWrapper').remove();
             instructionsWrapper.textContent = scriptObj.masterRules;
 
+            speak(scriptObj.masterRules);
+
             const buttonOK = document.createElement('a');
             buttonOK.id = 'okButton';
             buttonOK.classList.add('relative', 'flex', 'justify-center', 'px-4', 'items-center', 'w-24', 'h-24', 'mx-auto', 'text-center', 'bg-white', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-sm');
@@ -430,6 +437,8 @@ function startGame() {
 
                 document.getElementById('okButton').remove();
                 instructionsWrapper.textContent = scriptObj.infiltreRules;
+
+                speak(scriptObj.infiltreRules);
 
                 setTimeout(() => {
                     instructionsWrapper.textContent = '';
@@ -446,9 +455,12 @@ function startGame() {
                         document.getElementsByClassName('word')[1].remove;
 
                         instructionsWrapper.textContent = scriptObj.infiltreRules2;
+                        speak(scriptObj.infiltreRules2);
 
                         setTimeout(() => {
                             instructionsWrapper.textContent = scriptObj.rules;
+
+                            speak(scriptObj.rules);
 
                             setTimeout(() => {
                                 instructionsWrapper.textContent = '';
@@ -475,19 +487,19 @@ function startGame() {
                                     clearInterval(window.refreshCounter);
                                     endGame();
                                 });
-                            }, 3000);
+                            }, 8000);
                         }, 4000);
 
                     }, 5000);
 
-                }, 3000);
+                }, 6000);
 
 
             });
 
         });
 
-    }, 3000);
+    }, 9000);
 
     console.log("C'est partit");
 }
@@ -642,4 +654,25 @@ function endGame() {
         });
     });
 
+}
+
+function speak(sentence) {
+    var synth = window.speechSynthesis;
+
+    if (synth.speaking) {
+        console.error('speechSynthesis.speaking');
+        return;
+    }
+
+    var utterThis = new SpeechSynthesisUtterance(sentence);
+    utterThis.onend = function (event) {
+        console.log('SpeechSynthesisUtterance.onend');
+    }
+    utterThis.onerror = function (event) {
+        console.error('SpeechSynthesisUtterance.onerror');
+    }
+    utterThis.lang = 'fr-FR';
+    utterThis.pitch = 1;
+    utterThis.rate = 1;
+    synth.speak(utterThis);
 }
