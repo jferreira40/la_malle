@@ -288,6 +288,62 @@ body.home footer::before {
     background-position: 0% -120%;
 }
 
+body.home main section.groups .wrapper .card-container .card.bg-blue::before {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: -15px;
+    right: 16px;
+    background-image: url('/src/images/square-grp.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.groups .wrapper .card-container .card.bg-red::before {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: -15px;
+    right: 16px;
+    background-image: url('/src/images/triangle-grp.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: -15px;
+    right: 16px;
+    background-image: url("/src/images/circle-grp.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* TODO Repositionner l'image*/
+body.inscription footer::before {
+
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: -70%;
+    height: 100%;
+    background-image: url('/src/images/connexion.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: 38%;
+}
+
+/* TODO ::before pour les steps*/
+/* TODO ::before pour la connexion*/
+
 /* ------------------------------------------------------ */
 /*                      Jeu Infiltré                      */
 /* ------------------------------------------------------ */

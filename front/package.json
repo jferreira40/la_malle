@@ -1,7 +1,7 @@
 {
   "name": "la_malle",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/js/index.js",
   "repository": "git@github.com:jferreira40/la_malle.git",
   "author": "<ferreira.jess40@gmail.com>",
   "license": "MIT",
