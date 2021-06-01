@@ -122,19 +122,39 @@ function createHistoricalSection(historical) {
 
     for (const history of historical) {
       const divCard = document.createElement('div');
-      divCard.className = 'card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden';
+      divCard.className = 'card flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden';
+
+      if (history.game === "L'infiltré") {
+        divCard.classList.add('bg-spy');
+      }
+
+      if (history.game === 'Le loup du village') {
+        divCard.classList.add('bg-wolf');
+      }
+
+      if (history.game === 'Le survivant') {
+        divCard.classList.add('bg-survive');
+      }
 
       const spanDate = document.createElement('span');
       spanDate.className = 'date font-bold text-lg text-white leading-5';
+      const date = new Date(history.date).toLocaleString('fr-fr',{month:'short', day:'numeric'});
+      const day = date.substr(0, 3);
+      const month = date.substr(3, date.length);
+
+      spanDate.innerHTML = day + '<br>' + month;
 
       const spanGameTitle = document.createElement('span');
       spanGameTitle.className = 'title text-white font-bold text-sm mt-3';
+      spanGameTitle.textContent = history.game;
 
       const spanJoueurs = document.createElement('span');
       spanJoueurs.className = 'players text-white font-regular text-xs';
 
       divCard.append(spanDate, spanGameTitle, spanJoueurs);
       divContainer.append(divCard);
+
+      document.getElementById('history-container').append(divContainer);
     }
 
     /*<div className="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
