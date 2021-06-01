@@ -10,8 +10,8 @@
     <script src="../../js/steps.js" type="application/javascript"></script>
 </head>
 
-<body class="steps overflow-hidden">
-    <div class="flex justify-between items-center mt-8 px-8">
+<body class="relative steps step1 overflow-hidden h-screen w-screen flex flex-col pb-8">
+    <div class="order-1 flex justify-between items-center mt-8 px-8">
         <div class="flex items-center justify-center">
             <img src="./../../images/logo/la_malle.svg" alt="La malle" class="h-6">
             <p class="font-bold text-lg pl-2">La Malle</p>
@@ -19,9 +19,9 @@
         <a href="login.html" class="text-sm text-darkGray cursor-pointer" onclick="clickPass()">Passer</a>
     </div>
 
-    <div id="step1">
+    <div id="step1" class="order-3">
         <!-- <img src="./../../images/step-1.svg" alt="" class="object-cover z-n absolute -top-10 h-4/6 w-full"> -->
-        <div class="relative pt-80">
+        <div class="relative">
             <h1 class="text-3xl font-bold text-center">Simplifie-toi la vie !</h1>
             <div class="flex flex-col pt-7 pb-11">
                 <p class="text-base text-center">Transporte tes jeux de sociétés </p>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div id="step2" style="display: none">
+    <div id="step2" class="order-3" style="display: none">
         <!-- <img src="./../../images/step-2.svg" alt=""> -->
         <h1 class="text-3xl font-bold text-center">Partage</h1>
         <div class="flex flex-col pt-7 pb-11">
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div id="step3" style="display: none">
+    <div id="step3" class="order-3" style="display: none">
         <!-- <img src="./../../images/step-3.svg" alt=""> -->
         <h1 class="text-3xl font-bold text-center">Seul ou à plusieurs</h1>
         <div class="flex flex-col pt-7 pb-11">
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-center">
+    <div class="order-4 flex justify-center">
         <button class="bg-darkBlue text-white py-1.5 px-6 mt-6 rounded-full" onclick="nextStep()">Suivant</button>
     </div>
 </body>

@@ -350,6 +350,33 @@ body.steps>div:first-of-type::before {
     width: 27px;
 }
 
+body.steps::before {
+    content: '';
+    flex: 1;
+    order: 2;
+}
+
+body.step1 {
+    background-image: url('/src/images/step-1.svg');
+    background-size: 238% 79%;
+    background-position: top -54% left 43%;
+    background-repeat: no-repeat;
+}
+
+body.step2 {
+    background-image: url('/src/images/step-2.svg');
+    background-size: 159% 93%;
+    background-position: top -495% left 44%;
+    background-repeat: no-repeat;
+}
+
+body.step3 {
+    background-image: url('/src/images/step-3.svg');
+    background-size: 100% 93%;
+    background-position: top -253% left -71%;
+    background-repeat: no-repeat;
+}
+
 /* TODO ::before pour les steps*/
 /* TODO ::before pour la connexion*/
 
