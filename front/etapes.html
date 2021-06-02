@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Malle</title>
+    <link rel="stylesheet" href="./public/css/style.css">
+    <script src="./src/js/steps.js" type="application/javascript"></script>
+</head>
+
+<body class="relative steps step1 overflow-hidden h-screen w-screen flex flex-col pb-8">
+    <div class="order-1 flex justify-between items-center mt-8 px-8">
+        <div class="flex items-center justify-center">
+            <img src="./src/images/logo/la_malle.svg" alt="La malle" class="h-6">
+            <p class="font-bold text-lg pl-2">La Malle</p>
+        </div>
+        <a href="connexion.html" class="text-sm text-darkGray cursor-pointer" onclick="clickPass()">Passer</a>
+    </div>
+
+    <div id="step1" class="order-3">
+        <div class="relative">
+            <h1 class="text-3xl font-bold text-center">Simplifie-toi la vie !</h1>
+            <div class="flex flex-col pt-7 pb-11">
+                <p class="text-base text-center">Transporte tes jeux de sociétés </p>
+                <p class="text-base text-center">avec toi, et n'importe où !</p>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="flex space-x-1.5">
+                <div class="h-2.5 w-5 rounded-sm bg-darkBlue"></div>
+                <div class="h-2.5 w-3 rounded-sm bg-pink bg-opacity-60"></div>
+                <div class="h-2.5 w-3  rounded-sm bg-pink bg-opacity-60"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="step2" class="order-3" style="display: none">
+        <h1 class="text-3xl font-bold text-center">Partage</h1>
+        <div class="flex flex-col pt-7 pb-11">
+            <p class="text-base text-center">Comptabilise tes scores, compare,</p>
+            <p class="text-base text-center">défi tes amis pour savoir lequel de</p>
+            <p class="text-base text-center">vous est le meilleur.</p>
+        </div>
+        <div class="flex justify-center">
+            <div class="flex space-x-1.5">
+                <div class="h-2.5 w-3 rounded-sm bg-pink bg-opacity-60"></div>
+                <div class="h-2.5 w-5 rounded-sm bg-darkBlue"></div>
+                <div class="h-2.5 w-3  rounded-sm bg-pink bg-opacity-60"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="step3" class="order-3" style="display: none">
+        <h1 class="text-3xl font-bold text-center">Seul ou à plusieurs</h1>
+        <div class="flex flex-col pt-7 pb-11">
+            <p class="text-base text-center">Solo ou en multi ? Parmi la</p>
+            <p class="text-base text-center">multitude de jeux, trouvez votre</p>
+            <p class="text-base text-center">bonheur.</p>
+        </div>
+        <div class="flex justify-center">
+            <div class="flex space-x-1.5">
+                <div class="h-2.5 w-3 rounded-sm bg-pink bg-opacity-60"></div>
+                <div class="h-2.5 w-3 rounded-sm bg-pink bg-opacity-60"></div>
+                <div class="h-2.5 w-5  rounded-sm bg-darkBlue"></div>
+            </div>
+        </div>
+    </div>
+    <div class="order-4 flex justify-center">
+        <button class="bg-darkBlue text-white py-1.5 px-6 mt-6 rounded-full" onclick="nextStep()">Suivant</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="57x57" href="../../src/images/logo/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../src/images/logo/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../src/images/logo/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../src/images/logo/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../src/images/logo/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../src/images/logo/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../src/images/logo/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../src/images/logo/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../src/images/logo/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../src/images/logo/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../src/images/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../src/images/logo/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../src/images/logo/favicon-16x16.png">
+    <link rel="manifest" href="../../src/images/logo/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../src/images/logo/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>L'infiltré - La Malle</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <script src="./infiltre.js"></script>
+</head>
+
+<body class="game infiltre bg-spy ">
+    <header class="main-header">
+        <div class="wrapper flex justify-center items-center px-8 bg-lightGray">
+            <div class="logo-wrapper flex items-center">
+                <img src="../../src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-6 h-6 mr-2">
+                <span class="text-lg font-bold">
+                    La malle
+                </span>
+            </div>
+        </div>
+    </header>
+    <main class="h-full flex flex-col">
+        <div class="main-wrapper flex-1 flex flex-col items-center">
+            <div class="title-wrapper mt-16">
+                <h1 class="font-bold text-4xl text-white text-center">
+                    L'infiltré
+                </h1>
+            </div>
+            <div class="cta-wrapper mt-32">
+                <a href="" id="groupSelection"
+                    class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full font-medium text-xs">
+                    Jouer avec un groupe d'amis
+                </a>
+                <span class="block text-white text-xs text-center font-medium my-1">ou</span>
+                <a href="" id="direct-play"
+                    class="block w-52 mx-auto text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
+                    Jouer directement
+                </a>
+            </div>
+        </div>
+    </main>
+    <aside id="rulesPopup" class="popup hidden">
+        <div class="wrapper">
+            <h3 class="my-5 px-8 font-bold text-center text-lg">
+                Les règles de l'infiltré
+            </h3>
+            <div class="content px-8 text-sm">
+                <p class="mb-4">
+                    En début de partie, des cartes rôles sont distribuées aléatoirement pour 4 à 8 joueurs, désignant un
+                    maitre du jeu, un infiltré (traitre), tous les autres joueurs sont d’honnêtes citoyens.
+                </p>
+                <p class="mb-4">
+                    Le maitre de jeu doit faire deviner un mot désigné sur une carte secrète. Pendant un sablier
+                    d’environ 5 minutes, les joueurs lui posent un maximum de questions auxquelles il répond uniquement
+                    par « oui / non / je ne sais pas ».
+                </p>
+                <p class="mb-4">
+                    Mais le traitre connait également le mot secret : à lui de subtilement orienter les questions du
+                    groupe, influencer la réflexion générale, voire donner la bonne réponse.
+                </p>
+                <p class="mb-4">
+                    Si le mot n’est pas trouvé, toute l’équipe perd. Si au contraire le mot est découvert, alors se pose
+                    la question : « Est-ce que le joueur ayant trouvé la bonne réponse est le traitre ? »
+                </p>
+                <p class="mb-4">
+                    Les joueurs débattent en discutant des réponses données et de leur timing, de la pertinence des
+                    remarques, etc… Puis ils votent contre le joueur en question.
+                </p>
+                <p>
+                    Si c’est le traitre et que la majorité l’accuse, les citoyens gagnent.
+                    Si c’est un citoyen et que la majorité l’accuse, le traitre gagne.
+                    Si c’est un citoyen et qu’il n’a pas la majorité, alors un second vote a lieu pour déterminer qui
+                    est le traitre.
+                    Si les citoyens l’identifient, ils gagnent la partie sans lui. S’il reste dans l’ombre, alors il
+                    gagne seul !
+                </p>
+            </div>
+            <a href="" id="hidePopup"
+                class="block w-52 mx-auto mt-10 text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
+                Retour au jeu
+            </a>
+            <div class="footer relative w-full overflow-hidden mt-3">
+
+            </div>
+        </div>
+    </aside>
+</body>
+
+</html>

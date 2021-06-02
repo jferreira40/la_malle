@@ -1,5 +1,5 @@
 if (window.localStorage.getItem('jwt') === null)
-  window.location = './src/pages/connection/login.html';
+  window.location = 'connexion.html';
 
 window.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById('name').textContent = localStorage.getItem('user');
@@ -80,7 +80,7 @@ function createFavoritesSection(favorites) {
 
 function createFriendsSection(friends) {
 
-  if(friends.length === 0) {
+  if (friends.length === 0) {
     const emptyFriends = document.createElement('p');
     emptyFriends.className = 'text-center text-sm text-black pt-5 pb-10 w-full';
     emptyFriends.textContent = "Vous n'avez pas encore d'amis";
@@ -137,7 +137,7 @@ function createHistoricalSection(historical) {
 
       const spanDate = document.createElement('span');
       spanDate.className = 'date font-bold text-lg text-white leading-5';
-      const date = new Date(history.date).toLocaleString('fr-fr',{month:'short', day:'numeric'});
+      const date = new Date(history.date).toLocaleString('fr-fr', { month: 'short', day: 'numeric' });
       const day = date.substr(0, 3);
       const month = date.substr(3, date.length);
 

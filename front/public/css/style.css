@@ -27657,6 +27657,40 @@ body.home footer::before {
   background-position: 0% -120%;
 }
 
+/* ------------------------------------------------------ */
+
+/*                          Historique                    */
+
+/* ------------------------------------------------------ */
+
+/* TODO Baptiste ajout de l'image plus sur le bouton ajouter
+    cf friends.html
+    */
+
+/* ------------------------------------------------------ */
+
+/*                          Historique                    */
+
+/* ------------------------------------------------------ */
+
+/* TODO Baptiste design pour la page Historique + templating
+    CF history.html
+    */
+
+/* ------------------------------------------------------ */
+
+/*                          Groups                        */
+
+/* ------------------------------------------------------ */
+
+/* TODO Baptiste Inté pour la modal de modification d'un groupe (chip, input avec bouton plus)*/
+
+/* TODO Baptiste ajout du plus au niveau du bouton ajouter
+    Cf friends-group
+    */
+
+/* TODO Baptiste image pour la card group bleu */
+
 body.home main section.groups .wrapper .card-container .card.bg-blue::before {
   content: '';
   position: absolute;
@@ -27669,6 +27703,8 @@ body.home main section.groups .wrapper .card-container .card.bg-blue::before {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/* TODO Baptiste image pour la card group rouge */
 
 body.home main section.groups .wrapper .card-container .card.bg-red::before {
   content: '';
@@ -27683,6 +27719,8 @@ body.home main section.groups .wrapper .card-container .card.bg-red::before {
   background-position: center;
 }
 
+/* TODO Baptiste image pour la card group jaune */
+
 body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
   content: '';
   position: absolute;
@@ -27694,20 +27732,6 @@ body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-/* TODO Repositionner l'image*/
-
-body.inscription footer::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  bottom: -70%;
-  height: 100%;
-  background-image: url('/src/images/connexion.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  left: 38%;
 }
 
 /* ------------------------------------------------------ */
@@ -161068,3 +161092,4 @@ body.infiltre.simple aside .footer::before {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+

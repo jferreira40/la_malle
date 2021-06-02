@@ -15,11 +15,11 @@ function nextStep() {
         body.classList.add(`step${count}`);
     } else {
         localStorage.setItem('seeSteps', 'true');
-        window.location = "login.html";
+        window.location = "connexion.html";
     }
 }
 
 function clickPass() {
     localStorage.setItem('seeSteps', 'true');
-    window.location = "login.html";
+    window.location = "connexion.html";
 }
