@@ -27867,6 +27867,33 @@ body.wonCivil #wrapperQuestion::before {
   background-repeat: no-repeat;
 }
 
+/* ------------------ Popup des règles ------------------ */
+
+body.infiltre.simple {
+  background-color: white;
+}
+
+body.infiltre.simple::before {
+  display: none;
+}
+
+body.infiltre.simple aside .footer {
+  min-height: 92px;
+}
+
+body.infiltre.simple aside .footer::before {
+  content: '';
+  position: absolute;
+  bottom: -114vw;
+  left: -19vw;
+  width: 370%;
+  height: 144vw;
+  background-image: url('/src/images/footer-shape.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0% -120%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
