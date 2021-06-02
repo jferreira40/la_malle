@@ -319,8 +319,8 @@ body.home main section.groups .wrapper .card-container .card.bg-blue::before {
     position: absolute;
     width: 64px;
     height: 64px;
-    top: -15px;
-    right: 16px;
+    top: -9px;
+    right: -22px;
     background-image: url('/src/images/square-grp.svg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -331,10 +331,10 @@ body.home main section.groups .wrapper .card-container .card.bg-blue::before {
 body.home main section.groups .wrapper .card-container .card.bg-red::before {
     content: '';
     position: absolute;
-    width: 64px;
-    height: 64px;
-    top: -15px;
-    right: 16px;
+    width: 86px;
+    height: 86px;
+    top: -3px;
+    right: -33px;
     background-image: url('/src/images/triangle-grp.svg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -345,10 +345,10 @@ body.home main section.groups .wrapper .card-container .card.bg-red::before {
 body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
     content: '';
     position: absolute;
-    width: 64px;
-    height: 64px;
-    top: -15px;
-    right: 16px;
+    width: 69px;
+    height: 72px;
+    top: -9px;
+    right: -3px;
     background-image: url("/src/images/circle-grp.svg");
     background-size: contain;
     background-repeat: no-repeat;
