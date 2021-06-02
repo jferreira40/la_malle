@@ -201,11 +201,13 @@ class api
         } else {
 
             $table_name = 'Games';
+            $table_name2 = 'Favorite_game';
 
-            $query = "SELECT *  FROM " . $table_name . "  WHERE Id = :id ";
+            $query = "SELECT t1.*, if(t2.id, 1, 0)  as IsFavorite FROM $table_name as t1  left join $table_name2 as t2 on t1.Id = t2.Id_game and t2.Id_user = :iduser  WHERE t1.Id = :id ";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->gameid);
+            $stmt->bindParam(':iduser', $this->data->id);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -220,11 +222,14 @@ class api
         } else {
 
             $table_name = 'Games';
+            $table_name2 = 'Favorite_game';
             $limit = $this->data->limit ?: 12;
 
-            $query = "SELECT Name, Id, Url, Image  FROM " . $table_name . " LIMIT $limit";
+            $query = "SELECT t1.Name, t1.Id, t1.Url, t1.Image, if(t2.id, 1, 0)  as IsFavorite  FROM $table_name as t1 left join $table_name2 as t2 on t1.Id = t2.Id_game  and t2.Id_user = :iduser  LIMIT $limit";
 
             $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':iduser', $this->data->id);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -388,7 +393,7 @@ where t1.Id_user = :id
             $table_name2 = 'Games';
             $limit = $this->data->limit ?: 12;
 
-            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date t3.count as count FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id left join (select count(Id) as count, Id_round from Results group by Id_round)as t3 on t3.Id_round = t1.Id WHERE Id_user = :id LIMIT $limit";
+            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date, t3.count as count FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id left join (select count(Id) as count, Id_round from Results group by Id_round)as t3 on t3.Id_round = t1.Id WHERE Id_user = :id LIMIT $limit";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);

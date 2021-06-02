@@ -1,5 +1,5 @@
 if (window.localStorage.getItem('seeSteps') !== 'true' || window.localStorage.getItem('seeSteps') === null)
-    window.location = 'steps.html';
+    window.location = 'etapes.html';
 
 function displayInscription() {
     window.location = 'inscription.html';
@@ -21,7 +21,7 @@ function onSubmitLogin() {
             body: JSON.stringify(data)
         })
             .then(response => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     response.json().then(data => {
                         localStorage.setItem('jwt', data['jwt']);
                         localStorage.setItem('user', data['User']);
@@ -33,9 +33,9 @@ function onSubmitLogin() {
                     response.json().then(data => {
                         document.getElementById('message').textContent = data.message;
                         document.getElementById('error').style.display = 'block';
-                        setTimeout(function(){
+                        setTimeout(function () {
                             document.getElementById('error').style.display = 'none';
-                        },5000);
+                        }, 5000);
                     });
                 }
             })
