@@ -5,10 +5,11 @@ const CURRENT_CACHE = `main-${CACHE_VERSION}`;
 
 const cacheFiles = [
     '/',
-    '/index.js',
+    '/src/js/index.js',
     '/index.html',
-    '/src/pages/games/infiltre.html',
-    '/src/pages/games/infiltre.js',
+    '/jeux/infiltre/index.html',
+    '/jeux/infiltre/infiltre.js',
+    '/jeux/infiltre/words.json',
 
 ];
 // on activation we clean up the previously registered service workers
