@@ -111,7 +111,7 @@ function createHistoricalSection(historical) {
   console.log(historical);
   if (historical.length === 0) {
     const emptyHistory = document.createElement('p');
-    emptyHistory.className = 'text-center text-sm text-black py-5';
+    emptyHistory.className = 'text-center text-sm text-black py-5 w-11/12';
     emptyHistory.textContent = "Vous n'avez pas encore d'historique de vos parties."
 
     document.getElementById('history-container').append(emptyHistory);
