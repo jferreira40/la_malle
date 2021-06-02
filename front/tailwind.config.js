@@ -33,6 +33,7 @@ module.exports = {
                 sans: ['Red Hat Text', ...defaultTheme.fontFamily.sans],
             },
             width: {
+                '22': '5.5rem',
                 '1/3:m': '29.52%',
                 '1/2:m': '46.19%',
             }

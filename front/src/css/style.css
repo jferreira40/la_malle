@@ -288,7 +288,7 @@ body.home footer::before {
 }
 
 /* ------------------------------------------------------ */
-/*                          Historique                    */
+/*                          Amis                          */
 /* ------------------------------------------------------ */
 
 body.amis main section.friends>div:first-of-type button:after {
@@ -303,13 +303,69 @@ body.amis main section.friends>div:first-of-type button:after {
     background-position: center;
 }
 
+
+
 /* ------------------------------------------------------ */
 /*                          Historique                    */
 /* ------------------------------------------------------ */
 
-/* TODO Baptiste design pour la page Historique + templating
-    CF history.html
-    */
+body.history main .game .winner::before {
+    content: '';
+    display: inline-block;
+    margin-right: 7px;
+    height: 12px;
+    width: 9px;
+    background-image: url('/src/images/cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.history main .game.infiltre::before {
+    content: '';
+    position: absolute;
+    right: -55px;
+    bottom: -16px;
+    display: block;
+    height: 89px;
+    width: 90px;
+    background-image: url('/src/images/infiltre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+}
+
+body.history main .game.le-loup::before {
+    content: '';
+    position: absolute;
+    right: -85px;
+    bottom: -66px;
+    display: block;
+    height: 148px;
+    width: 162px;
+    background-image: url('/src/images/le-loup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+    transform: scaleX(-1);
+}
+
+body.history main .game.survivant::before {
+    content: '';
+    position: absolute;
+    right: -45px;
+    bottom: -10px;
+    display: block;
+    height: 98px;
+    width: 122px;
+    background-image: url('/src/images/survivant.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+}
 
 /* ------------------------------------------------------ */
 /*                          Groups                        */
