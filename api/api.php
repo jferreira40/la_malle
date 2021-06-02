@@ -514,6 +514,40 @@ where t1.Id_user = :id
             return "done";
         }
     }
+
+    public function removeGroup()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Group_friends';
+
+            $query = "DELETE FROM $table_name where Id_user = :id and Id = :idgroup ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':idgroup', $this->data->idgroup);
+            $stmt->bindParam(':id', $this->data->id);
+            $stmt->execute();
+
+            return "done";
+        }
+    }
+
+    public function removeFriendFromGroup()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Friends_group_link';
+
+            $query = "DELETE FROM $table_name where Id_friend = :idfriend and Id_group = :idgroup ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':idgroup', $this->data->idgroup);
+            $stmt->bindParam(':idfriend', $this->data->idfriend);
+            $stmt->execute();
+
+            return "done";
+        }
+    }
 }
 
 
