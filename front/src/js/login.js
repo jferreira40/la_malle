@@ -22,7 +22,7 @@ function onSubmitLogin() {
         })
             .then(response => {
                 if(response.status === 200) {
-                    response.json().then(test => {
+                    response.json().then(data => {
                         localStorage.setItem('jwt', data['jwt']);
                         localStorage.setItem('user', data['User']);
                         localStorage.setItem('id', data['Id']);
