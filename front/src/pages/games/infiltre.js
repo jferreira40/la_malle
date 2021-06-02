@@ -87,6 +87,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
             stepOne();
         });
 
+        document.getElementById("groupSelection").addEventListener("click", function (event) {
+            event.preventDefault();
+
+        });
+
     }
 });
 
@@ -173,7 +178,20 @@ function stepOne() {
 
     main.appendChild(wrapperButton);
 
-    // TODO Faire la popup des règles
+    // Affichage des règles
+    document.getElementById("rules").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementsByTagName('body')[0].classList.add('simple');
+        document.getElementsByTagName('main')[0].classList.add('hidden');
+        document.getElementById('rulesPopup').classList.remove('hidden');
+    });
+
+    document.getElementById("hidePopup").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementsByTagName('body')[0].classList.remove('simple');
+        document.getElementsByTagName('main')[0].classList.remove('hidden');
+        document.getElementById('rulesPopup').classList.add('hidden');
+    });
 
     document.getElementById("go-stepTwo").addEventListener("click", function (event) {
         event.preventDefault();
@@ -237,10 +255,12 @@ function stepTwo(nbPlayers) {
         let playersArray = [];
 
         for (let field of fieldsArray) {
-            if (field.value != '') {
+            if (field.value != '' && !playersArray.includes(field.value)) {
                 playersArray.push(field.value);
+                field.classList.remove('border-red', 'border');
+            } else {
+                field.classList.add('border-red', 'border');
             }
-            // TODO Faire la gestion des erreurs
         }
 
         if (playersArray.length == nbPlayers) {
@@ -588,6 +608,7 @@ function endGame() {
             document.querySelectorAll('.playerButton').forEach(item => {
                 item.addEventListener('click', event => {
                     if (rolesArr[item.id] == "Infiltré") {
+                        // Si l'infiltré est éliminé
                         document.getElementsByTagName('body')[0].classList.remove('eliminate');
                         document.getElementsByTagName('body')[0].classList.add('wonCivil');
                         wrapperActions.remove();
@@ -597,6 +618,7 @@ function endGame() {
                             window.location.reload();
                         }, 8000);
                     } else {
+                        // Dans le cas où l'infiltré n'est pas éliminé
                         document.getElementsByTagName('body')[0].classList.remove('eliminate');
                         document.getElementsByTagName('body')[0].classList.add('wonInfiltre');
                         wrapperActions.remove();

@@ -1,11 +1,10 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  initializeHistory();
+  initializeGames();
 });
 
-
-function initializeHistory() {
+function initializeGames() {
   return new Promise(() => {
-    fetch('https://la-malle.app/api/gethistory.php', {
+    fetch('https://la-malle.app/api/getgames.php', {
       method: 'POST',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
@@ -16,13 +15,8 @@ function initializeHistory() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-            console.log(data)
-          createHistory();
+          console.log(data);
         })
     })
   })
-}
-
-function createHistory() {
-  //TODO faire le html en js
 }

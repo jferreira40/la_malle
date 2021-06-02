@@ -15,7 +15,6 @@ function initializeFriendsGroupPage() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-          console.log('data',data)
           createFriendsGroupSection(data);
         })
     })
@@ -23,7 +22,6 @@ function initializeFriendsGroupPage() {
 }
 
 function createFriendsGroupSection(friendsGroup) {
-  console.log(friendsGroup)
   let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
 
   for (const group of friendsGroup) {

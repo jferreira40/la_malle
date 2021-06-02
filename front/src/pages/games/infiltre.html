@@ -46,7 +46,7 @@
                 </h1>
             </div>
             <div class="cta-wrapper mt-32">
-                <a href=""
+                <a href="" id="groupSelection"
                     class="block w-52 mx-auto text-center bg-lightGray text-darkBlue py-2 rounded-full font-medium text-xs">
                     Jouer avec un groupe d'amis
                 </a>
@@ -58,30 +58,30 @@
             </div>
         </div>
     </main>
-    <aside class="popup hidden">
+    <aside id="rulesPopup" class="popup hidden">
         <div class="wrapper">
-            <h3>
+            <h3 class="my-5 px-8 font-bold text-center text-lg">
                 Les règles de l'infiltré
             </h3>
-            <div class="content">
-                <p>
+            <div class="content px-8 text-sm">
+                <p class="mb-4">
                     En début de partie, des cartes rôles sont distribuées aléatoirement pour 4 à 8 joueurs, désignant un
                     maitre du jeu, un infiltré (traitre), tous les autres joueurs sont d’honnêtes citoyens.
                 </p>
-                <p>
+                <p class="mb-4">
                     Le maitre de jeu doit faire deviner un mot désigné sur une carte secrète. Pendant un sablier
                     d’environ 5 minutes, les joueurs lui posent un maximum de questions auxquelles il répond uniquement
                     par « oui / non / je ne sais pas ».
                 </p>
-                <p>
+                <p class="mb-4">
                     Mais le traitre connait également le mot secret : à lui de subtilement orienter les questions du
                     groupe, influencer la réflexion générale, voire donner la bonne réponse.
                 </p>
-                <p>
+                <p class="mb-4">
                     Si le mot n’est pas trouvé, toute l’équipe perd. Si au contraire le mot est découvert, alors se pose
                     la question : « Est-ce que le joueur ayant trouvé la bonne réponse est le traitre ? »
                 </p>
-                <p>
+                <p class="mb-4">
                     Les joueurs débattent en discutant des réponses données et de leur timing, de la pertinence des
                     remarques, etc… Puis ils votent contre le joueur en question.
                 </p>
@@ -93,7 +93,13 @@
                     Si les citoyens l’identifient, ils gagnent la partie sans lui. S’il reste dans l’ombre, alors il
                     gagne seul !
                 </p>
-                </p>
+            </div>
+            <a href="" id="hidePopup"
+                class="block w-52 mx-auto mt-10 text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm">
+                Retour au jeu
+            </a>
+            <div class="footer relative w-full overflow-hidden mt-3">
+
             </div>
         </div>
     </aside>
