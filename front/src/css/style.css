@@ -288,20 +288,84 @@ body.home footer::before {
 }
 
 /* ------------------------------------------------------ */
+/*                          Amis                          */
+/* ------------------------------------------------------ */
+
+body.amis main section.friends>div:first-of-type button:after {
+    content: '';
+    display: inline-block;
+    margin-left: 10px;
+    height: 19px;
+    width: 19px;
+    background-image: url('/src/images/add-friend.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+/* ------------------------------------------------------ */
 /*                          Historique                    */
 /* ------------------------------------------------------ */
 
-/* TODO Baptiste ajout de l'image plus sur le bouton ajouter
-    cf friends.html
-    */
+body.history main .game .winner::before {
+    content: '';
+    display: inline-block;
+    margin-right: 7px;
+    height: 12px;
+    width: 9px;
+    background-image: url('/src/images/cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
-/* ------------------------------------------------------ */
-/*                          Historique                    */
-/* ------------------------------------------------------ */
+body.history main .game.infiltre::before {
+    content: '';
+    position: absolute;
+    right: -55px;
+    bottom: -16px;
+    display: block;
+    height: 89px;
+    width: 90px;
+    background-image: url('/src/images/infiltre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+}
 
-/* TODO Baptiste design pour la page Historique + templating
-    CF history.html
-    */
+body.history main .game.le-loup::before {
+    content: '';
+    position: absolute;
+    right: -85px;
+    bottom: -66px;
+    display: block;
+    height: 148px;
+    width: 162px;
+    background-image: url('/src/images/le-loup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+    transform: scaleX(-1);
+}
+
+body.history main .game.survivant::before {
+    content: '';
+    position: absolute;
+    right: -45px;
+    bottom: -10px;
+    display: block;
+    height: 98px;
+    width: 122px;
+    background-image: url('/src/images/survivant.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .4;
+}
 
 /* ------------------------------------------------------ */
 /*                          Groups                        */
@@ -309,46 +373,51 @@ body.home footer::before {
 
 /* TODO Baptiste Inté pour la modal de modification d'un groupe (chip, input avec bouton plus)*/
 
-/* TODO Baptiste ajout du plus au niveau du bouton ajouter
-    Cf friends-group
-    */
+body.groupes main section.groups>div:first-of-type button:after {
+    content: '';
+    display: inline-block;
+    margin-left: 10px;
+    height: 19px;
+    width: 19px;
+    background-image: url('/src/images/add-friend.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
-/* TODO Baptiste image pour la card group bleu */
-body.home main section.groups .wrapper .card-container .card.bg-blue::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-blue::before {
     content: '';
     position: absolute;
     width: 64px;
     height: 64px;
-    top: -15px;
-    right: 16px;
+    top: -9px;
+    right: -22px;
     background-image: url('/src/images/square-grp.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* TODO Baptiste image pour la card group rouge */
-body.home main section.groups .wrapper .card-container .card.bg-red::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-red::before {
     content: '';
     position: absolute;
-    width: 64px;
-    height: 64px;
-    top: -15px;
-    right: 16px;
+    width: 86px;
+    height: 86px;
+    top: -3px;
+    right: -33px;
     background-image: url('/src/images/triangle-grp.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* TODO Baptiste image pour la card group jaune */
-body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-yellow::before {
     content: '';
     position: absolute;
-    width: 64px;
-    height: 64px;
-    top: -15px;
-    right: 16px;
+    width: 69px;
+    height: 72px;
+    top: -9px;
+    right: -3px;
     background-image: url("/src/images/circle-grp.svg");
     background-size: contain;
     background-repeat: no-repeat;

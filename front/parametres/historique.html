@@ -27,9 +27,9 @@
     <script src="./../src/js/history.js" type="application/javascript"></script>
 </head>
 
-<body class="home">
+<body class="history">
     <header class="main-header">
-        <div class="wrapper flex justify-between items-center pt-8 px-8 bg-lightGray">
+        <div class="wrapper flex justify-between items-center px-8 bg-lightGray">
             <div class="back-wrapper w-1/5">
                 <a href="index.html" class="font-regular flex items-center text-xs text-darkGray">
                     Retour
@@ -47,34 +47,61 @@
     </header>
     <main class="px-8 pt-8">
         <div class="game infiltre overflow-hidden relative rounded-xl bg-spy h-20 mb-3">
-            <a href="">
-                <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                    <span class="starred on"></span>
+            <div class="relative wrapper flex justify-between h-full px-3 pb-3 pt-4">
+                <div class="date flex flex-col items-center justify-center text-white font-bold">
+                    <span class="jour text-lg leading-5">27</span>
+                    <span class="mois text-sm leading-5">avr</span>
+                    <span class="annee text-sm leading-5">2021</span>
+                </div>
+                <div
+                    class="score flex-1 text-center self-center flex flex-col justify-center text-white font-bold text-sm">
+                    <span class="winner">Pierre-Antoine</span>
+                    <span class="players">8 joueurs</span>
+                </div>
+                <div class="title self-end w-22 text-right">
                     <h3 class="text-white font-bold text-sm">
                         L'infiltré
                     </h3>
                 </div>
-            </a>
+            </div>
         </div>
         <div class="game le-loup overflow-hidden relative rounded-xl bg-wolf h-20 mb-3">
-            <a href="">
-                <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                    <span class="starred on"></span>
+            <div class="relative wrapper flex justify-between h-full px-3 pb-3 pt-4">
+                <div class="date flex flex-col items-center justify-center text-white font-bold">
+                    <span class="jour text-lg leading-5">26</span>
+                    <span class="mois text-sm leading-5">mars</span>
+                    <span class="annee text-sm leading-5">2021</span>
+                </div>
+                <div
+                    class="score flex-1 text-center self-center flex flex-col justify-center text-white font-bold text-sm">
+                    <span class="winner">Emma</span>
+                    <span class="players">12 joueurs</span>
+                </div>
+                <div class="title self-end w-22 text-right">
                     <h3 class="text-white font-bold text-sm">
                         Le loup du village
                     </h3>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="game le-loup overflow-hidden relative rounded-xl bg-wolf h-20 mb-3">
-            <a href="">
-                <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                    <span class="starred on"></span>
+        <div class="game survivant overflow-hidden relative rounded-xl bg-survive h-20 mb-3">
+            <div class="relative wrapper flex justify-between h-full px-3 pb-3 pt-4">
+                <div class="date flex flex-col items-center justify-center text-white font-bold">
+                    <span class="jour text-lg leading-5">27</span>
+                    <span class="mois text-sm leading-5">avr</span>
+                    <span class="annee text-sm leading-5">2021</span>
+                </div>
+                <div
+                    class="score flex-1 text-center self-center flex flex-col justify-center text-white font-bold text-sm">
+                    <span class="winner">Nicolas</span>
+                    <span class="players">8 joueurs</span>
+                </div>
+                <div class="title self-end w-22 text-right">
                     <h3 class="text-white font-bold text-sm">
-                        Le loup du village
+                        Le survivant
                     </h3>
                 </div>
-            </a>
+            </div>
         </div>
 
     </main>
