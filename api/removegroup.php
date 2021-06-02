@@ -2,4 +2,4 @@
 include_once './api.php';
 
 $instance = new api();
-echo json_encode($instance->removeFavorite());
+echo json_encode($instance->removeGroup());
