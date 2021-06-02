@@ -89,7 +89,7 @@ function createFriendsSection(friends) {
   } else {
     let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
 
-    for (const friend of friends) {
+    for (const friend of friends.splice(0, 6)) {
 
       const divFriend = document.createElement('div');
       divFriend.className = 'card relative overflow-hidden w-1/3:m mb-4 rounded-xl flex flex-col justify-end p-2.5';
