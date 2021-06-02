@@ -19,14 +19,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// const randomWordFR = require('random-word-fr');
-// import randomWordFR from 'random-word-fr';
 var GameInfiltre = /*#__PURE__*/function () {
   function GameInfiltre() {
     _classCallCheck(this, GameInfiltre);
 
     this.players = [];
-    this.word = "Avion";
+    this.word = "";
     this.roles = [];
   }
 
@@ -34,6 +32,11 @@ var GameInfiltre = /*#__PURE__*/function () {
     key: "setPlayers",
     value: function setPlayers(arrPlayers) {
       this.players = arrPlayers;
+    }
+  }, {
+    key: "setWord",
+    value: function setWord(word) {
+      this.word = word;
     }
   }, {
     key: "getRoles",
@@ -107,9 +110,18 @@ var scriptObj = {
   "winCivil": "Bien joué ! Vous avez éliminé l’infiltré. Les citoyens l’emportent !",
   "winInfiltre": "Vous avez éliminé un citoyen, l’infiltré l’emporte !"
 };
-var newGame = new GameInfiltre(); // console.log(newGame.attributesRoles());
-// console.log(randomWordFR());
+var newGame = new GameInfiltre();
+fetch("./words.json").then(function (response) {
+  return response.json();
+}).then(function (data) {
+  var word = randomWord(data);
 
+  while (word.length > 15) {
+    word = randomWord(data);
+  }
+
+  newGame.setWord(word);
+});
 window.addEventListener("DOMContentLoaded", function (event) {
   if (document.body.classList.contains('infiltre')) {
     // Si le jeu est lancé directement
@@ -122,6 +134,14 @@ window.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
+
+function randomWord(data) {
+  var keys = Object.keys(data);
+  var randIndex = Math.floor(Math.random() * keys.length);
+  var randKey = keys[randIndex];
+  var word = data[randKey];
+  return word;
+}
 
 function stepOne() {
   // Retrait de l'interface de selection

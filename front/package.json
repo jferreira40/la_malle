@@ -15,8 +15,7 @@
     "tailwindcss": "^2.1.2"
   },
   "dependencies": {
-    "laravel-mix": "^6.0.18",
-    "random-word-fr": "^1.0.3"
+    "laravel-mix": "^6.0.18"
   },
   "scripts": {
     "dev": "npx mix",
