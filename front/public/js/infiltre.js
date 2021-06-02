@@ -131,9 +131,48 @@ window.addEventListener("DOMContentLoaded", function (event) {
     });
     document.getElementById("groupSelection").addEventListener("click", function (event) {
       event.preventDefault();
+      getGroups();
+      getFriends(7);
     });
   }
 });
+
+function getGroups() {
+  return new Promise(function () {
+    fetch('https://la-malle.app/api/getfriendsgroupes.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id')
+      })
+    }).then(function (response) {
+      if (response.status === 200) response.json().then(function (data) {
+        console.log(data);
+      });
+    });
+  });
+}
+
+function getFriends(teamID) {
+  return new Promise(function () {
+    fetch('https://la-malle.app/api/getfriendsgroup.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        groupid: teamID
+      })
+    }).then(function (response) {
+      if (response.status === 200) response.json().then(function (data) {
+        console.log(data);
+      });
+    });
+  });
+}
 
 function randomWord(data) {
   var keys = Object.keys(data);
