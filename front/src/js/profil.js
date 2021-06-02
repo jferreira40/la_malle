@@ -52,7 +52,7 @@ function saveProfil() {
             })
         }).then(response => {
             response.json().then(data => {
-                if (data == "done"){
+                if (data == "done" && newData.newname){
                     localStorage.setItem('user', newData.newname);
                 } else {
 

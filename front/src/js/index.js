@@ -65,7 +65,7 @@ function createFavoritesSection(favorites) {
       }
 
       if (favoritesKey.Name === 'Le survivant') {
-        divGame.classList.add('survivant', 'bg-survivant');
+        divGame.classList.add('survivant', 'bg-survive');
       }
 
       divWrapper.append(span, title);
@@ -108,7 +108,6 @@ function createFriendsSection(friends) {
 }
 
 function createHistoricalSection(historical) {
-  console.log(historical);
   if (historical.length === 0) {
     const emptyHistory = document.createElement('p');
     emptyHistory.className = 'text-center text-sm text-black py-5 w-11/12';
@@ -137,7 +136,7 @@ function createHistoricalSection(historical) {
 
       const spanDate = document.createElement('span');
       spanDate.className = 'date font-bold text-lg text-white leading-5';
-      const date = new Date(history.date).toLocaleString('fr-fr', { month: 'short', day: 'numeric' });
+      const date = new Date(history.date).toLocaleString('fr-fr', {month: 'short', day: 'numeric'});
       const day = date.substr(0, 3);
       const month = date.substr(3, date.length);
 
@@ -149,24 +148,16 @@ function createHistoricalSection(historical) {
 
       const spanJoueurs = document.createElement('span');
       spanJoueurs.className = 'players text-white font-regular text-xs';
+      if (history.count === '1') {
+        spanJoueurs.textContent = history.count + ' joueur';
+      } else {
+        spanJoueurs.textContent = history.count + ' joueurs';
+      }
 
       divCard.append(spanDate, spanGameTitle, spanJoueurs);
       divContainer.append(divCard);
 
       document.getElementById('history-container').append(divContainer);
     }
-
-    /*<div className="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                        <span className="date font-bold text-lg text-white leading-5">
-                            17<br>
-                            janv
-                        </span>
-      <span className="title text-white font-bold text-sm mt-3">
-                            L'infiltré
-                        </span>
-      <span className="players text-white font-regular text-xs ">
-                            6 joueurs
-                        </span>
-    </div>*/
   }
 }
