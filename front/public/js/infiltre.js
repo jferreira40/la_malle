@@ -117,6 +117,9 @@ window.addEventListener("DOMContentLoaded", function (event) {
       event.preventDefault();
       stepOne();
     });
+    document.getElementById("groupSelection").addEventListener("click", function (event) {
+      event.preventDefault();
+    });
   }
 });
 
@@ -256,10 +259,13 @@ function stepTwo(nbPlayers) {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var _field = _step.value;
 
-        if (_field.value != '') {
+        if (_field.value != '' && !playersArray.includes(_field.value)) {
           playersArray.push(_field.value);
-        } // TODO Faire la gestion des erreurs
 
+          _field.classList.remove('border-red', 'border');
+        } else {
+          _field.classList.add('border-red', 'border');
+        }
       }
     } catch (err) {
       _iterator.e(err);
@@ -529,6 +535,7 @@ function endGame() {
       document.querySelectorAll('.playerButton').forEach(function (item) {
         item.addEventListener('click', function (event) {
           if (rolesArr[item.id] == "Infiltré") {
+            // Si l'infiltré est éliminé
             document.getElementsByTagName('body')[0].classList.remove('eliminate');
             document.getElementsByTagName('body')[0].classList.add('wonCivil');
             wrapperActions.remove();
@@ -537,6 +544,7 @@ function endGame() {
               window.location.reload();
             }, 8000);
           } else {
+            // Dans le cas où l'infiltré n'est pas éliminé
             document.getElementsByTagName('body')[0].classList.remove('eliminate');
             document.getElementsByTagName('body')[0].classList.add('wonInfiltre');
             wrapperActions.remove();
