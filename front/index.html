@@ -25,188 +25,125 @@
     <title>La Malle</title>
     <link rel="stylesheet" href="public/css/style.css">
     <script src="src/js/index.js" type="application/javascript"></script>
+    <script src="src/js/favorite.js" type="application/javascript"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then(function () {
+                    console.log("Service Worker Registered");
+                });
+        }
+    </script>
 </head>
 
 <body class="home pt-8">
-    <header class="home-header px-8">
-        <div class="wrapper flex justify-between">
-            <div class="logo-wrapper">
-                <img src="src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-8 h-8">
-            </div>
-            <div class="cta-wrapper">
-                <a href="settings.html">
-                    <img src="src/images/settings.svg" alt="Paramètres" class="w-8 h-8">
+<header class="home-header px-8">
+    <div class="wrapper flex justify-between">
+        <div class="logo-wrapper">
+            <img src="src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-8 h-8">
+        </div>
+        <div class="cta-wrapper">
+            <a href="settings.html">
+                <img src="src/images/settings.svg" alt="Paramètres" class="w-8 h-8">
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="intro  px-8 mt-8 ">
+        <div class="wrapper bg-lightGray rounded-xl overflow-hidden relative p-3 ">
+            <h1 class="text-xl font-bold">
+                Salut, <span class="name" id="name"></span> ! 👋
+            </h1>
+        </div>
+    </section>
+
+    <section class="favorites px-8 mt-7 ">
+        <div class="wrapper last:mb-0" id="favorites">
+            <h2 class="text-lg font-bold mb-3">Mes favoris</h2>
+        </div>
+    </section>
+
+    <section class="popular px-8 mt-7">
+        <div class="wrapper last:mb-0">
+            <h2 class="text-lg font-bold mb-3">Les plus populaires</h2>
+            <div class="game infiltre overflow-hidden relative rounded-xl bg-spy h-36 mb-3">
+                <a href="/src/pages/games/infiltre.html">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span onclick="addFavorite(1)" class="starred on"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            L'infiltré
+                        </h3>
+                    </div>
                 </a>
             </div>
+
+            <div class="game survivant overflow-hidden relative rounded-xl bg-survive h-36 mb-3">
+                <a href="">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span class="starred"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            Le survivant
+                        </h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="game le-loup overflow-hidden relative rounded-xl bg-wolf h-36 mb-3">
+                <a href="">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span class="starred on"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            Le loup du village
+                        </h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="cta-wrapper">
+                <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+                   href="library.html">Voir le contenu
+                    de
+                    LaMalle</a>
+            </div>
         </div>
-    </header>
-    <main>
-        <section class="intro  px-8 mt-8 ">
-            <div class="wrapper bg-lightGray rounded-xl overflow-hidden relative p-3 ">
-                <h1 class="text-xl font-bold">
-                    Salut, <span class="name" id="name"></span> ! 👋
-                </h1>
+    </section>
+
+    <section class="last-game pl-8 mt-7">
+        <div class="wrapper" id="history-container">
+            <h2 class="text-lg font-bold mb-3">Mes dernières parties</h2>
+
+        </div>
+    </section>
+
+    <section class="friends px-8 mt-7">
+        <div class="wrapper flex flex-wrap last:mb-0">
+            <h2 class="text-lg w-6/12 font-bold mb-3">Mes amis</h2>
+            <div class="cta-wrapper w-6/12 text-right">
+                <a href="friends.html" class="add-friend">
+                </a>
             </div>
-        </section>
 
-        <section class="favorites px-8 mt-7 ">
-            <div class="wrapper last:mb-0" id="favorites">
-                <h2 class="text-lg font-bold mb-3">Mes favoris</h2>
+            <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
+
+            <div class="cta-wrapper w-full mb-4">
+                <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+                   href="friends.html">Voir tous mes amis</a>
             </div>
-        </section>
 
-        <section class="popular px-8 mt-7">
-            <div class="wrapper last:mb-0">
-                <h2 class="text-lg font-bold mb-3">Les plus populaires</h2>
-                <div class="game infiltre overflow-hidden relative rounded-xl bg-spy h-36 mb-3">
-                    <a href="">
-                        <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                            <span class="starred on"></span>
-                            <h3 class="text-white font-bold text-lg">
-                                L'infiltré
-                            </h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="game survivant overflow-hidden relative rounded-xl bg-survive h-36 mb-3">
-                    <a href="">
-                        <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                            <span class="starred"></span>
-                            <h3 class="text-white font-bold text-lg">
-                                Le survivant
-                            </h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="game le-loup overflow-hidden relative rounded-xl bg-wolf h-36 mb-3">
-                    <a href="">
-                        <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
-                            <span class="starred on"></span>
-                            <h3 class="text-white font-bold text-lg">
-                                Le loup du village
-                            </h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="cta-wrapper">
-                    <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
-                        href="">Voir le contenu
-                        de
-                        LaMalle</a>
-                </div>
+            <div class="cta-wrapper w-full">
+                <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+                   href="friends-group.html">Créer un groupe d'amis</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="last-game pl-8 mt-7">
-            <div class="wrapper" id="history-container">
-                <h2 class="text-lg font-bold mb-3">Mes dernières parties</h2>
-                <!-- <div class="card-container overflow-x-scroll flex pr-8">
-                    -<div class="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             17<br>
-                             janv
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             L'infiltré
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             6 joueurs
-                         </span>
-                     </div>
-                     <div class="card bg-wolf flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             3<br>
-                             janv
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             Le loup du village
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             9 joueurs
-                         </span>
-                     </div>
-                     <div class="card bg-survive flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             27<br>
-                             dec
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             Le loup du village
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             9 joueurs
-                         </span>
-                     </div>
-                     <div class="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             27<br>
-                             dec
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             Le survivant
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             4 joueurs
-                         </span>
-                     </div>
-                     <div class="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             27<br>
-                             dec
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             Le survivant
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             4 joueurs
-                         </span>
-                     </div>
-                     <div class="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
-                         <span class="date font-bold text-lg text-white leading-5">
-                             27<br>
-                             dec
-                         </span>
-                         <span class="title text-white font-bold text-sm mt-3">
-                             Le survivant
-                         </span>
-                         <span class="players text-white font-regular text-xs ">
-                             4 joueurs
-                         </span>
-                     </div>
-                 </div>-->
-            </div>
-        </section>
+</main>
 
-        <section class="friends px-8 mt-7">
-            <div class="wrapper flex flex-wrap last:mb-0">
-                <h2 class="text-lg w-6/12 font-bold mb-3">Mes amis</h2>
-                <div class="cta-wrapper w-6/12 text-right">
-                    <a href="friends.html" class="add-friend">
-                    </a>
-                </div>
+<footer class="relative w-full overflow-hidden mt-3">
 
-                <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
-
-                <div class="cta-wrapper w-full mb-4">
-                    <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
-                        href="friends.html">Voir tous mes amis</a>
-                </div>
-
-                <div class="cta-wrapper w-full">
-                    <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
-                        href="friends-group.html">Créer un groupe d'amis</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="relative w-full overflow-hidden mt-3">
-
-    </footer>
+</footer>
 </body>
 
 </html>

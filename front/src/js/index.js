@@ -1,4 +1,4 @@
-if (window.localStorage.getItem('user') === null)
+if (window.localStorage.getItem('jwt') === null)
   window.location = './src/pages/connection/login.html';
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -49,7 +49,8 @@ function createFavoritesSection(favorites) {
       const span = document.createElement('span');
       span.className = 'starred on';
       span.addEventListener("click", function () {
-        removeFavorite(favoritesKey.id)
+        removeFavorite(favoritesKey.Id)
+        location.reload()
       })
 
       const title = document.createElement('h3');
@@ -78,72 +79,33 @@ function createFavoritesSection(favorites) {
 
 }
 
-function addFavorite(id) {
-  return new Promise(() => {
-    fetch('https://la-malle.app/api/addfavoritegame.php', {
-      method: 'POST',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('jwt'),
-      },
-      body: JSON.stringify({
-        id: localStorage.getItem('id'),
-        gameid: id
-      })
-    }).then(response => {
-      if (response.status === 200) {
-        response.json().then(data => {
-          return true
-        })
-      } else {
-        return false
-      }
-    })
-  })
-}
-
-function removeFavorite(id) {
-  return new Promise(() => {
-    fetch('https://la-malle.app/api/removegamefavorite.php', {
-      method: 'POST',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('jwt'),
-      },
-      body: JSON.stringify({
-        id: localStorage.getItem('id'),
-        gameid: id
-      })
-    }).then(response => {
-      if (response.status === 200) {
-        response.json().then(data => {
-          return true
-        })
-      } else {
-        return false
-      }
-    })
-  })
-}
-
 function createFriendsSection(friends) {
 
-  let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
+  if(friends.length === 0) {
+    const emptyFriends = document.createElement('p');
+    emptyFriends.className = 'text-center text-sm text-black pt-5 pb-10 w-full';
+    emptyFriends.textContent = "Vous n'avez pas encore d'amis";
 
-  for (const friend of friends) {
+    document.getElementById('friends-container').append(emptyFriends);
+  } else {
+    let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
 
-    const divFriend = document.createElement('div');
-    divFriend.className = 'card relative overflow-hidden w-1/3:m mb-4 rounded-xl flex flex-col justify-end p-2.5';
+    for (const friend of friends) {
 
-    divFriend.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+      const divFriend = document.createElement('div');
+      divFriend.className = 'card relative overflow-hidden w-1/3:m mb-4 rounded-xl flex flex-col justify-end p-2.5';
 
-    const friendName = document.createElement('span');
-    friendName.className = 'text-white font-bold text-xs capitalize';
-    friendName.textContent = friend.Name;
+      divFriend.classList.add(colors[Math.floor(Math.random() * colors.length)]);
 
-    divFriend.append(friendName);
+      const friendName = document.createElement('span');
+      friendName.className = 'text-white font-bold text-xs capitalize';
+      friendName.textContent = friend.Name;
 
-    document.getElementById('friends-container').append(divFriend);
+      divFriend.append(friendName);
+
+      document.getElementById('friends-container').append(divFriend);
+    }
   }
-
 }
 
 function createHistoricalSection(historical) {
@@ -160,19 +122,39 @@ function createHistoricalSection(historical) {
 
     for (const history of historical) {
       const divCard = document.createElement('div');
-      divCard.className = 'card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden';
+      divCard.className = 'card flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden';
+
+      if (history.game === "L'infiltré") {
+        divCard.classList.add('bg-spy');
+      }
+
+      if (history.game === 'Le loup du village') {
+        divCard.classList.add('bg-wolf');
+      }
+
+      if (history.game === 'Le survivant') {
+        divCard.classList.add('bg-survive');
+      }
 
       const spanDate = document.createElement('span');
       spanDate.className = 'date font-bold text-lg text-white leading-5';
+      const date = new Date(history.date).toLocaleString('fr-fr',{month:'short', day:'numeric'});
+      const day = date.substr(0, 3);
+      const month = date.substr(3, date.length);
+
+      spanDate.innerHTML = day + '<br>' + month;
 
       const spanGameTitle = document.createElement('span');
       spanGameTitle.className = 'title text-white font-bold text-sm mt-3';
+      spanGameTitle.textContent = history.game;
 
       const spanJoueurs = document.createElement('span');
       spanJoueurs.className = 'players text-white font-regular text-xs';
 
       divCard.append(spanDate, spanGameTitle, spanJoueurs);
       divContainer.append(divCard);
+
+      document.getElementById('history-container').append(divContainer);
     }
 
     /*<div className="card bg-spy flex flex-col rounded-xl py-2 px-3 mr-4 relative overflow-hidden">
