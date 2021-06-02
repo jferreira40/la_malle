@@ -27663,9 +27663,17 @@ body.home footer::before {
 
 /* ------------------------------------------------------ */
 
-/* TODO Baptiste ajout de l'image plus sur le bouton ajouter
-    cf friends.html
-    */
+body.amis main section.friends>div:first-of-type button:after {
+  content: '';
+  display: inline-block;
+  margin-left: 10px;
+  height: 19px;
+  width: 19px;
+  background-image: url('/src/images/add-friend.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 /* ------------------------------------------------------ */
 
@@ -27685,13 +27693,19 @@ body.home footer::before {
 
 /* TODO Baptiste Inté pour la modal de modification d'un groupe (chip, input avec bouton plus)*/
 
-/* TODO Baptiste ajout du plus au niveau du bouton ajouter
-    Cf friends-group
-    */
+body.groupes main section.groups>div:first-of-type button:after {
+  content: '';
+  display: inline-block;
+  margin-left: 10px;
+  height: 19px;
+  width: 19px;
+  background-image: url('/src/images/add-friend.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-/* TODO Baptiste image pour la card group bleu */
-
-body.home main section.groups .wrapper .card-container .card.bg-blue::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-blue::before {
   content: '';
   position: absolute;
   width: 64px;
@@ -27704,9 +27718,7 @@ body.home main section.groups .wrapper .card-container .card.bg-blue::before {
   background-position: center;
 }
 
-/* TODO Baptiste image pour la card group rouge */
-
-body.home main section.groups .wrapper .card-container .card.bg-red::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-red::before {
   content: '';
   position: absolute;
   width: 86px;
@@ -27719,9 +27731,7 @@ body.home main section.groups .wrapper .card-container .card.bg-red::before {
   background-position: center;
 }
 
-/* TODO Baptiste image pour la card group jaune */
-
-body.home main section.groups .wrapper .card-container .card.bg-yellow::before {
+body.groupes main section.groups .wrapper .card-container .card.bg-yellow::before {
   content: '';
   position: absolute;
   width: 69px;
