@@ -20,6 +20,7 @@ function initializeHome() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
+          console.log("data", data);
           createFavoritesSection(data.favorites);
           createHistoricalSection(data.history);
           createFriendsSection(data.friends)
@@ -65,7 +66,7 @@ function createFavoritesSection(favorites) {
       }
 
       if (favoritesKey.Name === 'Le survivant') {
-        divGame.classList.add('survivant', 'bg-survivant');
+        divGame.classList.add('survivant', 'bg-survive');
       }
 
       divWrapper.append(span, title);
@@ -108,7 +109,6 @@ function createFriendsSection(friends) {
 }
 
 function createHistoricalSection(historical) {
-  console.log(historical);
   if (historical.length === 0) {
     const emptyHistory = document.createElement('p');
     emptyHistory.className = 'text-center text-sm text-black py-5 w-11/12';
