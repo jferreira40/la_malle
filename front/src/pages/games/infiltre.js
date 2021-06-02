@@ -1,15 +1,16 @@
-// const randomWordFR = require('random-word-fr');
-// import randomWordFR from 'random-word-fr';
-
 class GameInfiltre {
     constructor() {
         this.players = [];
-        this.word = "Avion";
+        this.word = "";
         this.roles = [];
     }
 
     setPlayers(arrPlayers) {
         this.players = arrPlayers;
+    }
+
+    setWord(word) {
+        this.word = word;
     }
 
     getRoles(i) {
@@ -76,8 +77,20 @@ const scriptObj = {
 }
 
 let newGame = new GameInfiltre();
-// console.log(newGame.attributesRoles());
-// console.log(randomWordFR());
+
+fetch("./words.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+
+        let word = randomWord(data);
+        while (word.length > 15) {
+            word = randomWord(data);
+        }
+        newGame.setWord(word);
+    });
+
 
 window.addEventListener("DOMContentLoaded", (event) => {
     if (document.body.classList.contains('infiltre')) {
@@ -94,6 +107,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     }
 });
+
+function randomWord(data) {
+    const keys = Object.keys(data);
+    const randIndex = Math.floor(Math.random() * keys.length);
+    const randKey = keys[randIndex];
+    const word = data[randKey];
+
+    return word
+}
 
 function stepOne() {
     // Retrait de l'interface de selection
