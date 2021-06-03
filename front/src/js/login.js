@@ -26,7 +26,8 @@ function onSubmitLogin() {
                         localStorage.setItem('jwt', data['jwt']);
                         localStorage.setItem('user', data['User']);
                         localStorage.setItem('id', data['Id']);
-                        window.location.href = '/'
+                        // TODO fix redirection
+                        window.location = '/';
                     });
 
                 } else {
