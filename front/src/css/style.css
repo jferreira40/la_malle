@@ -493,6 +493,17 @@ body.game.infiltre main {
     min-height: calc(100vh - 93px);
 }
 
+body.game.infiltre .selectionPopup .cross::before {
+    content: '';
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-image: url('/src/images/cross.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 body.game.infiltre:not(.selection):not(.eliminate):before {
     content: '';
     z-index: -1;
