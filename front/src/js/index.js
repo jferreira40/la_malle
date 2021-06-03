@@ -137,8 +137,8 @@ function createHistoricalSection(historical) {
       const spanDate = document.createElement('span');
       spanDate.className = 'date font-bold text-lg text-white leading-5';
       const date = new Date(history.date).toLocaleString('fr-fr', {month: 'short', day: 'numeric'});
-      const day = date.substr(0, 3);
-      const month = date.substr(3, date.length);
+      const day = date.substr(0, 2);
+      const month = date.substr(2, date.length);
 
       spanDate.innerHTML = day + '<br>' + month;
 
