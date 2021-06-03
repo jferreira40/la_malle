@@ -77,9 +77,11 @@ function createHistory(historical) {
       const divScore = document.createElement('div');
       divScore.className = 'date flex flex-col items-center justify-center text-white font-bold';
 
+
       const spanWinner = document.createElement('span');
       spanWinner.className = 'winner capitalize';
       spanWinner.textContent = history.Name;
+
 
       const spanPlayers = document.createElement('span');
       spanPlayers.className = 'players';
