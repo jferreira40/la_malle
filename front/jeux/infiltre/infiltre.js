@@ -102,12 +102,58 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         document.getElementById("groupSelection").addEventListener("click", function (event) {
             event.preventDefault();
-            getGroups();
-            getFriends(7);
+            popUpTeams();
+            // getFriends(7);
         });
 
     }
 });
+
+function popUpTeams() {
+    const body = document.getElementsByTagName('body')[0];
+
+    const popUpContainer = document.createElement('div');
+    popUpContainer.classList.add('selectionPopup', 'fixed', 'w-screen', 'h-screen', 'bg-transparentGray', 'top-0', 'left-0', 'flex', 'justify-center', 'items-center');
+
+    const popupWrapper = document.createElement('div');
+    popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12')
+    popUpContainer.appendChild(popupWrapper);
+
+    const crossElement = document.createElement('div');
+    crossElement.classList.add('cross', 'z-10', 'absolute', 'top-4', 'right-4')
+    popupWrapper.appendChild(crossElement);
+
+    const labelPopup = document.createElement('h3');
+    labelPopup.classList.add('text-lg', 'font-bold', 'text-center', 'mb-6');
+    labelPopup.textContent = 'Choisissez votre équipe :';
+    popupWrapper.appendChild(labelPopup);
+
+    const listWrapper = document.createElement("div");
+    listWrapper.classList.add('list-group', 'overflow-auto');
+    popupWrapper.appendChild(listWrapper);
+
+    for (const group of getGroups()) {
+
+        const divFriend = document.createElement('div');
+        divFriend.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+        divFriend.id = group.Id;
+
+        const friendName = document.createElement('span');
+        friendName.className = 'text-white font-bold text-xs capitalize';
+        friendName.textContent = group.Name;
+
+        divFriend.append(friendName);
+        divFriend.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log(divFriend.id);
+        });
+
+        document.getElementById('friends-container').append(divFriend);
+    }
+
+
+    body.appendChild(popUpContainer);
+}
 
 function getGroups() {
     return new Promise(() => {
