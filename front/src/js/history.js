@@ -59,9 +59,7 @@ function createHistory(historical) {
       const day = date.substr(0, 2);
       const month = date.substr(2, date.length-7);
       const year = date.substr(date.length-4, date.length);
-      console.log(date);
-      console.log(month)
-      console.log(year)
+
       const spanDay = document.createElement('span');
       spanDay.className = 'jour text-lg leading-5';
       spanDay.textContent = day
@@ -79,9 +77,11 @@ function createHistory(historical) {
       const divScore = document.createElement('div');
       divScore.className = 'date flex flex-col items-center justify-center text-white font-bold';
 
-      // TODO add player
+
       const spanWinner = document.createElement('span');
-      spanWinner.className = 'winner';
+      spanWinner.className = 'winner capitalize';
+      spanWinner.textContent = history.Name;
+
 
       const spanPlayers = document.createElement('span');
       spanPlayers.className = 'players';

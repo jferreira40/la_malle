@@ -72,8 +72,6 @@ function createGamesSection(games) {
         divGame.classList.add('survivant', 'bg-survive');
       }
 
-      // TODO Jeu en dev
-
       divWrapper.append(span, title);
       linkGame.append(divWrapper);
       divGame.append(linkGame);
