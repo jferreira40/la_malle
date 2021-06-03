@@ -58,18 +58,19 @@ class api
         }
     }
 
-    public function addFriend()
+    public function addFriend($hidden = 0)
     {
         if ($this->state !== true) {
             return $this->state;
         } else {
             $table_name = 'Friends';
-            $query = "INSERT INTO " . $table_name . " (Id_user, Name ) VALUES (:id, :name) ";
+            $query = "INSERT INTO " . $table_name . " (Id_user, Name, Hidden ) VALUES (:id, :name, :hidden) ";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);
+            $stmt->bindParam(':hidden', $hidden);
             $stmt->bindParam(':name', $this->data->name);
             $stmt->execute();
-            return "done";
+            return $this->conn->lastInsertId();
         }
     }
 
@@ -133,6 +134,11 @@ class api
     {
         $table_name = 'Results';
         foreach ($this->data->users as $user) {
+            if (!$user->id) {
+
+                $this->data->name = $user->name;
+                $user->id = $this->addFriend(1);
+            }
             $query = "INSERT INTO " . $table_name . " ( Id_round, Id_player , Result, Type) VALUES (:idGame , :id , :result, :type) ";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':idGame', $id);
@@ -140,6 +146,8 @@ class api
             $stmt->bindParam(':result', $user->result);
             $stmt->bindParam(':type', $user->type);
             $stmt->execute();
+
+
         }
     }
 
@@ -184,7 +192,7 @@ class api
             $table_name = 'Friends';
             $limit = $this->data->limit ?: 12;
 
-            $query = "SELECT Name, Id  FROM " . $table_name . "  WHERE Id_user = :id LIMIT $limit";
+            $query = "SELECT Name, Id  FROM " . $table_name . "  WHERE Id_user = :id and Hidden = 0 LIMIT $limit";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);
@@ -393,7 +401,7 @@ where t1.Id_user = :id
             $table_name2 = 'Games';
             $limit = $this->data->limit ?: 12;
 
-            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date, t3.count as count FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id left join (select count(Id) as count, Id_round from Results group by Id_round)as t3 on t3.Id_round = t1.Id WHERE Id_user = :id LIMIT $limit";
+            $query = "SELECT t2.Name as game, t1.Id as roundId, t1.date as date, t3.count as count, F.Name FROM  $table_name as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id left join (select count(Id) as count, Id_round , min(Id_player) as Id from Results group by Id_round)as t3 on t3.Id_round = t1.Id left join Friends F on t3.Id = F.Id_user  WHERE t1.Id_user = :id LIMIT $limit";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);
@@ -487,12 +495,12 @@ where t1.Id_user = :id
         } else {
             $table_name = 'Friends';
 
-                $query = "UPDATE  $table_name  SET Name = :name where Id = :friendid and Id_user = :id ";
-                $stmt = $this->conn->prepare($query);
-                $stmt->bindParam(':name', $this->data->newname);
-                $stmt->bindParam(':friendid', $this->data->friendid);
-                $stmt->bindParam(':id', $this->data->id);
-                $stmt->execute();
+            $query = "UPDATE  $table_name  SET Name = :name where Id = :friendid and Id_user = :id ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':name', $this->data->newname);
+            $stmt->bindParam(':friendid', $this->data->friendid);
+            $stmt->bindParam(':id', $this->data->id);
+            $stmt->execute();
 
             return "done";
         }
@@ -543,6 +551,24 @@ where t1.Id_user = :id
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':idgroup', $this->data->idgroup);
             $stmt->bindParam(':idfriend', $this->data->idfriend);
+            $stmt->execute();
+
+            return "done";
+        }
+    }
+
+    public function setGroup()
+    {
+        if ($this->state !== true) {
+            return $this->state;
+        } else {
+            $table_name = 'Group_friends';
+
+            $query = "UPDATE  $table_name  SET Name = :name where Id = :groupid and Id_user = :id ";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':name', $this->data->newname);
+            $stmt->bindParam(':groupid', $this->data->groupid);
+            $stmt->bindParam(':id', $this->data->id);
             $stmt->execute();
 
             return "done";
