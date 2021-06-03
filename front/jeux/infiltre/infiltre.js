@@ -48,9 +48,11 @@ class GameInfiltre {
             essentialRoles[randomIndex] = temporaryValue;
         }
 
-        var result = [];
+        var result = this.players;
         for (var i = 0; i < this.players.length; i++)
-            result[this.players[i]] = essentialRoles[i];
+            // result[this.players[i]] = essentialRoles[i];
+
+            result[i].role = essentialRoles[i];
 
         this.roles = result;
         return this.roles;
@@ -85,7 +87,7 @@ fetch("./words.json")
     .then(data => {
 
         let word = randomWord(data);
-        while (word.length > 15) {
+        while (word.length > 10) {
             word = randomWord(data);
         }
         newGame.setWord(word);
@@ -116,7 +118,7 @@ function popUpTeams() {
     popUpContainer.classList.add('selectionPopup', 'fixed', 'w-screen', 'h-screen', 'bg-transparentGray', 'top-0', 'left-0', 'flex', 'justify-center', 'items-center');
 
     const popupWrapper = document.createElement('div');
-    popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12')
+    popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12', 'pb-4', 'flex', 'flex-col')
     popUpContainer.appendChild(popupWrapper);
 
     const crossElement = document.createElement('div');
@@ -129,33 +131,20 @@ function popUpTeams() {
     popupWrapper.appendChild(labelPopup);
 
     const listWrapper = document.createElement("div");
-    listWrapper.classList.add('list-group', 'overflow-auto');
+    listWrapper.classList.add('list-group', 'px-4', 'overflow-auto');
     popupWrapper.appendChild(listWrapper);
 
-    for (const group of getGroups()) {
-
-        const divFriend = document.createElement('div');
-        divFriend.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
-        divFriend.id = group.Id;
-
-        const friendName = document.createElement('span');
-        friendName.className = 'text-white font-bold text-xs capitalize';
-        friendName.textContent = group.Name;
-
-        divFriend.append(friendName);
-        divFriend.addEventListener("click", (event) => {
-            event.preventDefault();
-            console.log(divFriend.id);
-        });
-
-        document.getElementById('friends-container').append(divFriend);
-    }
-
+    getGroups(listWrapper);
 
     body.appendChild(popUpContainer);
+
+    crossElement.addEventListener("click", function (event) {
+        event.preventDefault();
+        popUpContainer.remove();
+    });
 }
 
-function getGroups() {
+function getGroups(parent) {
     return new Promise(() => {
         fetch('https://la-malle.app/api/getfriendsgroupes.php', {
             method: 'POST',
@@ -168,7 +157,24 @@ function getGroups() {
         }).then(response => {
             if (response.status === 200)
                 response.json().then(data => {
-                    console.log(data);
+                    for (const group of data) {
+
+                        const divGroup = document.createElement('div');
+                        divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+                        divGroup.id = group.Id;
+
+                        const GroupName = document.createElement('span');
+                        GroupName.className = 'text-white font-bold text-xs capitalize';
+                        GroupName.textContent = group.Name;
+
+                        divGroup.append(GroupName);
+                        divGroup.addEventListener("click", (event) => {
+                            event.preventDefault();
+                            getFriends(group.Id);
+                        });
+
+                        parent.appendChild(divGroup);
+                    }
                 })
         })
     })
@@ -189,6 +195,17 @@ function getFriends(teamID) {
             if (response.status === 200)
                 response.json().then(data => {
                     console.log(data);
+
+                    playersArr = [];
+                    data.forEach((player) => {
+                        playersArr.push({
+                            id: player.Id,
+                            name: player.Name
+                        })
+                    });
+                    console.log(playersArr);
+                    newGame.setPlayers(playersArr);
+                    initGame();
                 })
         })
     })
@@ -364,7 +381,10 @@ function stepTwo(nbPlayers) {
 
         for (let field of fieldsArray) {
             if (field.value != '' && !playersArray.includes(field.value)) {
-                playersArray.push(field.value);
+                playersArray.push({
+                    id: "",
+                    name: field.value
+                });
                 field.classList.remove('border-red', 'border');
             } else {
                 field.classList.add('border-red', 'border');
@@ -384,7 +404,15 @@ function initGame() {
     const main = document.getElementsByClassName('main-wrapper')[0];
 
     // Retrait de l'interface
-    document.getElementsByClassName('fields-wrapper')[0].remove();
+    if (document.getElementsByClassName('selectionPopup')[0]) {
+        document.getElementsByClassName('selectionPopup')[0].remove();
+        document.getElementsByClassName('title-wrapper')[0].classList.remove('mt-16');
+        document.getElementsByClassName('title-wrapper')[0].classList.add('mt-4');
+        main.classList.add('h-full', 'flex', 'flex-col', 'justify-between');
+    }
+    if (document.getElementsByClassName('fields-wrapper')[0]) {
+        document.getElementsByClassName('fields-wrapper')[0].remove();
+    }
     document.getElementsByClassName('cta-wrapper')[0].remove();
     document.getElementsByTagName('body')[0].classList.remove('selection');
     document.getElementsByTagName('body')[0].classList.add('started');
@@ -461,7 +489,7 @@ function distributionRoles(i) {
     const dynamicContainer = document.getElementById('dynamicText');
     dynamicContainer.classList.remove('text-4xl')
     dynamicContainer.classList.add('text-2xl')
-    dynamicContainer.textContent = scriptObj.distrib + Object.keys(rolesArr)[i];
+    dynamicContainer.textContent = scriptObj.distrib + rolesArr[i].name;
 }
 
 function displayRole(i) {
@@ -482,7 +510,7 @@ function displayRole(i) {
     paragraph.appendChild(textRole);
     const spanRole = document.createElement('span');
     spanRole.classList.add('text-3xl', 'block');
-    const role = document.createTextNode(rolesArr[Object.keys(rolesArr)[i]]);
+    const role = document.createTextNode(rolesArr[i].role);
     spanRole.appendChild(role);
     paragraph.appendChild(spanRole);
 
@@ -510,10 +538,10 @@ function startGame() {
     const instructionsWrapper = document.createElement('div');
     instructionsWrapper.id = 'instructionsWrapper';
     instructionsWrapper.classList.add('w-9/12', 'text-white', 'font-bold', 'text-4xl', 'text-center');
-    const masterInstructions = document.createTextNode(Object.keys(rolesArr).find(key => rolesArr[key] === 'Maitre du jeu') + scriptObj.master);
+    const masterInstructions = document.createTextNode(rolesArr.filter(obj => { return obj.role === 'Maitre du jeu' })[0].name + scriptObj.master);
     instructionsWrapper.appendChild(masterInstructions);
 
-    speak(Object.keys(rolesArr).find(key => rolesArr[key] === 'Maitre du jeu') + scriptObj.master);
+    speak(rolesArr.filter(obj => { return obj.role === 'Maitre du jeu' })[0].name + scriptObj.master);
 
     main.appendChild(instructionsWrapper);
 
@@ -700,22 +728,25 @@ function endGame() {
 
             let rolesArr = newGame.getRoles();
 
-            delete rolesArr[Object.keys(rolesArr).find(key => rolesArr[key] === 'Maitre du jeu')];
+            rolesArr = rolesArr.filter(obj => { return obj.role !== 'Maitre du jeu' })
 
-            for (const player in rolesArr) {
+            console.log(rolesArr);
+
+            rolesArr.forEach(player => {
+                console.log(player);
                 const playerButton = document.createElement('a');
-                playerButton.id = player;
+                playerButton.id = player.role;
                 playerButton.classList.add('playerButton', 'bg-white', 'flex', 'justify-center', 'items-center', 'text-sm', 'text-darkBlue', 'w-1/2:m', 'h-20', 'rounded-xl', 'mb-4');
-                playerButton.textContent = player;
+                playerButton.textContent = player.name;
 
                 wrapperActions.appendChild(playerButton);
-            }
+            })
 
             instructionsWrapper.appendChild(wrapperActions);
 
             document.querySelectorAll('.playerButton').forEach(item => {
                 item.addEventListener('click', event => {
-                    if (rolesArr[item.id] == "Infiltré") {
+                    if (item.id == "Infiltré") {
                         // Si l'infiltré est éliminé
                         document.getElementsByTagName('body')[0].classList.remove('eliminate');
                         document.getElementsByTagName('body')[0].classList.add('wonCivil');
