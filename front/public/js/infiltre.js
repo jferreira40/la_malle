@@ -78,10 +78,11 @@ var GameInfiltre = /*#__PURE__*/function () {
         essentialRoles[randomIndex] = temporaryValue;
       }
 
-      var result = [];
+      var result = this.players;
 
       for (var i = 0; i < this.players.length; i++) {
-        result[this.players[i]] = essentialRoles[i];
+        // result[this.players[i]] = essentialRoles[i];
+        result[i].role = essentialRoles[i];
       }
 
       this.roles = result;
@@ -116,7 +117,7 @@ fetch("./words.json").then(function (response) {
 }).then(function (data) {
   var word = randomWord(data);
 
-  while (word.length > 15) {
+  while (word.length > 10) {
     word = randomWord(data);
   }
 
@@ -141,7 +142,7 @@ function popUpTeams() {
   var popUpContainer = document.createElement('div');
   popUpContainer.classList.add('selectionPopup', 'fixed', 'w-screen', 'h-screen', 'bg-transparentGray', 'top-0', 'left-0', 'flex', 'justify-center', 'items-center');
   var popupWrapper = document.createElement('div');
-  popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12');
+  popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12', 'pb-4', 'flex', 'flex-col');
   popUpContainer.appendChild(popupWrapper);
   var crossElement = document.createElement('div');
   crossElement.classList.add('cross', 'z-10', 'absolute', 'top-4', 'right-4');
@@ -151,42 +152,17 @@ function popUpTeams() {
   labelPopup.textContent = 'Choisissez votre équipe :';
   popupWrapper.appendChild(labelPopup);
   var listWrapper = document.createElement("div");
-  listWrapper.classList.add('list-group', 'overflow-auto');
+  listWrapper.classList.add('list-group', 'px-4', 'overflow-auto');
   popupWrapper.appendChild(listWrapper);
-
-  var _iterator = _createForOfIteratorHelper(getGroups()),
-      _step;
-
-  try {
-    var _loop = function _loop() {
-      var group = _step.value;
-      var divFriend = document.createElement('div');
-      divFriend.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
-      divFriend.id = group.Id;
-      var friendName = document.createElement('span');
-      friendName.className = 'text-white font-bold text-xs capitalize';
-      friendName.textContent = group.Name;
-      divFriend.append(friendName);
-      divFriend.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log(divFriend.id);
-      });
-      document.getElementById('friends-container').append(divFriend);
-    };
-
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      _loop();
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
+  getGroups(listWrapper);
   body.appendChild(popUpContainer);
+  crossElement.addEventListener("click", function (event) {
+    event.preventDefault();
+    popUpContainer.remove();
+  });
 }
 
-function getGroups() {
+function getGroups(parent) {
   return new Promise(function () {
     fetch('https://la-malle.app/api/getfriendsgroupes.php', {
       method: 'POST',
@@ -198,7 +174,34 @@ function getGroups() {
       })
     }).then(function (response) {
       if (response.status === 200) response.json().then(function (data) {
-        console.log(data);
+        var _iterator = _createForOfIteratorHelper(data),
+            _step;
+
+        try {
+          var _loop = function _loop() {
+            var group = _step.value;
+            var divGroup = document.createElement('div');
+            divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+            divGroup.id = group.Id;
+            var GroupName = document.createElement('span');
+            GroupName.className = 'text-white font-bold text-xs capitalize';
+            GroupName.textContent = group.Name;
+            divGroup.append(GroupName);
+            divGroup.addEventListener("click", function (event) {
+              event.preventDefault();
+              getFriends(group.Id);
+            });
+            parent.appendChild(divGroup);
+          };
+
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            _loop();
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
       });
     });
   });
@@ -218,6 +221,16 @@ function getFriends(teamID) {
     }).then(function (response) {
       if (response.status === 200) response.json().then(function (data) {
         console.log(data);
+        playersArr = [];
+        data.forEach(function (player) {
+          playersArr.push({
+            id: player.Id,
+            name: player.Name
+          });
+        });
+        console.log(playersArr);
+        newGame.setPlayers(playersArr);
+        initGame();
       });
     });
   });
@@ -368,7 +381,10 @@ function stepTwo(nbPlayers) {
         var _field = _step2.value;
 
         if (_field.value != '' && !playersArray.includes(_field.value)) {
-          playersArray.push(_field.value);
+          playersArray.push({
+            id: "",
+            name: _field.value
+          });
 
           _field.classList.remove('border-red', 'border');
         } else {
@@ -392,7 +408,17 @@ function initGame() {
   newGame.attributesRoles();
   var main = document.getElementsByClassName('main-wrapper')[0]; // Retrait de l'interface
 
-  document.getElementsByClassName('fields-wrapper')[0].remove();
+  if (document.getElementsByClassName('selectionPopup')[0]) {
+    document.getElementsByClassName('selectionPopup')[0].remove();
+    document.getElementsByClassName('title-wrapper')[0].classList.remove('mt-16');
+    document.getElementsByClassName('title-wrapper')[0].classList.add('mt-4');
+    main.classList.add('h-full', 'flex', 'flex-col', 'justify-between');
+  }
+
+  if (document.getElementsByClassName('fields-wrapper')[0]) {
+    document.getElementsByClassName('fields-wrapper')[0].remove();
+  }
+
   document.getElementsByClassName('cta-wrapper')[0].remove();
   document.getElementsByTagName('body')[0].classList.remove('selection');
   document.getElementsByTagName('body')[0].classList.add('started'); // Génération des champs pour l'entrée des utilisateurs
@@ -447,7 +473,7 @@ function distributionRoles(i) {
   var dynamicContainer = document.getElementById('dynamicText');
   dynamicContainer.classList.remove('text-4xl');
   dynamicContainer.classList.add('text-2xl');
-  dynamicContainer.textContent = scriptObj.distrib + Object.keys(rolesArr)[i];
+  dynamicContainer.textContent = scriptObj.distrib + rolesArr[i].name;
 }
 
 function displayRole(i) {
@@ -464,7 +490,7 @@ function displayRole(i) {
   paragraph.appendChild(textRole);
   var spanRole = document.createElement('span');
   spanRole.classList.add('text-3xl', 'block');
-  var role = document.createTextNode(rolesArr[Object.keys(rolesArr)[i]]);
+  var role = document.createTextNode(rolesArr[i].role);
   spanRole.appendChild(role);
   paragraph.appendChild(spanRole);
   wrapperRole.appendChild(paragraph);
@@ -486,13 +512,13 @@ function startGame() {
   var instructionsWrapper = document.createElement('div');
   instructionsWrapper.id = 'instructionsWrapper';
   instructionsWrapper.classList.add('w-9/12', 'text-white', 'font-bold', 'text-4xl', 'text-center');
-  var masterInstructions = document.createTextNode(Object.keys(rolesArr).find(function (key) {
-    return rolesArr[key] === 'Maitre du jeu';
-  }) + scriptObj.master);
+  var masterInstructions = document.createTextNode(rolesArr.filter(function (obj) {
+    return obj.role === 'Maitre du jeu';
+  })[0].name + scriptObj.master);
   instructionsWrapper.appendChild(masterInstructions);
-  speak(Object.keys(rolesArr).find(function (key) {
-    return rolesArr[key] === 'Maitre du jeu';
-  }) + scriptObj.master);
+  speak(rolesArr.filter(function (obj) {
+    return obj.role === 'Maitre du jeu';
+  })[0].name + scriptObj.master);
   main.appendChild(instructionsWrapper);
   setTimeout(function () {
     instructionsWrapper.textContent = scriptObj.rulesAll;
@@ -627,22 +653,22 @@ function endGame() {
       wrapperActions.id = 'wrapperActions';
       wrapperActions.classList.add('flex', 'flex-wrap', 'justify-between');
       var rolesArr = newGame.getRoles();
-      delete rolesArr[Object.keys(rolesArr).find(function (key) {
-        return rolesArr[key] === 'Maitre du jeu';
-      })];
-
-      for (var player in rolesArr) {
+      rolesArr = rolesArr.filter(function (obj) {
+        return obj.role !== 'Maitre du jeu';
+      });
+      console.log(rolesArr);
+      rolesArr.forEach(function (player) {
+        console.log(player);
         var playerButton = document.createElement('a');
-        playerButton.id = player;
+        playerButton.id = player.role;
         playerButton.classList.add('playerButton', 'bg-white', 'flex', 'justify-center', 'items-center', 'text-sm', 'text-darkBlue', 'w-1/2:m', 'h-20', 'rounded-xl', 'mb-4');
-        playerButton.textContent = player;
+        playerButton.textContent = player.name;
         wrapperActions.appendChild(playerButton);
-      }
-
+      });
       instructionsWrapper.appendChild(wrapperActions);
       document.querySelectorAll('.playerButton').forEach(function (item) {
         item.addEventListener('click', function (event) {
-          if (rolesArr[item.id] == "Infiltré") {
+          if (item.id == "Infiltré") {
             // Si l'infiltré est éliminé
             document.getElementsByTagName('body')[0].classList.remove('eliminate');
             document.getElementsByTagName('body')[0].classList.add('wonCivil');
