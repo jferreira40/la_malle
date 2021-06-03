@@ -75,17 +75,18 @@ function addGroup() {
   })
 }
 
-/*function editFriend() {
-  //TODO edit api
+function editFriend() {
+
   return new Promise(() => {
-    fetch('https://la-malle.app/api/getData.php', {
+    fetch('https://la-malle.app/api/setgroup.php', {
       method: 'POST',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        friendid: document.getElementById('friend-id').value
+        groupid: document.getElementById('friend-id').value,
+        newname: document.getElementById('old-name').value
       })
     }).then(response => {
       if (response.status === 200)
@@ -95,20 +96,19 @@ function addGroup() {
 }
 
 function removeFriend() {
-  // TODO remove api
   return new Promise(() => {
-    fetch('https://la-malle.app/api/getData.php', {
+    fetch('https://la-malle.app/api/removegroup.php', {
       method: 'POST',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        friendid: document.getElementById('friend-id').value
+        idgroup:document.getElementById('friend-id').value
       })
     }).then(response => {
       if (response.status === 200)
         location.reload();
     })
   })
-}*/
+}
