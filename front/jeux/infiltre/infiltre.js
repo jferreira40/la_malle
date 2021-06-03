@@ -753,6 +753,8 @@ function endGame() {
                         wrapperActions.remove();
                         wrapperQuestion.textContent = scriptObj.winCivil;
 
+                        sendResults('infiltre');
+
                         setTimeout(() => {
                             window.location.reload();
                         }, 8000);
@@ -776,6 +778,8 @@ function endGame() {
                         buttonHome.textContent = "Revenir à l'accueil";
 
                         instructionsWrapper.appendChild(buttonHome);
+
+                        sendResults('civil');
 
                         document.getElementById('restart').addEventListener("click", function (event) {
                             event.preventDefault();
@@ -805,6 +809,8 @@ function endGame() {
         buttonNon.classList.remove('text-sm');
         buttonNon.classList.add('text-xs');
 
+        sendResults('none');
+
         document.getElementById('restart').addEventListener("click", function (event) {
             event.preventDefault();
             window.location.reload();
@@ -815,6 +821,71 @@ function endGame() {
         });
     });
 
+}
+
+function sendResults(result) {
+
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + "-" + mm + "-" + dd;
+
+    let playersBoard = newGame.getRoles();
+
+    playersBoard.forEach((player) => {
+        player.type = "friend";
+
+        switch (result) {
+            case 'infiltre':
+
+                if (player.role == "Infiltré") {
+                    player.result = "2";
+                } else {
+                    player.result = "1";
+                }
+                break;
+
+            case 'civil':
+
+                if (player.role == "Citoyen" || player.role == "Maitre du jeu") {
+                    player.result = "2";
+                } else {
+                    player.result = "1";
+                }
+                break;
+
+            case 'none':
+
+                player.result = "0"
+                break;
+
+            default:
+                break;
+        }
+
+    })
+
+
+    return new Promise(() => {
+        fetch('https://la-malle.app/api/addresults.php', {
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('jwt'),
+            },
+            body: JSON.stringify({
+                id: localStorage.getItem('id'),
+                gameid: 1,
+                date: today,
+                users: playersBoard
+            })
+        }).then(response => {
+            if (response.status === 200)
+                console.log("Sent");
+        })
+    })
 }
 
 function speak(sentence) {
