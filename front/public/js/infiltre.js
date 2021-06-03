@@ -131,11 +131,60 @@ window.addEventListener("DOMContentLoaded", function (event) {
     });
     document.getElementById("groupSelection").addEventListener("click", function (event) {
       event.preventDefault();
-      getGroups();
-      getFriends(7);
+      popUpTeams(); // getFriends(7);
     });
   }
 });
+
+function popUpTeams() {
+  var body = document.getElementsByTagName('body')[0];
+  var popUpContainer = document.createElement('div');
+  popUpContainer.classList.add('selectionPopup', 'fixed', 'w-screen', 'h-screen', 'bg-transparentGray', 'top-0', 'left-0', 'flex', 'justify-center', 'items-center');
+  var popupWrapper = document.createElement('div');
+  popupWrapper.classList.add('relative', 'bg-white', 'rounded', 'shadow-custom', 'w-10/12', 'h-4/6', 'pt-12');
+  popUpContainer.appendChild(popupWrapper);
+  var crossElement = document.createElement('div');
+  crossElement.classList.add('cross', 'z-10', 'absolute', 'top-4', 'right-4');
+  popupWrapper.appendChild(crossElement);
+  var labelPopup = document.createElement('h3');
+  labelPopup.classList.add('text-lg', 'font-bold', 'text-center', 'mb-6');
+  labelPopup.textContent = 'Choisissez votre équipe :';
+  popupWrapper.appendChild(labelPopup);
+  var listWrapper = document.createElement("div");
+  listWrapper.classList.add('list-group', 'overflow-auto');
+  popupWrapper.appendChild(listWrapper);
+
+  var _iterator = _createForOfIteratorHelper(getGroups()),
+      _step;
+
+  try {
+    var _loop = function _loop() {
+      var group = _step.value;
+      var divFriend = document.createElement('div');
+      divFriend.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+      divFriend.id = group.Id;
+      var friendName = document.createElement('span');
+      friendName.className = 'text-white font-bold text-xs capitalize';
+      friendName.textContent = group.Name;
+      divFriend.append(friendName);
+      divFriend.addEventListener("click", function (event) {
+        event.preventDefault();
+        console.log(divFriend.id);
+      });
+      document.getElementById('friends-container').append(divFriend);
+    };
+
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      _loop();
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  body.appendChild(popUpContainer);
+}
 
 function getGroups() {
   return new Promise(function () {
@@ -311,12 +360,12 @@ function stepTwo(nbPlayers) {
     var fieldsArray = document.getElementsByTagName('input');
     var playersArray = [];
 
-    var _iterator = _createForOfIteratorHelper(fieldsArray),
-        _step;
+    var _iterator2 = _createForOfIteratorHelper(fieldsArray),
+        _step2;
 
     try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var _field = _step.value;
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var _field = _step2.value;
 
         if (_field.value != '' && !playersArray.includes(_field.value)) {
           playersArray.push(_field.value);
@@ -327,9 +376,9 @@ function stepTwo(nbPlayers) {
         }
       }
     } catch (err) {
-      _iterator.e(err);
+      _iterator2.e(err);
     } finally {
-      _iterator.f();
+      _iterator2.f();
     }
 
     if (playersArray.length == nbPlayers) {
