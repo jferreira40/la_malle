@@ -27953,6 +27953,17 @@ body.groupes main section.groups .wrapper .card-container .card.bg-yellow::befor
   background-position: center;
 }
 
+body.groupes .selectionPopup .cross::before {
+  content: '';
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-image: url('/src/images/cross.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* ------------------------------------------------------ */
 
 /*                          Steps                         */
@@ -162148,3 +162159,4 @@ body.infiltre.simple aside .footer::before {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+

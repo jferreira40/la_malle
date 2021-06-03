@@ -1,0 +1,320 @@
+/* ------------------------------------------------------ */
+/*                          Fonts                         */
+/* ------------------------------------------------------ */
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("./assets/fonts/RedHatText-Regular.eot");
+  src: url("./assets/fonts/RedHatText-Regular.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/RedHatText-Regular.woff2") format("woff2"), url("./assets/fonts/RedHatText-Regular.woff") format("woff"), url("./assets/fonts/RedHatText-Regular.ttf") format("truetype"), url("./assets/fonts/RedHatText-Regular.svg#RedHatText-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("./assets/fonts/RedHatText-Bold.eot");
+  src: url("./assets/fonts/RedHatText-Bold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/RedHatText-Bold.woff2") format("woff2"), url("./assets/fonts/RedHatText-Bold.woff") format("woff"), url("./assets/fonts/RedHatText-Bold.ttf") format("truetype"), url("./assets/fonts/RedHatText-Bold.svg#RedHatText-Bold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("./assets/fonts/RedHatText-Medium.eot");
+  src: url("./assets/fonts/RedHatText-Medium.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/RedHatText-Medium.woff2") format("woff2"), url("./assets/fonts/RedHatText-Medium.woff") format("woff"), url("./assets/fonts/RedHatText-Medium.ttf") format("truetype"), url("./assets/fonts/RedHatText-Medium.svg#RedHatText-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* ------------------------------------------------------ */
+/*                        Variables                       */
+/* ------------------------------------------------------ */
+/* ------------------------------------------------------ */
+/*                          Style                         */
+/* ------------------------------------------------------ */
+body {
+  font-family: "Red Hat Text";
+  margin: 0;
+}
+body * {
+  box-sizing: border-box;
+}
+body header > .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body header > .wrapper .logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+body header > .wrapper .logo-wrapper img {
+  height: 44px;
+  width: 44px;
+}
+body header > .wrapper .logo-wrapper h1 {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+body header > .wrapper .cta-wrapper a {
+  background-color: #000;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.7rem 3rem;
+}
+body section.main {
+  position: relative;
+  padding: 6rem 0 20rem;
+}
+body section.main::before {
+  z-index: -1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url(./assets/images/deco2.svg);
+  background-size: 100% 100%;
+  background-position: bottom 0 left 0;
+  background-repeat: no-repeat;
+  transform: translateY(10%);
+}
+body section.main > .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body section.main > .wrapper .left-wrapper h2 {
+  font-size: 2.7rem;
+}
+body section.main > .wrapper .left-wrapper .cta-wrapper a {
+  background-color: #000;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.7rem 3rem;
+}
+body section.main > .wrapper .right-wrapper {
+  max-width: 50%;
+}
+body section.main > .wrapper .right-wrapper img {
+  width: 100%;
+}
+body section.share {
+  margin-bottom: 6rem;
+}
+body section.share > .wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body section.share > .wrapper::before {
+  z-index: -1;
+  content: "";
+  width: 200px;
+  height: 170px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: url(./assets/images/deco.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateY(43%);
+  opacity: 0.9;
+}
+body section.share > .wrapper .left-wrapper {
+  max-width: 50%;
+}
+body section.share > .wrapper .left-wrapper img {
+  width: 100%;
+}
+body section.share > .wrapper .right-wrapper {
+  max-width: 50%;
+  padding-left: 6%;
+}
+body section.share > .wrapper .right-wrapper h2 {
+  font-size: 2rem;
+}
+body section.share > .wrapper .right-wrapper p {
+  max-width: 75%;
+  font-size: 1.4rem;
+}
+body section.multi > .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body section.multi > .wrapper .right-wrapper {
+  max-width: 50%;
+}
+body section.multi > .wrapper .right-wrapper img {
+  width: 100%;
+}
+body section.multi > .wrapper .left-wrapper {
+  max-width: 50%;
+  padding-left: 6%;
+}
+body section.multi > .wrapper .left-wrapper h2 {
+  font-size: 2rem;
+}
+body section.multi > .wrapper .left-wrapper p {
+  max-width: 75%;
+  font-size: 1.4rem;
+}
+body section.cross {
+  position: relative;
+  overflow: hidden;
+  background-color: #F5F5F5;
+  margin: 6rem 0;
+  padding: 6rem 0;
+}
+body section.cross::before {
+  content: "";
+  width: 700px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 70%;
+  background-image: url(./assets/images/deco3.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateY(45%);
+}
+body section.cross > .wrapper {
+  text-align: center;
+}
+body section.cross > .wrapper h2 {
+  font-size: 2rem;
+}
+body section.cross > .wrapper p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+body section.games > .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+body section.games > .wrapper h2 {
+  font-size: 2rem;
+  margin-bottom: 0.1rem;
+}
+body section.games > .wrapper .list-game {
+  max-width: 800px;
+  margin: 5rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body section.games > .wrapper .list-game .game {
+  width: 300px;
+  height: 144px;
+  background-color: #F5F5F5;
+  border-radius: 11px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0.5rem 1rem;
+}
+body section.games > .wrapper .list-game .game > .wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+body section.games > .wrapper .list-game .game > .wrapper h3 {
+  color: #FFF;
+  margin: 0;
+  font-size: 1.125rem;
+}
+body section.games > .wrapper .list-game .game.infiltre {
+  background-color: #6879E2;
+}
+body section.games > .wrapper .list-game .game.infiltre::before {
+  content: "";
+  position: absolute;
+  left: 40px;
+  bottom: 0;
+  display: block;
+  height: 134px;
+  width: 153px;
+  background-image: url("/assets/images/infiltre.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body section.games > .wrapper .list-game .game.loup {
+  background-color: #9162C1;
+}
+body section.games > .wrapper .list-game .game.loup::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  bottom: -20px;
+  display: block;
+  height: 160px;
+  width: 190px;
+  background-image: url("/assets/images/le-loup.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body section.games > .wrapper .list-game .game.survivant {
+  background-color: #E2AE68;
+}
+body section.games > .wrapper .list-game .game.survivant::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: 0;
+  display: block;
+  height: 128px;
+  width: 157px;
+  background-image: url("/assets/images/survivant.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body footer {
+  background-color: #F5F5F5;
+}
+body footer > .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 0;
+}
+body footer > .wrapper .nav-footer {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+body footer > .wrapper .nav-footer a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+body footer > .wrapper span {
+  font-size: 0.8rem;
+}
+
+/*# sourceMappingURL=style.css.map */

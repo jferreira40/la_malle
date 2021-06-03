@@ -29,37 +29,91 @@
     <script src="src/js/favorite.js" type="application/javascript"></script>
     <script src="src/js/library.js" type="application/javascript"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('/sw.js')
-                .then(function () {
-                    console.log("Service Worker Registered");
-                });
-        }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then(function () {
+            console.log("Service Worker Registered");
+          });
+      }
     </script>
 </head>
 
 <body class="home pt-8">
-    <header class="home-header px-8">
-        <div class="wrapper flex justify-between">
-            <div class="logo-wrapper">
-                <img src="./src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-8 h-8">
-            </div>
-            <div class="cta-wrapper">
-                <a href="parametres/">
-                    <img src="./src/images/settings.svg" alt="Paramètres" class="w-8 h-8">
+<header class="home-header px-8">
+    <div class="wrapper flex justify-between">
+        <div class="logo-wrapper">
+            <img src="./src/images/logo/la_malle.svg" alt="Logo La Malle" class="w-8 h-8">
+        </div>
+        <div class="cta-wrapper">
+            <a href="parametres/">
+                <img src="./src/images/settings.svg" alt="Paramètres" class="w-8 h-8">
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="intro  px-8 mt-8 ">
+        <div class="wrapper bg-lightGray rounded-xl overflow-hidden relative p-3 ">
+            <h1 class="text-xl font-bold">
+                Salut, <span class="name" id="name"></span> ! 👋
+            </h1>
+        </div>
+    </section>
+
+    <section class="favorites px-8 mt-7 ">
+        <div class="wrapper last:mb-0" id="favorites">
+            <h2 class="text-lg font-bold mb-3">Mes favoris</h2>
+
+        </div>
+    </section>
+
+    <section class="popular px-8 mt-7">
+        <div class="wrapper last:mb-0" id="games">
+            <h2 class="text-lg font-bold mb-3">Les plus populaires</h2>
+            <!--<div class="game infiltre overflow-hidden relative rounded-xl bg-spy h-36 mb-3">
+                <a href="./src/pages/games/infiltre.html">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span onclick="addFavorite(1)" class="starred on"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            L'infiltré
+                        </h3>
+                    </div>
                 </a>
             </div>
-        </div>
-    </header>
-    <main>
-        <section class="intro  px-8 mt-8 ">
-            <div class="wrapper bg-lightGray rounded-xl overflow-hidden relative p-3 ">
-                <h1 class="text-xl font-bold">
-                    Salut, <span class="name" id="name"></span> ! 👋
-                </h1>
+
+            <div class="game survivant overflow-hidden relative rounded-xl bg-survive h-36 mb-3">
+                <a href="">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span class="starred"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            Le survivant
+                        </h3>
+                    </div>
+                </a>
             </div>
-        </section>
+
+            <div class="game le-loup overflow-hidden relative rounded-xl bg-wolf h-36 mb-3">
+                <a href="">
+                    <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                        <span class="starred on"></span>
+                        <h3 class="text-white font-bold text-lg">
+                            Le loup du village
+                        </h3>
+                    </div>
+                </a>
+            </div>-->
+
+
+        </div>
+        <div class="cta-wrapper">
+            <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+               href="bibliotheque.html">Voir le contenu
+                de
+                LaMalle</a>
+        </div>
+    </section>
+
 
         <section class="favorites px-8 mt-7 ">
             <div class="wrapper last:mb-0" id="favorites">
@@ -79,42 +133,26 @@
                     de
                     LaMalle</a>
             </div>
-        </section>
 
-        <section class="last-game pl-8 mt-7">
-            <div class="wrapper" id="history-container">
-                <h2 class="text-lg font-bold mb-3">Mes dernières parties</h2>
+            <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
 
+            <div class="cta-wrapper w-full mb-4">
+                <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+                   href="./parametres/amis.html">Voir tous mes amis</a>
             </div>
-        </section>
 
-        <section class="friends px-8 mt-7">
-            <div class="wrapper flex flex-wrap last:mb-0">
-                <h2 class="text-lg w-6/12 font-bold mb-3">Mes amis</h2>
-                <div class="cta-wrapper w-6/12 text-right">
-                    <a href="./parametres/amis.html" class="add-friend">
-                    </a>
-                </div>
-
-                <div class="card-container w-full flex justify-between flex-wrap" id="friends-container"></div>
-
-                <div class="cta-wrapper w-full mb-4">
-                    <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
-                        href="./parametres/amis.html">Voir tous mes amis</a>
-                </div>
-
-                <div class="cta-wrapper w-full">
-                    <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
-                        href="./parametres/groupes.html">Créer un groupe d'amis</a>
-                </div>
+            <div class="cta-wrapper w-full">
+                <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"
+                   href="./parametres/groupes.html">Créer un groupe d'amis</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
-    <footer class="relative w-full overflow-hidden mt-3">
+<footer class="relative w-full overflow-hidden mt-3">
 
-    </footer>
+</footer>
 </body>
 
 </html>
