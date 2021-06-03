@@ -48,8 +48,8 @@ function createFriendsGroupSection(friendsGroup) {
 function openModal(id, group) {
   document.getElementById(id).style.display = 'block';
   if (id === 'modal-edit') {
-    document.getElementById('old-name').value = group.Name;
-    document.getElementById('friend-id').value = group.Id;
+    document.getElementById(id).style.display = 'flex';
+    document.getElementById('groupName').textContent = group.Name;
   }
 }
 
@@ -75,8 +75,7 @@ function addGroup() {
   })
 }
 
-/*function editFriend() {
-  //TODO edit api
+function editGroup() {
   return new Promise(() => {
     fetch('https://la-malle.app/api/getData.php', {
       method: 'POST',
@@ -111,4 +110,4 @@ function removeFriend() {
         location.reload();
     })
   })
-}*/
+}
