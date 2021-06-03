@@ -674,6 +674,7 @@ function endGame() {
             document.getElementsByTagName('body')[0].classList.add('wonCivil');
             wrapperActions.remove();
             wrapperQuestion.textContent = scriptObj.winCivil;
+            sendResults('infiltre');
             setTimeout(function () {
               window.location.reload();
             }, 8000);
@@ -693,6 +694,7 @@ function endGame() {
             buttonHome.classList.add('block', 'w-40', 'mx-auto', 'text-center', 'bg-white', 'py-2', 'rounded-full', 'text-darkBlue', 'font-medium', 'text-xs');
             buttonHome.textContent = "Revenir à l'accueil";
             instructionsWrapper.appendChild(buttonHome);
+            sendResults('civil');
             document.getElementById('restart').addEventListener("click", function (event) {
               event.preventDefault();
               window.location.reload();
@@ -716,12 +718,69 @@ function endGame() {
     buttonNon.id = 'home';
     buttonNon.classList.remove('text-sm');
     buttonNon.classList.add('text-xs');
+    sendResults('none');
     document.getElementById('restart').addEventListener("click", function (event) {
       event.preventDefault();
       window.location.reload();
     });
     document.getElementById('home').addEventListener("click", function (event) {
       window.location.href = "/";
+    });
+  });
+}
+
+function sendResults(result) {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+  var yyyy = today.getFullYear();
+  today = yyyy + "-" + mm + "-" + dd;
+  var playersBoard = newGame.getRoles();
+  playersBoard.forEach(function (player) {
+    player.type = "friend";
+
+    switch (result) {
+      case 'infiltre':
+        if (player.role == "Infiltré") {
+          player.result = "2";
+        } else {
+          player.result = "1";
+        }
+
+        break;
+
+      case 'civil':
+        if (player.role == "Citoyen" || player.role == "Maitre du jeu") {
+          player.result = "2";
+        } else {
+          player.result = "1";
+        }
+
+        break;
+
+      case 'none':
+        player.result = "0";
+        break;
+
+      default:
+        break;
+    }
+  });
+  return new Promise(function () {
+    fetch('https://la-malle.app/api/addresults.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        gameid: 1,
+        date: today,
+        users: playersBoard
+      })
+    }).then(function (response) {
+      if (response.status === 200) console.log("Sent");
     });
   });
 }
