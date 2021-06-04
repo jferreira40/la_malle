@@ -1,3 +1,6 @@
+if (window.localStorage.getItem('jwt') === null)
+  window.location = 'connexion.html';
+
 class GameInfiltre {
     constructor() {
         this.players = [];
