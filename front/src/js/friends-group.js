@@ -36,7 +36,12 @@ function createFriendsGroupSection(friendsGroup) {
     groupName.className = 'text-white font-bold text-xs capitalize';
     groupName.textContent = group.Name;
 
+    const groupCount = document.createElement('span');
+    groupCount.className = 'text-white font-bold text-xs capitalize';
+    groupCount.textContent = group.count + " joueurs";
+
     divGroup.append(groupName);
+    divGroup.append(groupCount);
     divGroup.addEventListener("click", () => {
       event.preventDefault();
       openModal('modal-edit', group)
