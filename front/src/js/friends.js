@@ -77,8 +77,6 @@ function addFriend() {
 }
 
 function editFriend() {
-  console.log("name", document.getElementById('new-name').value)
-  console.log('id friend', document.getElementById('friend-id').value,)
   return new Promise(() => {
     fetch('https://la-malle.app/api/setfriend.php', {
       method: 'POST',

@@ -18,7 +18,6 @@ function initializeGames() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-          console.log(data)
           createGamesSection(data);
         })
     })

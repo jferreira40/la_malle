@@ -26,7 +26,6 @@ function createFriendsGroupSection(friendsGroup) {
   let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
 
   for (const group of friendsGroup) {
-    console.log(friendsGroup);
 
     const divGroup = document.createElement('div');
     divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
@@ -49,7 +48,6 @@ function createFriendsGroupSection(friendsGroup) {
 }
 
 function initializeSelectFriends(friends) {
-  console.log(friends)
 
   for (const friend of friends) {
     const li = document.createElement('li');
@@ -204,7 +202,6 @@ function getGroupDetails() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-          console.log('groupe details', data);
           initializeChips(data);
         })
     })
@@ -215,12 +212,16 @@ function initializeChips(groupDetails) {
   document.getElementById('chips').innerHTML = '';
   for (const groupDetail of groupDetails) {
     const chip = document.createElement('div');
-    chip.className = 'chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium items-center inline-flex mx-2 mb-2';
+    chip.className = 'chip bg-lightGray px-4 rounded-full w-max text-xs text-darkBlue py-1 font-medium items-center inline-flex mx-2 mb-2';
     chip.textContent = groupDetail.Name;
     chip.id = groupDetail.Id;
 
     const span = document.createElement('span');
-    span.className = 'cross-delete';
+    span.className = 'cross-delete ml-2';
+    span.addEventListener('click', () => {
+      event.preventDefault();
+      removeFriend(groupDetail.Id);
+    })
 
     chip.appendChild(span);
 
@@ -230,14 +231,16 @@ function initializeChips(groupDetails) {
 
 function createChip() {
   const name = document.getElementById('selected').innerText;
-  console.log(name);
   const chip = document.createElement('div');
-  chip.className = 'chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium flex items-center';
+  chip.className = 'chip bg-lightGray px-4 rounded-full w-max text-xs text-darkBlue py-1 font-medium flex items-center';
   chip.textContent = name;
   chip.id = document.getElementById('selected').dataset.value;
 
   const span = document.createElement('span');
-  span.className = 'cross';
+  span.className = 'cross-delete ml-2';
+  span.addEventListener('click', () => {
+    event.preventDefault();
+  })
 
   chip.appendChild(span);
 
@@ -259,5 +262,25 @@ function toggleValues() {
   }
 }
 
-function removeChip() {}
+function removeFriend(id) {
+
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/removefriendfromgroup.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        groupid: document.getElementById('group-id').value,
+        friendid: id
+      })
+    }).then(response => {
+      if (response.status === 200)
+        response.json().then(data => {
+          initializeChips(data);
+        })
+    })
+  })
+}
 
