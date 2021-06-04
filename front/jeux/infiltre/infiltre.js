@@ -1,38 +1,39 @@
 class GameInfiltre {
-    constructor() {
-        this.players = [];
-        this.word = "";
-        this.roles = [];
-    }
 
-    setPlayers(arrPlayers) {
+    constructor(arrPlayers) {
         this.players = arrPlayers;
+        this.setWord();
+        this.attributesRoles();
     }
 
-    setWord(word) {
-        this.word = word;
+    setWord() {
+        fetch("./words.json")
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const keys = Object.keys(data);
+                const randIndex = Math.floor(Math.random() * keys.length);
+                let word = data[keys[randIndex]];
+
+                //HOTFIX Word too long to display properly
+                //TODO fix words too long
+                while (word.length > 10) {
+                    word = randomWord(data);
+                }
+                this.word = word;
+            });
+
     }
 
-    getRoles(i) {
-        if (i) {
-            return this.roles[i];
-        } else {
-            return this.roles;
-        }
-    }
-
-    getPlayersLength() {
-        return this.players.length;
-    }
-
-    getWord() {
-        return this.word;
+    getRoles() {
+        return this.roles;
     }
 
     attributesRoles() {
-        let essentialRoles = ['Maitre du jeu', 'Infiltré'];
+        let essentialRoles = ['Maitre du jeu', 'Infiltré','Citoyen','Citoyen'];
 
-        for (let index = 2; index < this.players.length; index++) {
+        for (let index = 4; index < this.players.length; index++) {
             essentialRoles.push('Citoyen');
         }
 
@@ -50,13 +51,20 @@ class GameInfiltre {
 
         var result = this.players;
         for (var i = 0; i < this.players.length; i++)
-            // result[this.players[i]] = essentialRoles[i];
 
             result[i].role = essentialRoles[i];
 
         this.roles = result;
-        return this.roles;
     }
+
+    getPlayersLength() {
+        return this.players.length;
+    }
+
+    getWord() {
+        return this.word;
+    }
+
 }
 
 const scriptObj = {
@@ -78,37 +86,18 @@ const scriptObj = {
     "winInfiltre": "Vous avez éliminé un citoyen, l’infiltré l’emporte !",
 }
 
-let newGame = new GameInfiltre();
 
-fetch("./words.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-
-        let word = randomWord(data);
-        while (word.length > 10) {
-            word = randomWord(data);
-        }
-        newGame.setWord(word);
-    });
-
+let newGame;
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    if (document.body.classList.contains('infiltre')) {
-        // Si le jeu est lancé directement
-        document.getElementById("direct-play").addEventListener("click", function (event) {
-            event.preventDefault();
-            stepOne();
-        });
-
-        document.getElementById("groupSelection").addEventListener("click", function (event) {
-            event.preventDefault();
-            popUpTeams();
-            // getFriends(7);
-        });
-
-    }
+    document.getElementById("direct-play").addEventListener("click", function (event) {
+        event.preventDefault();
+        stepOne();
+    });
+    document.getElementById("groupSelection").addEventListener("click", function (event) {
+        event.preventDefault();
+        popUpTeams();
+    });
 });
 
 function popUpTeams() {
@@ -194,8 +183,6 @@ function getFriends(teamID) {
         }).then(response => {
             if (response.status === 200)
                 response.json().then(data => {
-                    console.log(data);
-
                     playersArr = [];
                     data.forEach((player) => {
                         playersArr.push({
@@ -203,21 +190,11 @@ function getFriends(teamID) {
                             name: player.Name
                         })
                     });
-                    console.log(playersArr);
-                    newGame.setPlayers(playersArr);
+                    newGame = new GameInfiltre(playersArr);
                     initGame();
                 })
         })
     })
-}
-
-function randomWord(data) {
-    const keys = Object.keys(data);
-    const randIndex = Math.floor(Math.random() * keys.length);
-    const randKey = keys[randIndex];
-    const word = data[randKey];
-
-    return word
 }
 
 function stepOne() {
@@ -380,7 +357,9 @@ function stepTwo(nbPlayers) {
         let playersArray = [];
 
         for (let field of fieldsArray) {
-            if (field.value != '' && !playersArray.some((el) => {return el.name === field.value})) {
+            if (field.value != '' && !playersArray.some((el) => {
+                return el.name === field.value
+            })) {
                 playersArray.push({
                     id: "",
                     name: field.value
@@ -392,7 +371,8 @@ function stepTwo(nbPlayers) {
         }
 
         if (playersArray.length == nbPlayers) {
-            newGame.setPlayers(playersArray);
+            newGame = new GameInfiltre(playersArray);
+
             initGame();
         }
     });
@@ -452,8 +432,6 @@ function initGame() {
             document.getElementById('nextPlayer').addEventListener("click", function (event) {
                 event.preventDefault();
 
-                console.log(i + " < " + rolesArrLength);
-                console.log(i < rolesArrLength);
 
                 if (i < rolesArrLength - 1) {
                     i++;
@@ -476,7 +454,6 @@ function initGame() {
     wrapperConsignes.appendChild(textContainer);
     main.appendChild(wrapperConsignes);
 
-    console.log(newGame);
 }
 
 function distributionRoles(i) {
@@ -484,7 +461,6 @@ function distributionRoles(i) {
     const main = document.getElementsByClassName('main-wrapper')[0];
 
     let rolesArr = newGame.getRoles();
-    console.log(rolesArr);
 
     const dynamicContainer = document.getElementById('dynamicText');
     dynamicContainer.classList.remove('text-4xl')
@@ -538,10 +514,14 @@ function startGame() {
     const instructionsWrapper = document.createElement('div');
     instructionsWrapper.id = 'instructionsWrapper';
     instructionsWrapper.classList.add('w-9/12', 'text-white', 'font-bold', 'text-4xl', 'text-center');
-    const masterInstructions = document.createTextNode(rolesArr.filter(obj => { return obj.role === 'Maitre du jeu' })[0].name + scriptObj.master);
+    const masterInstructions = document.createTextNode(rolesArr.filter(obj => {
+        return obj.role === 'Maitre du jeu'
+    })[0].name + scriptObj.master);
     instructionsWrapper.appendChild(masterInstructions);
 
-    speak(rolesArr.filter(obj => { return obj.role === 'Maitre du jeu' })[0].name + scriptObj.master);
+    speak(rolesArr.filter(obj => {
+        return obj.role === 'Maitre du jeu'
+    })[0].name + scriptObj.master);
 
     main.appendChild(instructionsWrapper);
 
@@ -657,7 +637,6 @@ function startGame() {
 
     }, 9000);
 
-    console.log("C'est partit");
 }
 
 function startTimer(duration) {
@@ -729,12 +708,12 @@ function endGame() {
 
             let rolesArr = newGame.getRoles();
 
-            rolesArr = rolesArr.filter(obj => { return obj.role !== 'Maitre du jeu' })
+            rolesArr = rolesArr.filter(obj => {
+                return obj.role !== 'Maitre du jeu'
+            })
 
-            console.log(rolesArr);
 
             rolesArr.forEach(player => {
-                console.log(player);
                 const playerButton = document.createElement('a');
                 playerButton.id = player.role;
                 playerButton.classList.add('playerButton', 'bg-white', 'flex', 'justify-center', 'items-center', 'text-sm', 'text-darkBlue', 'w-1/2:m', 'h-20', 'rounded-xl', 'mb-4');
@@ -882,9 +861,6 @@ function sendResults(result) {
                 date: today,
                 users: playersBoard
             })
-        }).then(response => {
-            if (response.status === 200)
-                console.log("Sent");
         })
     })
 }
@@ -899,7 +875,6 @@ function speak(sentence) {
 
     var utterThis = new SpeechSynthesisUtterance(sentence);
     utterThis.onend = function (event) {
-        console.log('SpeechSynthesisUtterance.onend');
     }
     utterThis.onerror = function (event) {
         console.error('SpeechSynthesisUtterance.onerror');
