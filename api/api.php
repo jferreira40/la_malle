@@ -344,7 +344,7 @@ where t1.Id_user = :id
             $table_name = 'Favorite_game';
             $table_name2 = 'Games';
 
-            $query = "SELECT  t2.Name as 'Name', t2.Id as 'Id' FROM " . $table_name . " as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id  WHERE t1.Id_user = :id ";
+            $query = "SELECT  t2.Name as 'Name', t2.Id as 'Id', t2.Url as Url FROM " . $table_name . " as t1 LEFT JOIN $table_name2 as t2 on t1.Id_game = t2.Id  WHERE t1.Id_user = :id ";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->data->id);
