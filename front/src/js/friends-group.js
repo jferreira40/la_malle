@@ -101,7 +101,7 @@ function addGroup() {
   })
 }
 
-function addFriendsToGroup () {
+function addFriendsToGroup() {
   return new Promise(() => {
     fetch('https://la-malle.app/api/addfriendtogroup.php', {
       method: 'POST',
@@ -119,7 +119,7 @@ function addFriendsToGroup () {
   })
 }
 
-function prepareFriends(){
+function prepareFriends() {
   const childs = document.getElementById('chips').children;
 
   let friendsIdTab = [];
@@ -205,9 +205,27 @@ function getGroupDetails() {
       if (response.status === 200)
         response.json().then(data => {
           console.log('groupe details', data);
+          initializeChips(data);
         })
     })
   })
+}
+
+function initializeChips(groupDetails) {
+  document.getElementById('chips').innerHTML = '';
+  for (const groupDetail of groupDetails) {
+    const chip = document.createElement('div');
+    chip.className = 'chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium items-center inline-flex mx-2 mb-2';
+    chip.textContent = groupDetail.Name;
+    chip.id = groupDetail.Id;
+
+    const span = document.createElement('span');
+    span.className = 'cross';
+
+    chip.appendChild(span);
+
+    document.getElementById('chips').append(chip);
+  }
 }
 
 function createChip() {
@@ -234,7 +252,7 @@ function replaceNameSelect(id, name) {
 function toggleValues() {
   let containerDisplay = document.getElementById('friends-values');
 
-  if(containerDisplay.style.display === 'block') {
+  if (containerDisplay.style.display === 'block') {
     containerDisplay.style.display = 'none'
   } else {
     containerDisplay.style.display = 'block';
