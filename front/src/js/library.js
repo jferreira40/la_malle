@@ -1,6 +1,3 @@
-if (window.localStorage.getItem('jwt') === null)
-  window.location = 'connexion.html';
-
 window.addEventListener("DOMContentLoaded", (event) => {
   initializeGames();
 });
