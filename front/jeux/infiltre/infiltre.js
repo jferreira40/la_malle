@@ -148,21 +148,23 @@ function getGroups(parent) {
                 response.json().then(data => {
                     for (const group of data) {
 
-                        const divGroup = document.createElement('div');
-                        divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
-                        divGroup.id = group.Id;
+                        if (group.count >= 4 && group.count <= 8 ) {
+                            const divGroup = document.createElement('div');
+                            divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+                            divGroup.id = group.Id;
 
-                        const GroupName = document.createElement('span');
-                        GroupName.className = 'text-white font-bold text-xs capitalize';
-                        GroupName.textContent = group.Name;
+                            const GroupName = document.createElement('span');
+                            GroupName.className = 'text-white font-bold text-xs capitalize';
+                            GroupName.textContent = group.Name;
 
-                        divGroup.append(GroupName);
-                        divGroup.addEventListener("click", (event) => {
-                            event.preventDefault();
-                            getFriends(group.Id);
-                        });
+                            divGroup.append(GroupName);
+                            divGroup.addEventListener("click", (event) => {
+                                event.preventDefault();
+                                getFriends(group.Id);
+                            });
 
-                        parent.appendChild(divGroup);
+                            parent.appendChild(divGroup);
+                        }
                     }
                 })
         })
