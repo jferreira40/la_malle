@@ -303,6 +303,49 @@ body.amis main section.friends>div:first-of-type button:after {
     background-position: center;
 }
 
+body.amis main section.friends .wrapper .card-container .card {
+    min-height: 85px;
+}
+
+body.amis main section.friends .wrapper .card-container .card.bg-red::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 13px;
+    width: 58px;
+    height: 59px;
+    background-image: url('/src/images/triangle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.amis main section.friends .wrapper .card-container .card.bg-blue::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 55px;
+    height: 55px;
+    background-image: url('/src/images/carre.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.amis main section.friends .wrapper .card-container .card.bg-yellow::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    background-image: url('/src/images/cercle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 
 
 /* ------------------------------------------------------ */
