@@ -380,7 +380,7 @@ function stepTwo(nbPlayers) {
         let playersArray = [];
 
         for (let field of fieldsArray) {
-            if (field.value != '' && !playersArray.includes(field.value)) {
+            if (field.value != '' && !playersArray.some((el) => {return el.name === field.value})) {
                 playersArray.push({
                     id: "",
                     name: field.value
@@ -673,6 +673,7 @@ function startTimer(duration) {
 
         if (--timer < 0) {
             clearInterval(window.refreshCounter);
+            speak("C'est terminé !")
             endGame();
         }
     }, 1000);
