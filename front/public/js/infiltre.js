@@ -377,19 +377,24 @@ function stepTwo(nbPlayers) {
         _step2;
 
     try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var _field = _step2.value;
+      var _loop2 = function _loop2() {
+        var field = _step2.value;
 
-        if (_field.value != '' && !playersArray.includes(_field.value)) {
+        if (field.value != '' && !playersArr.some(function (el) {
+          return el.name === field.value;
+        })) {
           playersArray.push({
             id: "",
-            name: _field.value
+            name: field.value
           });
-
-          _field.classList.remove('border-red', 'border');
+          field.classList.remove('border-red', 'border');
         } else {
-          _field.classList.add('border-red', 'border');
+          field.classList.add('border-red', 'border');
         }
+      };
+
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        _loop2();
       }
     } catch (err) {
       _iterator2.e(err);
@@ -614,6 +619,7 @@ function startTimer(duration) {
 
     if (--timer < 0) {
       clearInterval(window.refreshCounter);
+      speak("C'est terminé !");
       endGame();
     }
   }, 1000);
