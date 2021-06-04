@@ -220,7 +220,7 @@ function initializeChips(groupDetails) {
     chip.id = groupDetail.Id;
 
     const span = document.createElement('span');
-    span.className = 'cross';
+    span.className = 'cross-delete';
 
     chip.appendChild(span);
 
@@ -258,4 +258,6 @@ function toggleValues() {
     containerDisplay.style.display = 'block';
   }
 }
+
+function removeChip() {}
 
