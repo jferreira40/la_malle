@@ -465,6 +465,17 @@ body.groupes .selectionPopup .cross::before {
     background-repeat: no-repeat;
 }
 
+body.groupes .selectionPopup .cross-delete::before {
+    content: '';
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background-image: url('/src/images/cross_delete.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 /* ------------------------------------------------------ */
 /*                          Steps                         */
 /* ------------------------------------------------------ */
