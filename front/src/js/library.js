@@ -29,7 +29,7 @@ function createGamesSection(games) {
     emptyGames.className = 'text-center text-sm text-black py-5';
     emptyGames.textContent = "Aucun jeu pour le moment.";
 
-    document.getElementById('favorites').append(emptyGames);
+    document.getElementById('games').append(emptyGames);
   } else {
     for (const game of games) {
 

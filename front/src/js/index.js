@@ -17,7 +17,7 @@ function initializeHome() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-
+          document.getElementById('temp-game').parentNode.removeChild(document.getElementById('temp-game'));
           createFavoritesSection(data.favorites);
           createHistoricalSection(data.history);
           createFriendsSection(data.friends)
@@ -34,35 +34,40 @@ function createFavoritesSection(favorites) {
 
     document.getElementById('favorites').append(emptyFavorites);
   } else {
-    for (const favoritesKey of favorites) {
+    for (const favorite of favorites) {
 
       const divGame = document.createElement('div');
       divGame.className = 'game overflow-hidden relative rounded-xl h-36 mb-3';
 
       const linkGame = document.createElement('a');
+      if (favorite.Url !== null) {
+        linkGame.href = favorite.Url;
+      } else {
+        linkGame.href = "#";
+      }
       const divWrapper = document.createElement('div');
       divWrapper.className = 'wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4';
 
       const span = document.createElement('span');
       span.className = 'starred on';
       span.addEventListener("click", function () {
-        removeFavorite(favoritesKey.Id)
+        removeFavorite(favorite.Id)
         location.reload()
       })
 
       const title = document.createElement('h3');
       title.className = 'text-white font-bold text-lg';
-      title.textContent = favoritesKey.Name;
+      title.textContent = favorite.Name;
 
-      if (favoritesKey.Name === "L'infiltré") {
+      if (favorite.Name === "L'infiltré") {
         divGame.classList.add('infiltre', 'bg-spy');
       }
 
-      if (favoritesKey.Name === 'Le loup du village') {
+      if (favorite.Name === 'Le loup du village') {
         divGame.classList.add('le-loup', 'bg-wolf');
       }
 
-      if (favoritesKey.Name === 'Le survivant') {
+      if (favorite.Name === 'Le survivant') {
         divGame.classList.add('survivant', 'bg-survive');
       }
 

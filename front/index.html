@@ -12,7 +12,7 @@
     <title>La Malle</title>
     <link rel="stylesheet" href="public/css/style.css">
     <script src="src/js/index.js" type="application/javascript"></script>
-    <script src="/src/js/connexionState.js" type="application/javascript"></script>
+    <script src="src/js/connexionState.js" type="application/javascript"></script>
     <script src="src/js/favorite.js" type="application/javascript"></script>
     <script src="src/js/library.js" type="application/javascript"></script>
     <script>
@@ -58,7 +58,16 @@
         <section class="popular px-8 mt-7">
             <div class="wrapper last:mb-0" id="games">
                 <h2 class="text-lg font-bold mb-3">Les plus populaires</h2>
-
+                <div class="game infiltre overflow-hidden relative rounded-xl bg-spy h-36 mb-3" id="temp-game">
+                    <a href="/jeux/infiltre/">
+                        <div class="wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4">
+                            <span class="starred"></span>
+                            <h3 class="text-white font-bold text-lg">
+                                L'infiltré
+                            </h3>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div class="cta-wrapper">
                 <a class="block w-full text-center bg-darkBlue py-2 rounded-full text-white font-medium text-sm"

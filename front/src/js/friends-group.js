@@ -1,5 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  initializeFriendsGroupPage();
+  initializeFriendsGroupPage()
+  getAllFriends();
+  getGroupDetails();
 });
 
 function initializeFriendsGroupPage() {
@@ -25,6 +27,7 @@ function createFriendsGroupSection(friendsGroup) {
   let colors = ['bg-red', 'bg-blue', 'bg-yellow'];
 
   for (const group of friendsGroup) {
+    console.log(friendsGroup);
 
     const divGroup = document.createElement('div');
     divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
@@ -109,6 +112,45 @@ function removeGroup() {
     }).then(response => {
       if (response.status === 200)
         location.reload();
+    })
+  })
+}
+
+function getAllFriends() {
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/getfriends.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id')
+      })
+    }).then(response => {
+      if (response.status === 200)
+        response.json().then(data => {
+          console.log(data);
+        })
+    })
+  })
+}
+
+
+function getGroupDetails(){
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/getfriendsgroup.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id')
+      })
+    }).then(response => {
+      if (response.status === 200)
+        response.json().then(data => {
+          console.log(data);
+        })
     })
   })
 }
