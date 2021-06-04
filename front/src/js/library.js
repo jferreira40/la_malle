@@ -51,8 +51,9 @@ function createGamesSection(games) {
         span.className = 'starred';
       }
 
-      // TODO Fix favorites
+
       span.addEventListener("click", function () {
+        e.preventDefault();
         addFavorite(game.Id);
         location.reload();
       })

@@ -51,6 +51,7 @@ function createFavoritesSection(favorites) {
       const span = document.createElement('span');
       span.className = 'starred on';
       span.addEventListener("click", function () {
+        e.preventDefault();
         removeFavorite(favorite.Id)
         location.reload()
       })
