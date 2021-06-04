@@ -27739,19 +27739,6 @@ body.home main section.last-game .wrapper .card-container .card:nth-child(3n+3):
   background-position: center;
 }
 
-body.home main section.friends .wrapper .cta-wrapper .add-friend::before {
-  content: '';
-  display: block;
-  height: 19px;
-  width: 19px;
-  background-image: url('/src/images/add-friend.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-right: 0;
-  margin-left: auto;
-}
-
 body.home main section.friends .wrapper .card-container .card {
   min-height: 85px;
 }
