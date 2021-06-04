@@ -20,7 +20,7 @@ function initializeHome() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-
+          document.getElementById('temp-game')
           createFavoritesSection(data.favorites);
           createHistoricalSection(data.history);
           createFriendsSection(data.friends)
@@ -43,6 +43,9 @@ function createFavoritesSection(favorites) {
       divGame.className = 'game overflow-hidden relative rounded-xl h-36 mb-3';
 
       const linkGame = document.createElement('a');
+      if (favorites.Url !== null) {
+        linkGame.href = favorites.Url;
+      }
       const divWrapper = document.createElement('div');
       divWrapper.className = 'wrapper flex flex-col justify-between items-end h-full pr-4 pb-3 pt-4';
 
