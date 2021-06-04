@@ -1,3 +1,6 @@
+if (window.localStorage.getItem('jwt') === null)
+  window.location = 'connexion.html';
+
 window.addEventListener("DOMContentLoaded", (event) => {
   initializeGames();
 });
@@ -37,6 +40,7 @@ function createGamesSection(games) {
       divGame.className = 'game overflow-hidden relative rounded-xl h-36 mb-3';
 
       const linkGame = document.createElement('a');
+
       if (game.Url !== null) {
         linkGame.href = game.Url;
       }
@@ -47,16 +51,20 @@ function createGamesSection(games) {
       const span = document.createElement('span');
       if (game.IsFavorite === "1") {
         span.className = 'starred on';
+        span.addEventListener("click", function (e) {
+          e.preventDefault();
+          removeFavorite(game.Id);
+          location.reload();
+        })
       } else {
         span.className = 'starred';
+        span.addEventListener("click", function (e) {
+          e.preventDefault();
+          addFavorite(game.Id);
+          location.reload();
+        })
       }
 
-
-      span.addEventListener("click", function () {
-        e.preventDefault();
-        addFavorite(game.Id);
-        location.reload();
-      })
 
       const title = document.createElement('h3');
       title.className = 'text-white font-bold text-lg';
