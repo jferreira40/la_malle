@@ -549,8 +549,8 @@ where t1.Id_user = :id
 
             $query = "DELETE FROM $table_name where Id_friend = :idfriend and Id_group = :idgroup ";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':idgroup', $this->data->idgroup);
-            $stmt->bindParam(':idfriend', $this->data->idfriend);
+            $stmt->bindParam(':groupid', $this->data->groupid);
+            $stmt->bindParam(':friendid', $this->data->idfriend);
             $stmt->execute();
 
             return "done";

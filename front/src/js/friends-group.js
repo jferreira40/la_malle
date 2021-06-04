@@ -38,7 +38,7 @@ function createFriendsGroupSection(friendsGroup) {
 
     const groupCount = document.createElement('span');
     groupCount.className = 'text-white font-bold text-xs capitalize';
-    groupCount.textContent = group.count + " joueurs";
+    groupCount.textContent = group.count ? group.count : 0 + " joueurs";
 
     divGroup.append(groupName);
     divGroup.append(groupCount);
@@ -216,21 +216,23 @@ function getGroupDetails() {
 function initializeChips(groupDetails) {
   document.getElementById('chips').innerHTML = '';
   for (const groupDetail of groupDetails) {
-    const chip = document.createElement('div');
-    chip.className = 'chip bg-lightGray px-4 rounded-full w-max text-xs text-darkBlue py-1 font-medium items-center inline-flex mx-2 mb-2';
-    chip.textContent = groupDetail.Name;
-    chip.id = groupDetail.Id;
+    if (groupDetail.Id!== null) {
+      const chip = document.createElement('div');
+      chip.className = 'chip bg-lightGray px-4 rounded-full w-max text-xs text-darkBlue py-1 font-medium items-center inline-flex mx-2 mb-2';
+      chip.textContent = groupDetail.Name;
+      chip.id = groupDetail.Id;
 
-    const span = document.createElement('span');
-    span.className = 'cross-delete ml-2';
-    span.addEventListener('click', () => {
-      event.preventDefault();
-      removeFriend(groupDetail.Id);
-    })
+      const span = document.createElement('span');
+      span.className = 'cross-delete ml-2';
+      span.addEventListener('click', () => {
+        event.preventDefault();
+        removeFriend(groupDetail.Id);
+      })
 
-    chip.appendChild(span);
+      chip.appendChild(span);
 
-    document.getElementById('chips').append(chip);
+      document.getElementById('chips').append(chip);
+    }
   }
 }
 
