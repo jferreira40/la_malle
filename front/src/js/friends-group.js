@@ -26,22 +26,22 @@ function createFriendsGroupSection(friendsGroup) {
 
   for (const group of friendsGroup) {
 
-    const divFriend = document.createElement('div');
-    divFriend.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
+    const divGroup = document.createElement('div');
+    divGroup.className = 'card relative overflow-hidden w-full mb-4 rounded-xl flex flex-col h-20 justify-end p-2.5';
 
-    divFriend.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+    divGroup.classList.add(colors[Math.floor(Math.random() * colors.length)]);
 
-    const friendName = document.createElement('span');
-    friendName.className = 'text-white font-bold text-xs capitalize';
-    friendName.textContent = group.Name;
+    const groupName = document.createElement('span');
+    groupName.className = 'text-white font-bold text-xs capitalize';
+    groupName.textContent = group.Name;
 
-    divFriend.append(friendName);
-    divFriend.addEventListener("click", () => {
+    divGroup.append(groupName);
+    divGroup.addEventListener("click", () => {
       event.preventDefault();
       openModal('modal-edit', group)
     });
 
-    document.getElementById('friends-container').append(divFriend);
+    document.getElementById('groups-container').append(divGroup);
   }
 }
 
@@ -50,6 +50,7 @@ function openModal(id, group) {
   if (id === 'modal-edit') {
     document.getElementById(id).style.display = 'flex';
     document.getElementById('groupName').textContent = group.Name;
+    document.getElementById('group-id').value = group.Id;
   }
 }
 
@@ -94,7 +95,7 @@ function editGroup() {
   })
 }
 
-function removeFriend() {
+function removeGroup() {
   return new Promise(() => {
     fetch('https://la-malle.app/api/removegroup.php', {
       method: 'POST',
@@ -103,7 +104,7 @@ function removeFriend() {
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        idgroup:document.getElementById('friend-id').value
+        idgroup:document.getElementById('group-id').value
       })
     }).then(response => {
       if (response.status === 200)

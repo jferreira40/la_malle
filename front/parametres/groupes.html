@@ -52,7 +52,7 @@
         </div>
 
         <div class="wrapper">
-            <div class="card-container w-full flex flex-col" id="friends-container"></div>
+            <div class="card-container w-full flex flex-col" id="groups-container"></div>
         </div>
     </section>
 
@@ -106,18 +106,26 @@
                 TEST
                 <div class="mt-1 flex rounded-md shadow-sm">
                     <div class="relative flex items-stretch flex-grow focus-within:z-10">
-
-                        <input type="text" name="email" id="email" class="rounded-l w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" placeholder="John Doe">
+                        <input type="text" id="friend-autocomplete" class="rounded-l w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" placeholder="Ajouter un ami à ce groupe">
+                        <input id="group-id" class="hidden" type="hidden">
                     </div>
                     <button class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border-l border-darkBlue text-sm font-medium rounded-r focus:outline-none shadow bg-white">
                         <img src="./../src/images/add-friend.svg" alt="" class="h-5 w-5">
                     </button>
                 </div>
 
-                <button type="button"
-                        class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none mt-5">
-                    Valider
-                </button>
+                <div class="pt-10 flex flex-col items-center">
+                    <button type="button"
+                            class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none"
+                            onclick="editGroup()">
+                        Valider
+                    </button>
+                    <button type="button"
+                            class="w-40 rounded-full bg-lightGray text-darkBlue text-sm font-medium py-1 mt-2.5 focus:outline-none"
+                            onclick="removeGroup()">
+                        Supprimer
+                    </button>
+                </div>
             </div>
 
         </div>
