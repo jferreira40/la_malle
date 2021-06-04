@@ -380,7 +380,7 @@ function stepTwo(nbPlayers) {
       var _loop2 = function _loop2() {
         var field = _step2.value;
 
-        if (field.value != '' && !playersArr.some(function (el) {
+        if (field.value != '' && !playersArray.some(function (el) {
           return el.name === field.value;
         })) {
           playersArray.push({

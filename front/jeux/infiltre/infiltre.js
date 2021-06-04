@@ -380,7 +380,7 @@ function stepTwo(nbPlayers) {
         let playersArray = [];
 
         for (let field of fieldsArray) {
-            if (field.value != '' && !playersArr.some((el) => {return el.name === field.value})) {
+            if (field.value != '' && !playersArray.some((el) => {return el.name === field.value})) {
                 playersArray.push({
                     id: "",
                     name: field.value
