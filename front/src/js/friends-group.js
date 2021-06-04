@@ -1,10 +1,6 @@
-if (window.localStorage.getItem('jwt') === null)
-  window.location = 'connexion.html';
-
 window.addEventListener("DOMContentLoaded", (event) => {
   initializeFriendsGroupPage()
   getAllFriends();
-  getGroupDetails();
 });
 
 function initializeFriendsGroupPage() {
@@ -45,9 +41,32 @@ function createFriendsGroupSection(friendsGroup) {
     divGroup.addEventListener("click", () => {
       event.preventDefault();
       openModal('modal-edit', group)
+      getGroupDetails();
     });
 
     document.getElementById('groups-container').append(divGroup);
+  }
+}
+
+function initializeSelectFriends(friends) {
+  console.log(friends)
+
+  for (const friend of friends) {
+    const li = document.createElement('li');
+    li.className = 'text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9';
+    li.id = 'listbox-option-0';
+
+    const friendName = document.createElement('span');
+    friendName.className = 'font-medium block';
+    friendName.textContent = friend.Name;
+    friendName.id = friend.Id;
+
+    li.append(friendName);
+    li.addEventListener('click', () => {
+      event.preventDefault();
+      replaceNameSelect(friend.Id, friend.Name);
+    });
+    document.getElementById('friends-values').append(li);
   }
 }
 
@@ -73,7 +92,7 @@ function addGroup() {
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        //todo get all friends
+        name: document.getElementById('name').value
       })
     }).then(response => {
       if (response.status === 200)
@@ -82,17 +101,49 @@ function addGroup() {
   })
 }
 
-function editGroup() {
+function addFriendsToGroup () {
   return new Promise(() => {
-    fetch('https://la-malle.app/api/setgroup.php', {
+    fetch('https://la-malle.app/api/addfriendtogroup.php', {
       method: 'POST',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        groupid: document.getElementById('friend-id').value,
-        newname: document.getElementById('old-name').value
+        name: document.getElementById('name').value
+      })
+    }).then(response => {
+      if (response.status === 200)
+        location.reload();
+    })
+  })
+}
+
+function prepareFriends(){
+  const childs = document.getElementById('chips').children;
+
+  let friendsIdTab = [];
+
+  for (const child of childs) {
+    friendsIdTab.push(child.id);
+  }
+
+  return friendsIdTab;
+}
+
+function editGroup() {
+  const friends = prepareFriends();
+
+  return new Promise(() => {
+    fetch('https://la-malle.app/api/addfriendtogroup.php', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('id'),
+        groupId: document.getElementById('group-id').value,
+        friends: friends
       })
     }).then(response => {
       if (response.status === 200)
@@ -110,7 +161,7 @@ function removeGroup() {
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        idgroup:document.getElementById('group-id').value
+        idgroup: document.getElementById('group-id').value
       })
     }).then(response => {
       if (response.status === 200)
@@ -132,14 +183,14 @@ function getAllFriends() {
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-          console.log(data);
+          initializeSelectFriends(data);
         })
     })
   })
 }
 
 
-function getGroupDetails(){
+function getGroupDetails() {
   return new Promise(() => {
     fetch('https://la-malle.app/api/getfriendsgroup.php', {
       method: 'POST',
@@ -147,13 +198,46 @@ function getGroupDetails(){
         "Authorization": "Bearer " + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
-        id: localStorage.getItem('id')
+        id: localStorage.getItem('id'),
+        groupid: document.getElementById('group-id').value
       })
     }).then(response => {
       if (response.status === 200)
         response.json().then(data => {
-          console.log(data);
+          console.log('groupe details', data);
         })
     })
   })
 }
+
+function createChip() {
+  const name = document.getElementById('selected').innerText;
+  console.log(name);
+  const chip = document.createElement('div');
+  chip.className = 'chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium flex items-center';
+  chip.textContent = name;
+  chip.id = document.getElementById('selected').dataset.value;
+
+  const span = document.createElement('span');
+  span.className = 'cross';
+
+  chip.appendChild(span);
+
+  document.getElementById('chips').append(chip);
+}
+
+function replaceNameSelect(id, name) {
+  document.getElementById('selected').textContent = name;
+  document.getElementById('selected').dataset.value = id;
+}
+
+function toggleValues() {
+  let containerDisplay = document.getElementById('friends-values');
+
+  if(containerDisplay.style.display === 'block') {
+    containerDisplay.style.display = 'none'
+  } else {
+    containerDisplay.style.display = 'block';
+  }
+}
+

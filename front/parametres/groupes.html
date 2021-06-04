@@ -88,21 +88,32 @@
          aria-modal="true" style="display: none;">
         <div class="relative bg-white rounded shadow-custom w-10/12 h-4/6 pt-12 pb-4 flex flex-col">
             <div class="cross z-10 absolute top-4 right-4" onclick="closeModal('modal-edit')"></div>
-            <h3 class="text-lg font-bold text-center mb-6" id="groupName"></h3>
+            <h3 class="text-lg font-bold text-center mb-6 capitalize" id="groupName"></h3>
             <div class="list-group px-4 overflow-auto">
-                <div class="chips" id="chips">
-                    <div class="chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium">
-                        TEST
-                        <span class="cross"></span>
-                    </div>
+                <div class="chips flex flex-wrap" id="chips"></div>
 
-                </div>
-                <div class="mt-5 flex rounded-md shadow-sm">
-                    <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                        <input type="text" id="friend-autocomplete" class="rounded-l w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" placeholder="Ajouter un ami à ce groupe">
-                        <input id="group-id" class="hidden" type="hidden">
+                <div class="mt-5 flex w-full">
+                    <div class="flex flex-grow">
+                        <div class="w-full">
+                            <input id="group-id" class="hidden" type="hidden">
+                            <button type="button"
+                                    class="bg-white relative w-full rounded-l w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white text-left cursor-default"
+                                    aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label"
+                                    onclick="toggleValues()">
+                                <span class="block truncate" id="selected" data-value=""></span>
+                            </button>
+
+                            <ul id="friends-values"
+                                class="absolute z-10 mt-1 bg-white shadow-lg max-h-60 rounded py-1 text-sm overflow-auto focus:outline-none"
+                                tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                                aria-activedescendant="listbox-option-3" style="display: none;">
+                            </ul>
+                        </div>
+
+                        <input id="group-id" class="hidden" type="hidden" value="11">
                     </div>
-                    <button class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border-l border-darkBlue text-sm font-medium rounded-r focus:outline-none shadow bg-white">
+                    <button class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border-l border-darkBlue text-sm font-medium rounded-r focus:outline-none shadow bg-white"
+                            onclick="createChip()">
                         <img src="./../src/images/add-friend.svg" alt="" class="h-5 w-5">
                     </button>
                 </div>
