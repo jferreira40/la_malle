@@ -27996,6 +27996,17 @@ body.groupes main section.groups .wrapper .card-container .card.bg-yellow::befor
   background-position: center;
 }
 
+body.groupes .selectionPopup .cross::before {
+  content: '';
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-image: url('/src/images/cross.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* ------------------------------------------------------ */
 
 /*                          Steps                         */
@@ -28080,6 +28091,57 @@ body.game.infiltre .selectionPopup .cross::before {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+1) {
+  background-color: #EA6767;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+1)::before {
+  content: '';
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  top: -3px;
+  right: -33px;
+  background-image: url('/src/images/triangle-grp.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+2) {
+  background-color: #4A7AE8;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+2)::before {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: -9px;
+  right: -22px;
+  background-image: url('/src/images/square-grp.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+3) {
+  background-color: #FFD45D;
+}
+
+body.game.infiltre .selectionPopup .list-group .card:nth-child(3n+3)::before {
+  content: '';
+  position: absolute;
+  width: 69px;
+  height: 72px;
+  top: -9px;
+  right: -3px;
+  background-image: url("/src/images/circle-grp.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 body.game.infiltre:not(.selection):not(.eliminate):before {
@@ -162140,3 +162202,4 @@ body.infiltre.simple aside .footer::before {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+
