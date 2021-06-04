@@ -1,3 +1,6 @@
+if (window.localStorage.getItem('jwt') === null)
+  window.location = 'connexion.html';
+
 window.addEventListener("DOMContentLoaded", (event) => {
   initializeFriendsGroupPage();
 });
@@ -67,7 +70,7 @@ function addGroup() {
       },
       body: JSON.stringify({
         id: localStorage.getItem('id'),
-        name: document.getElementById('name').value
+        //todo get all friends
       })
     }).then(response => {
       if (response.status === 200)

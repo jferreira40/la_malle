@@ -2,23 +2,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="57x57" href="./../src/images/logo/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./../src/images/logo/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./../src/images/logo/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./../src/images/logo/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./../src/images/logo/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./../src/images/logo/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./../src/images/logo/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./../src/images/logo/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./../src/images/logo/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./../src/images/logo/android-icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./../src/images/logo/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./../src/images/logo/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./../src/images/logo/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./../src/images/logo/favicon-16x16.png">
     <link rel="manifest" href="./../src/images/logo/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <title>Mes groupes - La Malle</title>
     <link rel="stylesheet" href="./../public/css/style.css">
     <script src="./../src/js/friends-group.js" type="application/javascript"></script>
@@ -103,8 +90,14 @@
             <div class="cross z-10 absolute top-4 right-4" onclick="closeModal('modal-edit')"></div>
             <h3 class="text-lg font-bold text-center mb-6" id="groupName"></h3>
             <div class="list-group px-4 overflow-auto">
-                TEST
-                <div class="mt-1 flex rounded-md shadow-sm">
+                <div class="chips" id="chips">
+                    <div class="chip bg-lightGray px-6 rounded-full w-max text-xs text-darkBlue py-1 font-medium">
+                        TEST
+                        <span class="cross"></span>
+                    </div>
+
+                </div>
+                <div class="mt-5 flex rounded-md shadow-sm">
                     <div class="relative flex items-stretch flex-grow focus-within:z-10">
                         <input type="text" id="friend-autocomplete" class="rounded-l w-full shadow-custom h-9 px-5 text-xs focus:outline-blue focus:bg-white" placeholder="Ajouter un ami à ce groupe">
                         <input id="group-id" class="hidden" type="hidden">
@@ -114,7 +107,7 @@
                     </button>
                 </div>
 
-                <div class="pt-10 flex flex-col items-center">
+                <div class="pt-5 flex flex-col items-center">
                     <button type="button"
                             class="w-40 rounded-full bg-darkBlue text-white text-sm font-medium py-2 focus:outline-none"
                             onclick="editGroup()">
